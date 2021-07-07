@@ -1,5 +1,5 @@
 import 'package:church_app/AppColor.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:church_app/LibraryScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> _buildScreens() {
     return [
-      Container(),
+      LibraryScreen(),
       Container(),
       Container(),
     ];
