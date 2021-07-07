@@ -53,6 +53,11 @@ flutter:
     - family: ABEAKRG
       fonts:
         - asset: fonts/ABEAKRG.ttf
+    - family: GESSTwo
+      fonts:
+        - asset: fonts/GESSTwoBold.otf
+        - asset: fonts/GESSTwoMedium.otf
+        - asset: fonts/GESSTwoLight.otf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

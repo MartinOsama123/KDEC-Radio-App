@@ -9,15 +9,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final language = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Church app',
+
       theme: ThemeData(
           primaryColor: AppColor.PrimaryColor,
           accentColor: AppColor.SecondaryColor,
-          fontFamily: 'ABEAKRG'),
+           fontFamily: language ? 'GESSTwo' : 'ABEAKRG'),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
