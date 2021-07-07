@@ -17,10 +17,20 @@ class _LibraryScreenState extends State<LibraryScreen> {
         child: Column(
           children: [
             Align(alignment: Alignment.centerLeft,child: const Text("Library",style: TextStyle(fontSize: 36,fontWeight: FontWeight.bold),)),
-        Padding(
+            Align(alignment: Alignment.centerLeft,child: const Text("Live Radio",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),)),
+
+            Padding(
           padding: const EdgeInsets.all(8.0),
           child: _buildCarousel(context,1),
         ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: 5,
+              itemBuilder: (context, index) =>
+                  ListTile(leading: Icon(Icons.arrow_right_outlined),
+                    title: const Text("Song Name"),
+                    subtitle: const Text("Song Author"),
+                    trailing: const Text("20:00"),),)
         ],
         ),
       ),
@@ -33,11 +43,10 @@ class _LibraryScreenState extends State<LibraryScreen> {
       children: <Widget>[
 
         SizedBox(
-          // you may want to use an aspect ratio here for tablet support
           height: 200.0,
           child: PageView.builder(
             // store this controller in a State to save the carousel scroll position
-            controller: PageController(viewportFraction: 0.8),
+            controller: PageController(viewportFraction: 0.9),
             itemBuilder: (BuildContext context, int itemIndex) {
               return _buildCarouselItem(context, carouselIndex, itemIndex);
             },
