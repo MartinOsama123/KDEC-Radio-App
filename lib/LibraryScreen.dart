@@ -1,4 +1,6 @@
+import 'package:church_app/AlbumScreen.dart';
 import 'package:church_app/AppColor.dart';
+import 'package:church_app/Widgets/PlaylistWidget.dart';
 import 'package:flutter/material.dart';
 
 class LibraryScreen extends StatefulWidget {
@@ -55,24 +57,15 @@ class _LibraryScreenState extends State<LibraryScreen> {
                               child: const Text(
                                 "Live Radio",
                                 style: TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
+                                    fontSize: 20, fontWeight: FontWeight.bold),
                               )),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: _buildCarousel(context, 1),
                         ),
-                        ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 20,
-                          itemBuilder: (context, index) => ListTile(
-                            leading: Icon(Icons.arrow_right_outlined),
-                            title: const Text("Song Name"),
-                            subtitle: const Text("Song Author"),
-                            trailing: const Text("20:00"),
-                          ),
-                        )
+
+                        PlaylistWidget()
                       ],
                     ),
                   ),
@@ -113,12 +106,19 @@ class _LibraryScreenState extends State<LibraryScreen> {
       BuildContext context, int carouselIndex, int itemIndex) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 4.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      child: InkWell(
+        onTap: () =>  Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AlbumScreen())),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          ),
         ),
       ),
     );
   }
 }
+
+
