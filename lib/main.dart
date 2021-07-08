@@ -1,5 +1,6 @@
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/LibraryScreen.dart';
+import 'package:church_app/NewScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -49,7 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset:
             true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-        stateManagement: true, // Default is true.
+        stateManagement: true,
+        // Default is true.
         hideNavigationBarWhenKeyboardShows:
             true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
         decoration: NavBarDecoration(
@@ -57,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
           colorBehindNavBar: Colors.white,
         ),
         popAllScreensOnTapOfSelectedTab: true,
-        popActionScreens: PopActionScreensType.all,
+        popActionScreens: PopActionScreensType.once,
         itemAnimationProperties: ItemAnimationProperties(
           // Navigation Bar's items animation properties.
           duration: Duration(milliseconds: 200),
@@ -81,19 +83,20 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: Icon(CupertinoIcons.list_bullet),
         title: ("Library"),
         contentPadding: 10,
+        activeColorPrimary: AppColor.PrimaryColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.mic),
         title: ("New"),
-        // activeColorPrimary: CupertinoColors.activeBlue,
+         activeColorPrimary: AppColor.PrimaryColor,
          inactiveColorPrimary: CupertinoColors.systemGrey,
         contentPadding: 10,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.person),
         title: ("Profile"),
-        // activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: AppColor.PrimaryColor,
          inactiveColorPrimary: CupertinoColors.systemGrey,
         contentPadding: 10,
       ),
@@ -103,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _buildScreens() {
     return [
       LibraryScreen(),
-      Container(),
+      NewScreen(),
       Container(),
     ];
   }

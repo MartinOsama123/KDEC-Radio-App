@@ -14,7 +14,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.arrow_back,color: Colors.black,),
+            icon: Icon(Icons.arrow_back,color: AppColor.PrimaryColor,),
             onPressed: () => Navigator.pop(context)),
         elevation: 0,
         backgroundColor: Colors.white,
@@ -38,6 +38,10 @@ class _AlbumScreenState extends State<AlbumScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ElevatedButton.icon(
                     onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      onPrimary: Colors.white,
+                      primary: AppColor.SecondaryColor,
+                    ),
                     icon: Icon(Icons.bookmark_border),
                     label: const Text("Add Favorite")),
               ),
