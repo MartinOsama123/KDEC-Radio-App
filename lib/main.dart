@@ -3,7 +3,6 @@ import 'package:church_app/LibraryScreen.dart';
 import 'package:church_app/NewScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,74 +33,47 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  int _selectedIndex = 0;
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: PersistentTabView(
-        context,
-        controller: _controller,
-        screens: _buildScreens(),
-        items: _navBarsItems(),
-        confineInSafeArea: true,
-        backgroundColor: Colors.white, // Default is Colors.white.
-        handleAndroidBackButtonPress: true, // Default is true.
-        resizeToAvoidBottomInset:
-            true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-        stateManagement: true,
-        // Default is true.
-        hideNavigationBarWhenKeyboardShows:
-            true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-        decoration: NavBarDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          colorBehindNavBar: Colors.white,
+      child: Scaffold(
+        body: Center(
+          child: _buildScreens().elementAt(_selectedIndex),
         ),
-        popAllScreensOnTapOfSelectedTab: true,
-        popActionScreens: PopActionScreensType.once,
-        itemAnimationProperties: ItemAnimationProperties(
-          // Navigation Bar's items animation properties.
-          duration: Duration(milliseconds: 200),
-          curve: Curves.ease,
-        ),
-        screenTransitionAnimation: ScreenTransitionAnimation(
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.list_bullet),
+              label: ("Library"),
 
-          animateTabTransition: true,
-          curve: Curves.ease,
-          duration: Duration(milliseconds: 200),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.mic),
+              label: ("New"),
+
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.person),
+              label: ("Profile"),
+
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: AppColor.PrimaryColor,
+          onTap: _onItemTapped,
         ),
-        navBarStyle:
-            NavBarStyle.style6,
       ),
+
     );
   }
 
-  List<PersistentBottomNavBarItem> _navBarsItems() {
-    return [
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.list_bullet),
-        title: ("Library"),
-        contentPadding: 10,
-        activeColorPrimary: AppColor.PrimaryColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.mic),
-        title: ("New"),
-         activeColorPrimary: AppColor.PrimaryColor,
-         inactiveColorPrimary: CupertinoColors.systemGrey,
-        contentPadding: 10,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person),
-        title: ("Profile"),
-        activeColorPrimary: AppColor.PrimaryColor,
-         inactiveColorPrimary: CupertinoColors.systemGrey,
-        contentPadding: 10,
-      ),
-    ];
-  }
 
   List<Widget> _buildScreens() {
     return [

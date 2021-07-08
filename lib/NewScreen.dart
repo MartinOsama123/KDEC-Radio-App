@@ -1,5 +1,3 @@
-import 'package:church_app/AlbumScreen.dart';
-import 'package:church_app/AppColor.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +10,7 @@ class _NewScreenState extends State<NewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollViewgit (child: PlaylistWidget()),
+      body: SingleChildScrollView (child: PlaylistWidget()),
     );
   }
 
