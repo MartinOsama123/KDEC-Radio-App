@@ -1,6 +1,7 @@
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/LibraryScreen.dart';
 import 'package:church_app/NewScreen.dart';
+import 'package:church_app/SplashScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,15 +19,12 @@ class MyApp extends StatelessWidget {
           primaryColor: AppColor.PrimaryColor,
           accentColor: AppColor.SecondaryColor,
            fontFamily: language ? 'GESSTwo' : 'ABEAKRG'),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: SplashScreen(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
