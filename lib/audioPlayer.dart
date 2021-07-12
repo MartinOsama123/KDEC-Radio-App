@@ -53,17 +53,10 @@ class _FirebaseListState extends State<FirebaseList> {
     }
   }
 
-  void _getAllFiles() async {
+  Future<List<firebase_storage.Reference>> getAllAlbums() async {
     firebase_storage.ListResult result =
         await firebase_storage.FirebaseStorage.instance.ref().listAll();
-    result.prefixes.forEach((firebase_storage.Reference ref) {
-      firebase_storage.FirebaseStorage.instance
-          .ref()
-          .child("${ref.fullPath}")
-          .listAll()
-          .then(
-              (value) => value.items.forEach((element) => print(element.name)));
-    });
+    return result.prefixes.toList();
     //  String downloadLink = await ref.getDownloadURL();
     /* final videoPlayerController = VideoPlayerController.network(downloadLink);
 
@@ -111,7 +104,7 @@ class _FirebaseListState extends State<FirebaseList> {
                         ],
                       ),
               ),
-              ElevatedButton(onPressed: _getAllFiles, child: Text("Play")),
+              //     ElevatedButton(onPressed: _getAllFiles, child: Text("Play")),
               /*  Spacer(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
