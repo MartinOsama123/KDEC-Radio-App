@@ -2,10 +2,14 @@ import 'package:church_app/AppColor.dart';
 import 'package:church_app/LibraryScreen.dart';
 import 'package:church_app/NewScreen.dart';
 import 'package:church_app/SplashScreen.dart';
+import 'package:church_app/audioPlayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await firebase_core.Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -14,18 +18,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       theme: ThemeData(
           primaryColor: AppColor.PrimaryColor,
           accentColor: AppColor.SecondaryColor,
-           fontFamily: language ? 'GESSTwo' : 'ABEAKRG'),
+          fontFamily: language ? 'GESSTwo' : 'ABEAKRG'),
       home: SplashScreen(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -38,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,17 +53,14 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.list_bullet),
               label: ("Library"),
-
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.mic),
               label: ("New"),
-
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.person),
               label: ("Profile"),
-
             ),
           ],
           currentIndex: _selectedIndex,
@@ -68,10 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
           onTap: _onItemTapped,
         ),
       ),
-
     );
   }
-
 
   List<Widget> _buildScreens() {
     return [

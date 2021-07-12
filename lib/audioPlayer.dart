@@ -1,4 +1,3 @@
-
 import 'package:chewie_audio/chewie_audio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,41 +25,47 @@ class MyApp extends StatelessWidget {
   }
 }*/
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class FirebaseList extends StatefulWidget {
+  FirebaseList({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _FirebaseListState createState() => _FirebaseListState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _FirebaseListState extends State<FirebaseList> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  ChewieAudioController?  _chewieAudioController;
-
+  ChewieAudioController? _chewieAudioController;
 
   final _textEditingController = TextEditingController();
   final _textEditingController1 = TextEditingController();
 
+  void _singUp({required String email, required String password}) async {
+    try {
+      /*await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
 
-
-  void _singUp({required String email,required String password}) async {
-    try{
-      await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-
-      print( "Signed up");
-    }on FirebaseAuthException catch(e){
-      print( e.message ?? "Error");
+      print("Signed up");*/
+      await _firebaseAuth.signInAnonymously();
+    } on FirebaseAuthException catch (e) {
+      print(e.message ?? "Error");
     }
   }
-  void _incrementCounter() async{
-    firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
-        .ref().child("test.mp3");
 
-    String downloadLink = await ref.getDownloadURL();
-    final videoPlayerController = VideoPlayerController.network(
-        downloadLink);
+  void _getAllFiles() async {
+    firebase_storage.ListResult result =
+        await firebase_storage.FirebaseStorage.instance.ref().listAll();
+    result.prefixes.forEach((firebase_storage.Reference ref) {
+      firebase_storage.FirebaseStorage.instance
+          .ref()
+          .child("${ref.fullPath}")
+          .listAll()
+          .then(
+              (value) => value.items.forEach((element) => print(element.name)));
+    });
+    //  String downloadLink = await ref.getDownloadURL();
+    /* final videoPlayerController = VideoPlayerController.network(downloadLink);
 
     await videoPlayerController.initialize();
     setState(() {
@@ -69,10 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
         autoPlay: true,
         looping: true,
       );
-    });
-
-
+    });*/
   }
+
   @override
   void dispose() {
     _chewieAudioController!.dispose();
@@ -83,7 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: Padding(
@@ -93,33 +96,49 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                child: _chewieAudioController != null && _chewieAudioController!.videoPlayerController.value.isInitialized
+                child: _chewieAudioController != null &&
+                        _chewieAudioController!
+                            .videoPlayerController.value.isInitialized
                     ? ChewieAudio(
-                  controller: _chewieAudioController!,
-                )
+                        controller: _chewieAudioController!,
+                      )
                     : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    CircularProgressIndicator(),
-                    SizedBox(height: 20),
-                    Text('Loading'),
-                  ],
-                ),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          CircularProgressIndicator(),
+                          SizedBox(height: 20),
+                          Text('Loading'),
+                        ],
+                      ),
               ),
-              ElevatedButton(onPressed: _incrementCounter, child: Text("Play")),
-              Spacer(),
+              ElevatedButton(onPressed: _getAllFiles, child: Text("Play")),
+              /*  Spacer(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(controller: _textEditingController,decoration: InputDecoration(border: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),)),
+                child: TextField(
+                    controller: _textEditingController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red)),
+                    )),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(controller: _textEditingController1,decoration: InputDecoration(border: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),)),
+                child: TextField(
+                    controller: _textEditingController1,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red)),
+                    )),
               ),
-              ElevatedButton(onPressed: (){
-                _singUp(email: _textEditingController.text,password: _textEditingController1.text);
-              }, child: Text("Sign Up")),
-              Spacer(),
+              ElevatedButton(
+                  onPressed: () {
+                    _singUp(
+                        email: _textEditingController.text,
+                        password: _textEditingController1.text);
+                  },
+                  child: Text("Sign Up")),
+              Spacer(),*/
             ],
           ),
         ),
