@@ -3,6 +3,9 @@ import 'package:church_app/Widgets/PlaylistWidget.dart';
 import 'package:flutter/material.dart';
 
 class AlbumScreen extends StatefulWidget {
+  final String albumName;
+
+  const AlbumScreen({Key? key, required this.albumName}) : super(key: key);
   @override
   _AlbumScreenState createState() => _AlbumScreenState();
 }
@@ -31,7 +34,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Text("Album Selected"),
+                child: Text(widget.albumName),
               ),
               Text("Author Name"),
               Padding(

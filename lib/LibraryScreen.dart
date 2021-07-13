@@ -1,5 +1,6 @@
 import 'package:church_app/AlbumScreen.dart';
 import 'package:church_app/AppColor.dart';
+import 'package:church_app/FirebaseQueries.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
 
 import 'package:flutter/material.dart';
@@ -85,7 +86,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
 
   Widget _buildCarousel(BuildContext context, int carouselIndex) {
     return FutureBuilder<List<firebase_storage.Reference>>(
-      future: getAllAlbums(),
+      future: FirebaseQueries.getAllAlbums(),
       builder: (context, snapshot) =>
           snapshot.connectionState == ConnectionState.done
               ? Column(
@@ -109,12 +110,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
     );
   }
 
-  Future<List<firebase_storage.Reference>> getAllAlbums() async {
-    firebase_storage.ListResult result =
-        await firebase_storage.FirebaseStorage.instance.ref().listAll();
-    print(result.prefixes.length);
-    return result.prefixes.toList();
-  }
 
   Widget _buildCarouselItem(
       BuildContext context, int carouselIndex, int itemIndex, String name) {
@@ -123,7 +118,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
         Expanded(
           child: InkWell(
                   onTap: () => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => AlbumScreen())),
+                      context, MaterialPageRoute(builder: (context) => AlbumScreen(albumName: name))),
                   child: Container(
 
                     decoration: BoxDecoration(
