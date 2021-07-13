@@ -11,8 +11,10 @@ class FirebaseQueries {
     return result.prefixes.toList();
   }
   static Future<List<firebase_storage.Reference>> getAlbumPlaylist(String albumName) async {
+    print("entered");
     firebase_storage.ListResult result =
     await firebase_storage.FirebaseStorage.instance.ref().child(albumName).listAll();
+    print(result.items.length);
     return result.items.toList();
   }
   static Future<String> getMp3Link(String fullPath) async {

@@ -70,7 +70,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: _buildCarousel(context, 1),
                       ),
-                      PlaylistWidget()
+                      PlaylistWidget(albumName: "",)
                     ],
                   ),
                 ),
@@ -100,7 +100,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         controller: PageController(viewportFraction: 0.8),
                         itemBuilder: (BuildContext context, int itemIndex) {
                           return _buildCarouselItem(context, carouselIndex,
-                              itemIndex, snapshot.data?[itemIndex].name ?? "Annonymous");
+                              itemIndex, snapshot.data?[itemIndex].name ?? "Anonymous");
                         },
                       ),
                     ),

@@ -10,7 +10,7 @@ class _NewScreenState extends State<NewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView (child: PlaylistWidget()),
+      body: SingleChildScrollView (child: PlaylistWidget(albumName: "",)),
     );
   }
 

@@ -48,7 +48,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
                     icon: Icon(Icons.bookmark_border),
                     label: const Text("Add Favorite")),
               ),
-              PlaylistWidget()
+              PlaylistWidget(albumName: widget.albumName)
             ],
           ),
         ),

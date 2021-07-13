@@ -1,10 +1,18 @@
+import 'package:church_app/FirebaseQueries.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-class PlaylistWidget extends StatelessWidget {
+class PlaylistWidget extends StatefulWidget {
+  final String albumName;
   const PlaylistWidget({
-    Key? key,
+    Key? key, required this.albumName,
   }) : super(key: key);
 
+  @override
+  _PlaylistWidgetState createState() => _PlaylistWidgetState();
+}
+
+class _PlaylistWidgetState extends State<PlaylistWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,21 +27,25 @@ class PlaylistWidget extends StatelessWidget {
                     fontSize: 20, fontWeight: FontWeight.bold),
               )),
         ),
-        ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: 20,
-          itemBuilder: (context, index) => Column(
-            children: [
-              Divider(thickness: 1,),
-              ListTile(
-                leading: Icon(Icons.arrow_right_outlined),
-                title: const Text("Song Name"),
-                subtitle: const Text("Song Author"),
-                trailing: const Text("20:00"),
-              ),
-            ],
-          ),
+        FutureBuilder<List<Reference>>(
+          future: FirebaseQueries.getAlbumPlaylist(widget.albumName),
+          builder: (context, snapshot) =>  snapshot.connectionState == ConnectionState.done
+              ? ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: snapshot.data?.length,
+            itemBuilder: (context, index) => Column(
+              children: [
+                Divider(thickness: 1,),
+                ListTile(
+                  leading: Icon(Icons.arrow_right_outlined),
+                  title:  Text(snapshot.data?[index].name ?? "Anonymous"),
+                  subtitle: const Text("Song Author"),
+                  trailing: const Text("20:00"),
+                ),
+              ],
+            ),
+          ): CircularProgressIndicator(),
         ),
       ],
     );
