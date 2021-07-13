@@ -2,7 +2,6 @@ import 'package:church_app/AppColor.dart';
 import 'package:church_app/LibraryScreen.dart';
 import 'package:church_app/NewScreen.dart';
 import 'package:church_app/SplashScreen.dart';
-import 'package:church_app/audioPlayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart' as firebase_core;

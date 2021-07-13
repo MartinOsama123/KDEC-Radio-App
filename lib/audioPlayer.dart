@@ -1,9 +1,9 @@
 import 'package:chewie_audio/chewie_audio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart' as firebase_core;
+
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:video_player/video_player.dart';
+
 /*Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await firebase_core.Firebase.initializeApp();
@@ -38,20 +38,19 @@ class _FirebaseListState extends State<FirebaseList> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   ChewieAudioController? _chewieAudioController;
 
-  final _textEditingController = TextEditingController();
-  final _textEditingController1 = TextEditingController();
 
-  void _singUp({required String email, required String password}) async {
+
+ /* void _singUp({required String email, required String password}) async {
     try {
-      /*await _firebaseAuth.createUserWithEmailAndPassword(
+      *//*await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      print("Signed up");*/
+      print("Signed up");*//*
       await _firebaseAuth.signInAnonymously();
     } on FirebaseAuthException catch (e) {
       print(e.message ?? "Error");
     }
-  }
+  }*/
 
   Future<List<firebase_storage.Reference>> getAllAlbums() async {
     firebase_storage.ListResult result =

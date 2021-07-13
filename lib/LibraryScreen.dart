@@ -1,9 +1,9 @@
 import 'package:church_app/AlbumScreen.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart' as firebase_core;
+
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class LibraryScreen extends StatefulWidget {
@@ -94,11 +94,12 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     SizedBox(
                       height: 200.0,
                       child: PageView.builder(
+
                         itemCount: snapshot.data?.length ?? 0,
-                        controller: PageController(viewportFraction: 0.9),
+                        controller: PageController(viewportFraction: 0.8),
                         itemBuilder: (BuildContext context, int itemIndex) {
                           return _buildCarouselItem(context, carouselIndex,
-                              itemIndex, snapshot.data?[itemIndex].name ?? "");
+                              itemIndex, snapshot.data?[itemIndex].name ?? "Annonymous");
                         },
                       ),
                     ),
@@ -117,18 +118,26 @@ class _LibraryScreenState extends State<LibraryScreen> {
 
   Widget _buildCarouselItem(
       BuildContext context, int carouselIndex, int itemIndex, String name) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.0),
-      child: InkWell(
-        onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AlbumScreen())),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.all(Radius.circular(4.0)),
-          ),
+    return Column(
+      children: [
+        Expanded(
+          child: InkWell(
+                  onTap: () => Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => AlbumScreen())),
+                  child: Container(
+
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    ),
+                  ),
+                ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(name),
+        ),
+      ],
     );
   }
 }
