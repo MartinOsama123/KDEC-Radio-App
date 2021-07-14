@@ -23,11 +23,11 @@ class FirebaseQueries {
     print(downloadLink);
     AudioPlayer audioPlayer = AudioPlayer();
     await audioPlayer.setUrl(downloadLink);
-    String temp = "0:00";
-    audioPlayer.onDurationChanged.listen((Duration d) {
-      print('Max duration: $d');
-    });
-    return temp;
+
+    await for (var value in audioPlayer.onDurationChanged){
+     return "${value.inMinutes}:${value.inSeconds - value.inMinutes * 60}";
+    }
+    return "0:00";
   }
 }
 class GetDuration extends ChangeNotifier {
