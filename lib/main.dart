@@ -1,3 +1,4 @@
+import 'package:audio_service/audio_service.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/LibraryScreen.dart';
 import 'package:church_app/NewScreen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           primaryColor: AppColor.PrimaryColor,
           accentColor: AppColor.SecondaryColor,
           fontFamily: language ? 'GESSTwo' : 'ABEAKRG'),
-      home: SplashScreen(),
+      home: AudioServiceWidget(child: SplashScreen()),
     );
   }
 }
