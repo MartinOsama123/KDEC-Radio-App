@@ -1,9 +1,11 @@
+/*
 import 'package:chewie_audio/chewie_audio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
+*/
 /*Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await firebase_core.Firebase.initializeApp();
@@ -23,7 +25,8 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
-}*/
+}*//*
+
 
 class FirebaseList extends StatefulWidget {
   FirebaseList({Key? key, required this.title}) : super(key: key);
@@ -40,24 +43,31 @@ class _FirebaseListState extends State<FirebaseList> {
 
 
 
- /* void _singUp({required String email, required String password}) async {
+ */
+/* void _singUp({required String email, required String password}) async {
     try {
-      *//*await _firebaseAuth.createUserWithEmailAndPassword(
+      *//*
+*/
+/*await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
       print("Signed up");*//*
+*/
+/*
       await _firebaseAuth.signInAnonymously();
     } on FirebaseAuthException catch (e) {
       print(e.message ?? "Error");
     }
-  }*/
+  }*//*
+
 
   Future<List<firebase_storage.Reference>> getAllAlbums() async {
     firebase_storage.ListResult result =
         await firebase_storage.FirebaseStorage.instance.ref().listAll();
     return result.prefixes.toList();
     //  String downloadLink = await ref.getDownloadURL();
-    /* final videoPlayerController = VideoPlayerController.network(downloadLink);
+    */
+/* final videoPlayerController = VideoPlayerController.network(downloadLink);
 
     await videoPlayerController.initialize();
     setState(() {
@@ -66,7 +76,8 @@ class _FirebaseListState extends State<FirebaseList> {
         autoPlay: true,
         looping: true,
       );
-    });*/
+    });*//*
+
   }
 
   @override
@@ -104,7 +115,8 @@ class _FirebaseListState extends State<FirebaseList> {
                       ),
               ),
               //     ElevatedButton(onPressed: _getAllFiles, child: Text("Play")),
-              /*  Spacer(),
+              */
+/*  Spacer(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -130,7 +142,8 @@ class _FirebaseListState extends State<FirebaseList> {
                         password: _textEditingController1.text);
                   },
                   child: Text("Sign Up")),
-              Spacer(),*/
+              Spacer(),*//*
+
             ],
           ),
         ),
@@ -139,3 +152,4 @@ class _FirebaseListState extends State<FirebaseList> {
     );
   }
 }
+*/

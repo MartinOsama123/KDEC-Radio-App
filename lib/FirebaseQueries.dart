@@ -1,6 +1,7 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
 
 
 class FirebaseQueries {
@@ -18,6 +19,30 @@ class FirebaseQueries {
     return result.items.toList();
   }
   static Future<String> getMp3Link(String fullPath) async {
-    return await firebase_storage.FirebaseStorage.instance.ref().child(fullPath).getDownloadURL();
+    String downloadLink = await firebase_storage.FirebaseStorage.instance.ref().child(fullPath).getDownloadURL();
+    print(downloadLink);
+    AudioPlayer audioPlayer = AudioPlayer();
+    await audioPlayer.setUrl(downloadLink);
+    String temp = "0:00";
+    audioPlayer.onDurationChanged.listen((Duration d) {
+      print('Max duration: $d');
+    });
+    return temp;
+  }
+}
+class GetDuration extends ChangeNotifier {
+  String _duration = "0:00";
+
+  String get duration => _duration;
+
+   Future<void> getMp3Lin(String fullPath) async {
+    String downloadLink = await firebase_storage.FirebaseStorage.instance.ref().child(fullPath).getDownloadURL();
+    print(downloadLink);
+    AudioPlayer audioPlayer = AudioPlayer();
+    await audioPlayer.setUrl(downloadLink);
+    audioPlayer.onDurationChanged.listen((Duration d) {
+      print('Max duration: $d');
+      _duration = d.toString();
+    });
   }
 }

@@ -37,11 +37,15 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
             itemBuilder: (context, index) => Column(
               children: [
                 Divider(thickness: 1,),
-                ListTile(
-                  leading: Icon(Icons.arrow_right_outlined),
-                  title:  Text(snapshot.data?[index].name ?? "Anonymous"),
-                  subtitle: const Text("Song Author"),
-                  trailing: const Text("20:00"),
+                FutureBuilder<String>(
+                  future: FirebaseQueries.getMp3Link(snapshot.data?[index].fullPath ?? ""),
+                  builder: (context, linkData) => linkData.connectionState == ConnectionState.done
+                      ? ListTile(
+                    leading: Icon(Icons.arrow_right_outlined),
+                    title:  Text(snapshot.data?[index].name ?? ""),
+                    subtitle: const Text("Song Author"),
+                    trailing:  Text(linkData.data ?? ""),
+                  ): CircularProgressIndicator(),
                 ),
               ],
             ),
