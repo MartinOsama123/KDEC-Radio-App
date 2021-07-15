@@ -80,14 +80,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                         'title': snapshot.data?[index].name ??
                                             "Anonymous"
                                       });
-                                  for (var i in snapshot.data ?? []) {
-                                    final MediaItem item = MediaItem(
-                                        id: linkData.data?.keys.first ?? "",
-                                        album: widget.albumName,
-                                        title: snapshot.data?[index].name ?? "",
-                                    duration: linkData.data?.entries?.first.value ?? Duration());
-                                    AudioService.addQueueItem(item);
-                                  }
+
                                   Navigator.push(
                                       context, MaterialPageRoute(builder: (context) => AudioPlayerUI()));
                                 },

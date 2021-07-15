@@ -80,4 +80,9 @@ class AudioPlayerTask extends BackgroundAudioTask {
     AudioServiceBackground.setState(position: position);
     return super.onSeekTo(position);
   }
+  @override
+  Future<void> onSkipToNext() {
+
+    return super.onSkipToNext();
+  }
 }
