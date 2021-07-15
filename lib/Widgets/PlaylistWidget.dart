@@ -95,8 +95,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                   leading: Icon(Icons.arrow_right_outlined),
                                   title: Text(snapshot.data?[index].name ?? ""),
                                   subtitle: const Text("Song Author"),
-                                  trailing: Text(
-                                      "${linkData.data?.entries?.first.value.inMinutes}:${(linkData.data?.entries?.first.value.inSeconds ?? 0) - ((linkData.data?.entries?.first.value.inMinutes ?? 1) * 60)}"),
+                                  trailing: Text(linkData.data?.entries?.first.value.toString().substring(2, 7) ?? ""),
                                 ),
                               )
                             : CircularProgressIndicator(),

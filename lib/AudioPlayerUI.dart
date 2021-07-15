@@ -19,14 +19,23 @@ class _AudioPlayerUIState extends State<AudioPlayerUI> {
               child: Container(decoration: BoxDecoration(color: Colors.grey))),
           StreamBuilder<Duration>(
               stream: AudioService.positionStream,
-              builder: (context, snapshot) => Slider(
-                  value: snapshot.data?.inSeconds?.toDouble() ?? 0.0,
-                  min: 0,
-                  max:  mediaItem.data?.duration?.inSeconds.toDouble() ?? 0.0,
-                  onChanged: (double value) {
-                    print(mediaItem.data?.duration?.inSeconds.toString() ?? "aaaa");
-                    AudioService.seekTo(Duration(seconds: value.toInt()));
-                  })),
+              builder: (context, snapshot) => Column(
+                children: [
+                  Slider(
+                      value: snapshot.data?.inSeconds?.toDouble() ?? 0.0,
+                      min: 0,
+                      max:  mediaItem.data?.duration?.inSeconds.toDouble() ?? 499 ,
+                      onChanged: (double value) {
+                        AudioService.seekTo(Duration(seconds: value.toInt()));
+                      }),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                    Text(snapshot.data?.toString().substring(2, 7) ?? "0"),
+                    Text(mediaItem.data?.duration?.toString().substring(2, 7) ?? "500"),
+                  ],
+                  )
+                ],
+              )),
           Center(
             child: Row(children: [
               StreamBuilder<PlaybackState>(
