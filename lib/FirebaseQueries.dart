@@ -18,13 +18,13 @@ class FirebaseQueries {
     print(result.items.length);
     return result.items.toList();
   }
-  static Future<Map<String,String>> getMp3Link(String fullPath) async {
+  static Future<Map<String,Duration>> getMp3Link(String fullPath) async {
     String downloadLink = await firebase_storage.FirebaseStorage.instance.ref().child(fullPath).getDownloadURL();
     print(downloadLink);
     AudioPlayer audioPlayer = AudioPlayer();
     await audioPlayer.setUrl(downloadLink);
 
-     return {downloadLink: "${audioPlayer.duration!.inMinutes}:${audioPlayer.duration!.inSeconds - audioPlayer.duration!.inMinutes * 60}"};
+     return {downloadLink: audioPlayer.duration ?? Duration()};
 
   }
 }

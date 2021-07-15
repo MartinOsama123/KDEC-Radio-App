@@ -32,7 +32,6 @@ dependencies:
   just_audio: ^0.8.0
   audio_service: ^0.17.1
   provider: ^5.0.0
-  flutter_playout: ^2.0.1
 
 dev_dependencies:
   flutter_test:

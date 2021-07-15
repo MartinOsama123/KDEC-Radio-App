@@ -61,7 +61,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                       Divider(
                         thickness: 1,
                       ),
-                      FutureBuilder<Map<String, String>>(
+                      FutureBuilder<Map<String, Duration>>(
                         future: FirebaseQueries.getMp3Link(
                             snapshot.data?[index].fullPath ?? ""),
                         builder: (context, linkData) => linkData
@@ -80,6 +80,15 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                         'title': snapshot.data?[index].name ??
                                             "Anonymous"
                                       });
+                                  for (var i in snapshot.data ?? []) {
+                                    final MediaItem item = MediaItem(
+                                        id: linkData.data?.keys.first ?? "",
+                                        album: widget.albumName,
+                                        title:
+                                            snapshot.data?[index].name ?? "",
+                                    duration: linkData.data?.entries?.first.value ?? Duration());
+                                    AudioService.addQueueItem(item);
+                                  }
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -91,8 +100,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                   title: Text(snapshot.data?[index].name ?? ""),
                                   subtitle: const Text("Song Author"),
                                   trailing: Text(
-                                      linkData.data?.entries?.first.value ??
-                                          ""),
+                                      "${linkData.data?.entries?.first.value.inMinutes}:${(linkData.data?.entries?.first.value.inSeconds ?? 0) - ((linkData.data?.entries?.first.value.inMinutes ?? 1) * 60)}"),
                                 ),
                               )
                             : CircularProgressIndicator(),
