@@ -7,9 +7,9 @@ class AudioPlayerTask extends BackgroundAudioTask {
 
   onStart(Map<String, dynamic>? params) async {
     final mediaItem = MediaItem(
-      id: "https://foo.bar/baz.mp3",
-      album: "Foo",
-      title: "Bar",
+      id: params?['url'] ?? "0",
+      album: params?['album'] ?? "",
+      title: params?['title'] ?? "",
     );
     // Tell the UI and media notification what we're playing.
     AudioServiceBackground.setMediaItem(mediaItem);
@@ -17,7 +17,7 @@ class AudioPlayerTask extends BackgroundAudioTask {
     AudioServiceBackground.setState(controls: [AudioServiceBackground.state.playing ? MediaControl.pause : MediaControl.play,MediaControl.stop],playing: true,processingState: AudioProcessingState.connecting);
     _player.setUrl(params!['url']);
     _player.play();
-    print('entered');
+
     AudioServiceBackground.setState(controls: [MediaControl.pause,MediaControl.stop],playing: true,processingState: AudioProcessingState.ready);
   }
   @override

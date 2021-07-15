@@ -62,7 +62,8 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                   builder: (context, linkData) => linkData.connectionState == ConnectionState.done
                       ? InkWell(
                     onTap: ()  {
-                       AudioService.start(backgroundTaskEntrypoint: _entrypoint,params: {'url':linkData.data?.keys.first ?? ""});
+                       AudioService.start(backgroundTaskEntrypoint: _entrypoint,params: {'url':linkData.data?.keys.first ?? ""
+                       ,'album':widget.albumName,'title':snapshot.data?[index].name ?? "Anonymous"});
                       Navigator.push(
                           context, MaterialPageRoute(builder: (context) => AudioPlayerUI()));
                     },
