@@ -8,9 +8,9 @@ class AudioPlayerTask extends BackgroundAudioTask {
    await _player.setUrl(params!['url']);
    print("seconds: ${_player.duration!.inSeconds}");
     final mediaItem = MediaItem(
-      id: params?['url'] ?? "0",
-      album: params?['album'] ?? "",
-      title: params?['title'] ?? "",
+      id: params['url'] ?? "0",
+      album: params['album'] ?? "",
+      title: params['title'] ?? "",
       duration: _player.duration
     );
     // Tell the UI and media notification what we're playing.
