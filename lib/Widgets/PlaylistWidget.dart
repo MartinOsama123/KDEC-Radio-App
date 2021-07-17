@@ -48,7 +48,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               )),
         ),
-        FutureBuilder<List<Reference>>(
+        FutureBuilder<List<MediaItem>>(
           future: FirebaseQueries.getAlbumPlaylist(widget.albumName),
           builder: (context, snapshot) => snapshot.connectionState ==
                   ConnectionState.done
@@ -61,13 +61,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                       Divider(
                         thickness: 1,
                       ),
-                      FutureBuilder<Map<String, Duration>>(
-                        future: FirebaseQueries.getMp3Link(
-                            snapshot.data?[index].fullPath ?? ""),
-                        builder: (context, linkData) => linkData
-                                    .connectionState ==
-                                ConnectionState.done
-                            ? InkWell(
+                       InkWell(
                                 onTap: () async {
                                   if (AudioService.running) {
                                     await AudioService.stop();
@@ -75,9 +69,9 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                   AudioService.start(
                                       backgroundTaskEntrypoint: _entrypoint,
                                       params: {
-                                        'url': linkData.data?.keys.first ?? "",
+                                        'url': snapshot.data?[index].id ?? "",
                                         'album': widget.albumName,
-                                        'title': snapshot.data?[index].name ??
+                                        'title': snapshot.data?[index].title ??
                                             "Anonymous"
                                       });
 
@@ -86,13 +80,12 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                 },
                                 child: ListTile(
                                   leading: Icon(Icons.arrow_right_outlined),
-                                  title: Text(snapshot.data?[index].name ?? ""),
+                                  title: Text(snapshot.data?[index].title ?? ""),
                                   subtitle: const Text("Song Author"),
-                                  trailing: Text(linkData.data?.entries?.first.value.toString().substring(2, 7) ?? ""),
+                                  trailing: Text(snapshot.data?[index].duration.toString().substring(2, 7) ?? ""),
                                 ),
                               )
-                            : CircularProgressIndicator(),
-                      ),
+
                     ],
                   ),
                 )

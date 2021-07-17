@@ -1,3 +1,4 @@
+import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
 
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -11,20 +12,15 @@ class FirebaseQueries {
     print(result.prefixes.length);
     return result.prefixes.toList();
   }
-  static Future<List<firebase_storage.Reference>> getAlbumPlaylist(String albumName) async {
-    print("entered");
-    firebase_storage.ListResult result =
-    await firebase_storage.FirebaseStorage.instance.ref().child(albumName).listAll();
-    print(result.items.length);
-    return result.items.toList();
-  }
-  static Future<Map<String,Duration>> getMp3Link(String fullPath) async {
-    String downloadLink = await firebase_storage.FirebaseStorage.instance.ref().child(fullPath).getDownloadURL();
-    print(downloadLink);
-    AudioPlayer audioPlayer = AudioPlayer();
-    await audioPlayer.setUrl(downloadLink);
-
-     return {downloadLink: audioPlayer.duration ?? Duration()};
-
+  static Future<List<MediaItem>> getAlbumPlaylist(String albumName) async {
+    firebase_storage.ListResult result = await firebase_storage.FirebaseStorage.instance.ref().child(albumName).listAll();
+    List<MediaItem> list =  <MediaItem>[];
+    AudioPlayer audioPlayer = new AudioPlayer();
+    for(firebase_storage.Reference r in result.items.toList()){
+      String download = await r.getDownloadURL();
+      await audioPlayer.setUrl(download);
+      list.add(new MediaItem(id: download, album: albumName, title: r.name,duration: audioPlayer.duration ?? Duration()));
+    }
+    return list;
   }
 }
