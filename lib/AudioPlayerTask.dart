@@ -1,25 +1,26 @@
+import 'dart:convert';
+
 import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
 import 'dart:core';
+
+import 'QueueSystem.dart';
+
 class AudioPlayerTask extends BackgroundAudioTask {
+  int _current = 0;
+  late List<MediaItem> _list;
   final _player = AudioPlayer();
 
   onStart(Map<String, dynamic>? params) async {
-   await _player.setUrl(params!['url']);
-   print("seconds: ${_player.duration!.inSeconds}");
-    final mediaItem = MediaItem(
-      id: params['url'] ?? "0",
-      album: params['album'] ?? "",
-      title: params['title'] ?? "",
-      duration: _player.duration
-    );
-    // Tell the UI and media notification what we're playing.
-    AudioServiceBackground.setMediaItem(mediaItem);
+    _list =  (jsonDecode(params!['list']) as List).map((i) => MediaItem.fromJson(i)).toList();
+
+   await _player.setUrl(_list[_current].id);
+ //  final MediaItem mediaItem = new MediaItem(id: params['url'], album: params['album'], title: params['title'],duration: _player.duration);
+    AudioServiceBackground.setMediaItem(_list[_current]);
     print('entered');
     AudioServiceBackground.setState(controls: [
       MediaControl.skipToPrevious,
       MediaControl.pause,
-      MediaControl.stop,
       MediaControl.skipToNext,
 
     ], systemActions: [
@@ -31,12 +32,12 @@ class AudioPlayerTask extends BackgroundAudioTask {
     AudioServiceBackground.setState(controls: [
       MediaControl.skipToPrevious,
       MediaControl.pause,
-      MediaControl.stop,
       MediaControl.skipToNext,
 
     ], systemActions: [
       MediaAction.seekTo
     ], playing: true, processingState: AudioProcessingState.ready);
+
   }
 
   @override
@@ -50,7 +51,7 @@ class AudioPlayerTask extends BackgroundAudioTask {
     AudioServiceBackground.setState(controls: [
       MediaControl.skipToPrevious,
       MediaControl.pause,
-      MediaControl.stop,
+
       MediaControl.skipToNext,
 
     ], systemActions: [
@@ -66,7 +67,6 @@ class AudioPlayerTask extends BackgroundAudioTask {
     AudioServiceBackground.setState(controls: [
       MediaControl.skipToPrevious,
       MediaControl.play,
-      MediaControl.stop,
       MediaControl.skipToNext,
     ], systemActions: [
       MediaAction.seekTo
@@ -81,8 +81,22 @@ class AudioPlayerTask extends BackgroundAudioTask {
     return super.onSeekTo(position);
   }
   @override
-  Future<void> onSkipToNext() {
-
+   Future<void> onSkipToNext() async {
+    _current == _list.length - 1 ? _current = 0 : _current += 1;
+    AudioServiceBackground.setMediaItem(_list[_current]);
+    await _player.setUrl(_list[_current].id);
+    AudioServiceBackground.setState(position: Duration.zero);
     return super.onSkipToNext();
   }
+  @override
+  Future<void> onSkipToPrevious() async {
+    _current == 0 ? _current = _list.length-1 : _current -= 1;
+    AudioServiceBackground.setMediaItem(_list[_current]);
+    await _player.setUrl(_list[_current].id);
+    AudioServiceBackground.setState(position: Duration.zero);
+    return super.onSkipToPrevious();
+  }
+
 }
+
+

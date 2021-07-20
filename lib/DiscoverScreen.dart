@@ -7,9 +7,9 @@ class DiscoverScreen extends StatelessWidget{
   Widget build(BuildContext context) {
   return SingleChildScrollView(
     child: Column(children: [
-      CarouselWidget(lang: "EN"),
+    /*  CarouselWidget(lang: "EN"),
       CarouselWidget(lang: "AR"),
-      CarouselWidget(lang: "FR"),
+      CarouselWidget(lang: "FR"),*/
     ]),
   );
   }

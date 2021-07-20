@@ -28,9 +28,9 @@ class AudioPlayerUI extends StatelessWidget {
          crossAxisAlignment: CrossAxisAlignment.center,
            children: [
                   IconButton(onPressed: () {}, icon: Icon(Icons.repeat)),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.skip_previous)),
+                  IconButton(onPressed: () => AudioService.skipToPrevious(), icon: Icon(Icons.skip_previous)),
                   PlayButton(),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.skip_next)),
+                  IconButton(onPressed: () => AudioService.skipToNext(), icon: Icon(Icons.skip_next)),
                   IconButton(onPressed: () {}, icon: Icon(Icons.shuffle)),
                 ]),
      ),

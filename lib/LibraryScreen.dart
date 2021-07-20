@@ -71,7 +71,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: _buildCarousel(context, 1),
                       ),
-                      PlaylistWidget(albumName: "",)
+                 //     PlaylistWidget(albumName: "",)
                     ],
                   ),
                 ),
