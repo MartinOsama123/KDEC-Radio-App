@@ -82,13 +82,17 @@ class AudioSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<Duration>(
         stream: AudioService.positionStream,
-        builder: (context, snapshot) => Column(
+        builder: (context, snapshot) {
+      double d = snapshot.data?.inSeconds.toDouble() ?? 0.0;
+      double maxD = duration?.inSeconds.toDouble() ?? 499.0;
+      if(d > maxD) AudioService.skipToNext();
+          return Column(
           children: [
             Slider(
               activeColor: AppColor.PrimaryColor,
-                value: snapshot.data?.inSeconds?.toDouble() ?? 0.0,
+                value: d,
                 min: 0,
-                max:  duration?.inSeconds.toDouble() ?? 499 ,
+                max:  maxD ,
                 onChanged: (double value) {
                   AudioService.seekTo(Duration(seconds: value.toInt()));
                 }),
@@ -99,6 +103,6 @@ class AudioSlider extends StatelessWidget {
             ],
             )
           ],
-        ));
+        );});
   }
 }
