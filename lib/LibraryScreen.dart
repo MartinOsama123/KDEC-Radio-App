@@ -3,6 +3,7 @@ import 'package:church_app/AppColor.dart';
 import 'package:church_app/DiscoverScreen.dart';
 import 'package:church_app/FirebaseQueries.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
+import 'package:church_app/main.dart';
 
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
       initialIndex: 0,
       length: 3,
       child: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingContainer(),
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return <Widget>[
@@ -71,7 +74,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: _buildCarousel(context, 1),
                       ),
-                 //     PlaylistWidget(albumName: "",)
+                  //    PlaylistWidget(albumName: "",)
                     ],
                   ),
                 ),

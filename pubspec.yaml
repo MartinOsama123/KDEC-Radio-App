@@ -33,6 +33,8 @@ dependencies:
   audio_service: ^0.17.1
   provider: ^5.0.0
   rxdart:
+  firebase_app_check:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

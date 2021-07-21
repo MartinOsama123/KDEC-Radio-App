@@ -1,19 +1,17 @@
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
+import 'package:church_app/main.dart';
 import 'package:flutter/material.dart';
 
-class AlbumScreen extends StatefulWidget {
-  final String albumName;
+class AlbumScreen extends StatelessWidget {
+  final albumName;
 
-  const AlbumScreen({Key? key, required this.albumName}) : super(key: key);
-  @override
-  _AlbumScreenState createState() => _AlbumScreenState();
-}
-
-class _AlbumScreenState extends State<AlbumScreen> {
+  const AlbumScreen({Key? key, this.albumName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingContainer(),
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
@@ -34,7 +32,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Text(widget.albumName),
+                child: Text(albumName),
               ),
               Text("Author Name"),
               Padding(
@@ -48,7 +46,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
                     icon: Icon(Icons.bookmark_border),
                     label: const Text("Add Favorite")),
               ),
-              PlaylistWidget(albumName: widget.albumName)
+              PlaylistWidget(albumName: albumName),
             ],
           ),
         ),

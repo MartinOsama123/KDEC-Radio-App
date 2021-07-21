@@ -42,6 +42,10 @@ class AudioPlayerUI extends StatelessWidget {
   }
 }
 class PlayButton extends StatefulWidget{
+  final double iconSize;
+  final double radius;
+
+  const PlayButton({Key? key,  this.iconSize = 35,  this.radius = 30}) : super(key: key);
   @override
   _PlayButtonState createState() => _PlayButtonState();
 }
@@ -60,15 +64,27 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin  
     return StreamBuilder<PlaybackState>(
       stream: AudioService.playbackStateStream,
       builder: (context, snapshot) {
-        if(!snapshot.data!.playing) iconController.forward(); else iconController.reverse();
-        return CircleAvatar(
-          backgroundColor: AppColor.SecondaryColor,
-          radius: 30,
-          child: IconButton(
-            color: Colors.white,
-          onPressed: () {snapshot.data!.playing ? AudioService.pause() : AudioService.play();},
-          icon:  AnimatedIcon(icon: AnimatedIcons.pause_play, progress:iconController) ,iconSize: 35,),
-        );}
+        if (snapshot.hasData) {
+          if (!snapshot.data!.playing) {
+            iconController.forward();
+            print("aaaaaa");
+          } else
+            iconController.reverse();
+          return CircleAvatar(
+            backgroundColor: AppColor.SecondaryColor,
+            radius: widget.radius,
+            child: IconButton(
+                color: Colors.white,
+                onPressed: () {
+                  snapshot.data!.playing ? AudioService.pause() : AudioService
+                      .play();
+                },
+                icon: AnimatedIcon(
+                    icon: AnimatedIcons.pause_play, progress: iconController),
+                iconSize: widget.iconSize),
+          );
+        }else return Container();
+      }
     );
   }
 }
