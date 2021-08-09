@@ -4,7 +4,6 @@ import 'package:church_app/AudioPlayerUI.dart';
 import 'package:church_app/LibraryScreen.dart';
 import 'package:church_app/NewScreen.dart';
 import 'package:church_app/SplashScreen.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
@@ -14,8 +13,7 @@ import 'AudioPlayerTask.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await firebase_core.Firebase.initializeApp();
-  await FirebaseAppCheck.instance
-      .activate(webRecaptchaSiteKey: 'F4F296BB-95D8-4EE7-BEA0-6E7801C849D1');
+
   runApp(MyApp());
 }
 
