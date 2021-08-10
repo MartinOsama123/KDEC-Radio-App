@@ -33,9 +33,9 @@ dependencies:
   audio_service: ^0.17.1
   provider: ^5.0.0
   rxdart:
-  firebase_app_check:
-  flutter_cache_manager_firebase: ^2.0.0
   http: ^0.13.1
+  agora_rtc_engine: ^3.3.3
+  permission_handler: ^7.1.0
 
 dev_dependencies:
   flutter_test:
