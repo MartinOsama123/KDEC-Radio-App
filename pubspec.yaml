@@ -34,6 +34,8 @@ dependencies:
   provider: ^5.0.0
   rxdart:
   firebase_app_check:
+  flutter_cache_manager_firebase: ^2.0.0
+  http: ^0.13.1
 
 dev_dependencies:
   flutter_test:

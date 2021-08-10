@@ -1,5 +1,6 @@
 import 'package:church_app/AlbumScreen.dart';
 import 'package:church_app/AppColor.dart';
+import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/DiscoverScreen.dart';
 import 'package:church_app/FirebaseQueries.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
