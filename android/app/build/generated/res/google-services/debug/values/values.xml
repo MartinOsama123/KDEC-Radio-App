@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1020212812719-bvk63ir4ge59m4n1cum6oi53sm2ir9oj.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1020212812719</string>
+    <string name="google_api_key" translatable="false">AIzaSyBV6TwSEzGpvIqx_6PXgtyxhKrOeG9nP94</string>
+    <string name="google_app_id" translatable="false">1:1020212812719:android:3967710fc27334a4fd6d5a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBV6TwSEzGpvIqx_6PXgtyxhKrOeG9nP94</string>
+    <string name="google_storage_bucket" translatable="false">churchapp-3e0d9.appspot.com</string>
+    <string name="project_id" translatable="false">churchapp-3e0d9</string>
+</resources>

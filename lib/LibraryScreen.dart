@@ -1,3 +1,5 @@
+import 'package:church_app/AgoraBackend.dart';
+import 'package:church_app/AgoraChannelModel.dart';
 import 'package:church_app/AlbumScreen.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
@@ -90,8 +92,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
   }
 
   Widget _buildCarousel(BuildContext context, int carouselIndex) {
-    return FutureBuilder<List<firebase_storage.Reference>>(
-      future: FirebaseQueries.getAllAlbums(),
+    return FutureBuilder<AgoraChannelModel>(
+      future: AgoraBackend.getChannels(),
       builder: (context, snapshot) =>
           snapshot.connectionState == ConnectionState.done
               ? Column(
@@ -101,11 +103,11 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       height: 200.0,
                       child: PageView.builder(
 
-                        itemCount: snapshot.data?.length ?? 0,
+                        itemCount: snapshot.data?.data.totalSize ?? 0,
                         controller: PageController(viewportFraction: 0.8),
                         itemBuilder: (BuildContext context, int itemIndex) {
                           return _buildCarouselItem(context, carouselIndex,
-                              itemIndex, snapshot.data?[itemIndex].name ?? "Anonymous");
+                              itemIndex, snapshot.data?.data.channels[itemIndex].channelName ?? "Anonymous");
                         },
                       ),
                     ),
