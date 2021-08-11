@@ -3,7 +3,9 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
-import 'models/AgoraChannelModel.dart';
+
+import 'AgoraChannelModel.dart';
+
 class AgoraBackend {
   static const BASE_URL = "https://api.agora.io";
   static const USER = "d0f040453156454ca8cf3fbbd6c67f2e";

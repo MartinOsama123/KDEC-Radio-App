@@ -1,3 +1,4 @@
+
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/DiscoverScreen.dart';
@@ -94,6 +95,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
   }
 
   Widget _buildCarousel(BuildContext context, int carouselIndex) {
+
     return FutureBuilder<List<SessionInfo>>(
       future: BackendQueries.getAllChannels(),
       builder: (context, snapshot) =>
@@ -106,6 +108,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         height: 200.0,
                         child: PageView.builder(
 
+
                           itemCount: snapshot.data?.length ?? 0,
                           controller: PageController(viewportFraction: 0.95),
                           itemBuilder: (BuildContext context, int itemIndex) {
@@ -113,6 +116,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                                 itemIndex, snapshot.data?[itemIndex].channelName ?? "Anonymous",snapshot.data?[itemIndex].token ?? "");
                           },
                         ),
+
                       ),
                     ],
                   ),

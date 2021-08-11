@@ -2,7 +2,9 @@
 import 'dart:convert';
 
 import 'package:audio_service/audio_service.dart';
+
 import 'package:church_app/models/SessionInfoModel.dart';
+
 
 import 'package:http/http.dart' as http;
 import 'package:just_audio/just_audio.dart';
@@ -14,7 +16,9 @@ class BackendQueries {
   static Future<List<String>> getAllAlbums() async {
     print("entered");
     
+
     var response = await http.get(Uri.parse("$BASE_URL/church/albums"));
+
     print("entered ${response.body}");
     List<String> list = <String>[];
     if (response.statusCode == 200) {
@@ -30,7 +34,9 @@ class BackendQueries {
     return list;
   }
   static Future<List<MediaItem>> getAllSongs(String album) async {
+
     var response = await http.get(Uri.parse("$BASE_URL/church/$album/songs"));
+
     AudioPlayer audioPlayer = new AudioPlayer();
     QueueSystem.clearQueue();
     for(var a in jsonDecode(response.body)){

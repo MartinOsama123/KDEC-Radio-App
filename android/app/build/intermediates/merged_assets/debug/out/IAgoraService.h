@@ -8,6 +8,7 @@
 #include "AgoraBase.h"
 
 namespace agora {
+<<<<<<< HEAD
 namespace rtc {
 class IRtcEngine;
 }
@@ -45,6 +46,49 @@ class IAgoraService {
 
 }  // namespace base
 }  // namespace agora
+=======
+    namespace rtc {
+        class IRtcEngine;
+    }
+    namespace rtm {
+        class IRtmService;
+    }
+namespace base {
+
+struct AgoraServiceContext
+{
+};
+
+
+class IAgoraService
+{
+protected:
+    virtual ~IAgoraService(){}
+
+public:
+    AGORA_CPP_API static void release ();
+
+	/** Initializes the engine.
+
+    @param context RtcEngine context.
+    @return
+     - 0: Success.
+     - < 0: Failure.
+    */
+    virtual int initialize(const AgoraServiceContext& context) = 0;
+
+    /** Retrieves the SDK version number.
+    * @param build Build number.
+    * @return The current SDK version in the string format. For example, 2.4.0
+    */
+    virtual const char* getVersion(int* build) = 0;
+
+    virtual rtm::IRtmService* createRtmService() = 0;
+};
+
+} //namespace base
+} // namespace agora
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 
 /** Gets the SDK version number.
 
@@ -56,6 +100,7 @@ class IAgoraService {
 AGORA_API const char* AGORA_CALL getAgoraSdkVersion(int* build);
 
 /**
+<<<<<<< HEAD
  * Creates the RtcEngine object and returns the pointer.
  * @param err Error code
  * @return returns Description of the error code
@@ -66,6 +111,18 @@ AGORA_API const char* AGORA_CALL getAgoraSdkErrorDescription(int err);
  * Creates the Agora Service object and returns the pointer.
  * @return returns Pointer of the Agora Service object
  */
+=======
+* Creates the RtcEngine object and returns the pointer.
+* @param err Error code
+* @return returns Description of the error code
+*/
+AGORA_API const char* AGORA_CALL getAgoraSdkErrorDescription(int err);
+
+/**
+* Creates the Agora Service object and returns the pointer.
+* @return returns Pointer of the Agora Service object
+*/
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 AGORA_API agora::base::IAgoraService* AGORA_CALL createAgoraService();
 
 AGORA_API int AGORA_CALL setAgoraSdkExternalSymbolLoader(void* (*func)(const char* symname));

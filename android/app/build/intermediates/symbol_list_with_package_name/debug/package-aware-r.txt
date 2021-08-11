@@ -121,6 +121,10 @@ attr contentInsetRight
 attr contentInsetStart
 attr contentInsetStartWithNavigation
 attr controlBackground
+<<<<<<< HEAD
+=======
+attr coordinatorLayoutStyle
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 attr customNavigationLayout
 attr defaultQueryHint
 attr dialogCornerRadius
@@ -177,8 +181,20 @@ attr indeterminateProgressStyle
 attr initialActivityCount
 attr isLightTheme
 attr itemPadding
+<<<<<<< HEAD
 attr lastBaselineToBottomHeight
 attr layout
+=======
+attr keylines
+attr lastBaselineToBottomHeight
+attr layout
+attr layout_anchor
+attr layout_anchorGravity
+attr layout_behavior
+attr layout_dodgeInsetEdges
+attr layout_insetEdge
+attr layout_keyline
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 attr lineHeight
 attr listChoiceBackgroundIndicator
 attr listChoiceIndicatorMultipleAnimated
@@ -243,6 +259,10 @@ attr spinnerStyle
 attr splitTrack
 attr srcCompat
 attr state_above_anchor
+<<<<<<< HEAD
+=======
+attr statusBarBackground
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 attr subMenuArrow
 attr submitBackground
 attr subtitle
@@ -349,6 +369,13 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+<<<<<<< HEAD
+=======
+color browser_actions_bg_grey
+color browser_actions_divider_color
+color browser_actions_text_color
+color browser_actions_title_color
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 color button_material_dark
 color button_material_light
 color common_google_signin_btn_text_dark
@@ -487,6 +514,11 @@ dimen abc_text_size_subhead_material
 dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
+<<<<<<< HEAD
+=======
+dimen browser_actions_context_menu_max_width
+dimen browser_actions_context_menu_min_padding
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 dimen compat_button_inset_horizontal_material
 dimen compat_button_inset_vertical_material
 dimen compat_button_padding_horizontal_material
@@ -731,18 +763,39 @@ id add
 id adjust_height
 id adjust_width
 id alertTitle
+<<<<<<< HEAD
+=======
+id all
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 id always
 id async
 id auto
 id beginning
 id blocking
 id bottom
+<<<<<<< HEAD
 id buttonPanel
 id cancel_action
+=======
+id browser_actions_header_text
+id browser_actions_menu_item_icon
+id browser_actions_menu_item_text
+id browser_actions_menu_items
+id browser_actions_menu_view
+id buttonPanel
+id cancel_action
+id center
+id center_horizontal
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 id center_vertical
 id checkbox
 id checked
 id chronometer
+<<<<<<< HEAD
+=======
+id clip_horizontal
+id clip_vertical
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 id collapseActionView
 id content
 id contentPanel
@@ -758,6 +811,12 @@ id end
 id end_padder
 id expand_activities_button
 id expanded_menu
+<<<<<<< HEAD
+=======
+id fill
+id fill_horizontal
+id fill_vertical
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 id forever
 id group_divider
 id home
@@ -769,6 +828,10 @@ id ifRoom
 id image
 id info
 id italic
+<<<<<<< HEAD
+=======
+id left
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 id light
 id line1
 id line3
@@ -791,6 +854,10 @@ id parentPanel
 id progress_circular
 id progress_horizontal
 id radio
+<<<<<<< HEAD
+=======
+id right
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 id right_icon
 id right_side
 id screen
@@ -818,6 +885,10 @@ id src_atop
 id src_in
 id src_over
 id standard
+<<<<<<< HEAD
+=======
+id start
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 id status_bar_latest_event_content
 id submenuarrow
 id submit_area
@@ -888,6 +959,11 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+<<<<<<< HEAD
+=======
+layout browser_actions_context_menu_page
+layout browser_actions_context_menu_row
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 layout custom_dialog
 layout notification_action
 layout notification_action_tombstone
@@ -1326,6 +1402,10 @@ style Widget_AppCompat_Toolbar
 style Widget_AppCompat_Toolbar_Button_Navigation
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
+<<<<<<< HEAD
+=======
+style Widget_Support_CoordinatorLayout
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -1344,6 +1424,11 @@ styleable AppCompatTheme android_windowIsFloating android_windowAnimationStyle a
 styleable ButtonBarLayout allowStacking
 styleable ColorStateListItem android_color android_alpha alpha
 styleable CompoundButton android_button buttonCompat buttonTint buttonTintMode
+<<<<<<< HEAD
+=======
+styleable CoordinatorLayout keylines statusBarBackground
+styleable CoordinatorLayout_Layout android_layout_gravity layout_anchor layout_anchorGravity layout_behavior layout_dodgeInsetEdges layout_insetEdge layout_keyline
+>>>>>>> 6736881cb45c6d1265a694fb606bcaa0b882f258
 styleable DrawerArrowToggle arrowHeadLength arrowShaftLength barLength color drawableSize gapBetweenBars spinBars thickness
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery
 styleable FontFamilyFont android_font android_fontWeight android_fontStyle android_ttcIndex android_fontVariationSettings font fontStyle fontVariationSettings fontWeight ttcIndex
