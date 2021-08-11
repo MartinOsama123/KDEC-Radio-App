@@ -36,7 +36,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
               )),
         ),
         FutureBuilder<List<MediaItem>>(
-          future: FirebaseQueries.getAlbumPlaylist(widget.albumName),
+          future: BackendQueries.getAllSongs(widget.albumName),
           builder: (context, snapshot) => snapshot.connectionState ==
                   ConnectionState.done
               ? ListView.builder(

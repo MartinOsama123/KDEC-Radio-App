@@ -6,16 +6,9 @@ import 'package:church_app/NewScreen.dart';
 import 'package:church_app/SplashScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
 
-import 'AudioPlayerTask.dart';
-
-Future<void> main() async {
-
-  WidgetsFlutterBinding.ensureInitialized();
-  await firebase_core.Firebase.initializeApp();
-
+void main()  {
   runApp(MyApp());
 }
 

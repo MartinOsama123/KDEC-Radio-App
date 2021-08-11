@@ -26,16 +26,13 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   animated_splash_screen: ^1.1.0
-  firebase_storage: ^8.1.3
-  firebase_core: ^1.3.0
-  firebase_auth: ^1.4.1
   just_audio: ^0.8.0
   audio_service: ^0.17.1
   provider: ^5.0.0
-  rxdart:
   http: ^0.13.1
-  agora_rtc_engine: ^3.3.3
+  agora_rtc_engine: ^4.0.6
   permission_handler: ^7.1.0
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +50,8 @@ flutter:
   uses-material-design: true
   assets:
     - images/logo.jpg
+    - images/podcast.jpg
+    - images/album.jpg
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

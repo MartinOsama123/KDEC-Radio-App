@@ -1,7 +1,7 @@
 import 'package:church_app/AlbumScreen.dart';
-import 'package:church_app/FirebaseQueries.dart';
+import 'package:church_app/BackendQueries.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 
 
 class CarouselWidget extends StatelessWidget {
@@ -38,8 +38,8 @@ class CarouselWidget extends StatelessWidget {
 }
 
 Widget _buildCarousel(BuildContext context, int carouselIndex) {
-  return FutureBuilder<List<Reference>>(
-    future: FirebaseQueries.getAllAlbums(),
+  return FutureBuilder<List<String>>(
+    future: BackendQueries.getAllAlbums(),
     builder: (context, snapshot) =>
     snapshot.connectionState == ConnectionState.done
         ? Column(
@@ -53,7 +53,7 @@ Widget _buildCarousel(BuildContext context, int carouselIndex) {
             controller: PageController(viewportFraction: 0.8),
             itemBuilder: (BuildContext context, int itemIndex) {
               return _buildCarouselItem(context, carouselIndex,
-                  itemIndex, snapshot.data?[itemIndex].name ?? "Anonymous");
+                  itemIndex, snapshot.data?[itemIndex] ?? "Anonymous");
             },
           ),
         ),
@@ -75,11 +75,7 @@ Widget _buildCarouselItem(
             onTap: () => Navigator.push(
                 context, MaterialPageRoute(builder: (context) => AlbumScreen(albumName: name))),
             child: Container(
-
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.all(Radius.circular(4.0)),
-              ),
+              child: ClipRRect(child: Image.asset("images/album.jpg"),borderRadius: BorderRadius.circular(10)),
             ),
           ),
         ),
