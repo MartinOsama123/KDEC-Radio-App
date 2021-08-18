@@ -101,10 +101,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
       builder: (context, snapshot) =>
           snapshot.connectionState == ConnectionState.done
               ? snapshot.data?.length != 0 ? Center(
-                child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      SizedBox(
+                child:  SizedBox(
                         height: 200.0,
                         child: PageView.builder(
 
@@ -113,13 +110,12 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           controller: PageController(viewportFraction: 0.95),
                           itemBuilder: (BuildContext context, int itemIndex) {
                             return _buildCarouselItem(context, carouselIndex,
-                                itemIndex, snapshot.data?[itemIndex].channelName ?? "Anonymous",snapshot.data?[itemIndex].token ?? "");
+                                itemIndex, snapshot.data?[itemIndex] ?? new SessionInfo(channelName: "", token: "", description: "", hostName: "", lang: "",imgPath: ""));
                           },
                         ),
 
                       ),
-                    ],
-                  ),
+
               ) : Center(child: Text("No available live podcasts right now..\nCheck again later",style: TextStyle(color: Colors.black,fontSize: 15),),)
               : Center(child: CircularProgressIndicator()),
     );
@@ -127,21 +123,25 @@ class _LibraryScreenState extends State<LibraryScreen> {
 
 
   Widget _buildCarouselItem(
-      BuildContext context, int carouselIndex, int itemIndex, String name,String token) {
+      BuildContext context, int carouselIndex, int itemIndex, SessionInfo sessionInfo) {
     return Column(
       children: [
         Expanded(
           child: InkWell(
                   onTap: () => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => LiveStream(channelName: name,token: token))),
+                      context, MaterialPageRoute(builder: (context) => LiveStream(channelName: sessionInfo.channelName,token: sessionInfo.token))),
                   child: Container(
-                    child: ClipRRect(child: Image.asset("images/podcast.jpg"),borderRadius: BorderRadius.circular(10)),
+                    child: ClipRRect(child: Image.network("https://kdechurch.herokuapp.com/api/img/${sessionInfo.imgPath}"),borderRadius: BorderRadius.circular(10)),
                   ),
                 ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(name),
+          child: Text("Hosted by: ${sessionInfo.hostName}"),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("Description: ${sessionInfo.description}"),
         ),
       ],
     );

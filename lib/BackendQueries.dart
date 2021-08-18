@@ -45,7 +45,6 @@ class BackendQueries {
       await audioPlayer.setUrl(download);
       print(audioPlayer.duration);
       QueueSystem.add(new MediaItem(id: download, album: album, title:a.toString() , duration: audioPlayer.duration ?? Duration()));
-
     }
     return QueueSystem.getQueue;
   }
@@ -57,5 +56,4 @@ class BackendQueries {
     list.forEach((e) => sessionList.add(SessionInfo.fromJson(e)));
     return sessionList;
   }
-
 }
