@@ -23,6 +23,7 @@ Future<void> main() async  {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true,badge: true,sound: true);
+  await FirebaseMessaging.instance.subscribeToTopic("Global");
   runApp(MyApp());
 }
 
