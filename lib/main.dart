@@ -4,11 +4,25 @@ import 'package:church_app/AudioPlayerUI.dart';
 import 'package:church_app/LibraryScreen.dart';
 import 'package:church_app/NewScreen.dart';
 import 'package:church_app/SplashScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
-void main()  {
+const AndroidNotificationChannel channel = AndroidNotificationChannel("channel", "title", "Description"
+,importance: Importance.high,playSound: true);
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async{
+  await Firebase.initializeApp();
+  print("a bg message just showed up ${message.messageId}");
+}
+Future<void> main() async  {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true,badge: true,sound: true);
   runApp(MyApp());
 }
 
@@ -43,6 +57,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     connectAudio();
+    FirebaseMessaging.onMessage.listen((event) {RemoteNotification? notification = event.notification;
+    AndroidNotification? androidNotification = event.notification?.android;
+    if(notification != null && androidNotification != null){
+      flutterLocalNotificationsPlugin.show(notification.hashCode, notification.title, notification.title,
+          NotificationDetails(android: AndroidNotificationDetails(channel.id,channel.name,channel.description,color: Colors.black,playSound: true,icon: "@mipmap/ic_launcher")));
+
+    }
+    });
     super.initState();
   }
 
@@ -52,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  void connectAudio() async {
+  Future<void> connectAudio() async {
     await AudioService.connect();
   }
 
