@@ -1,12 +1,12 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/AppColor.dart';
-import 'package:church_app/AudioPlayerUI.dart';
+import 'package:church_app/Screens/AudioPlayerUI.dart';
 import 'package:church_app/FirebaseAuthService.dart';
-import 'package:church_app/LibraryScreen.dart';
-import 'package:church_app/LoginScreen.dart';
-import 'package:church_app/NewScreen.dart';
-import 'package:church_app/ProfileScreen.dart';
-import 'package:church_app/SplashScreen.dart';
+import 'package:church_app/Screens/LibraryScreen.dart';
+
+
+import 'package:church_app/Screens/ProfileScreen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -14,6 +14,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+
+import 'Screens/NewScreen.dart';
+import 'Screens/SplashScreen.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel("channel", "title", "Description"
 ,importance: Importance.high,playSound: true);

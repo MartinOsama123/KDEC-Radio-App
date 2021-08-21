@@ -1,5 +1,6 @@
 import 'package:church_app/FirebaseAuthService.dart';
-import 'package:church_app/LoginScreen.dart';
+import 'package:church_app/Screens/LoginScreen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

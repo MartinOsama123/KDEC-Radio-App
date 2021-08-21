@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:church_app/models/AgoraChannelModel.dart';
 import 'package:http/http.dart' as http;
 
 
-import 'AgoraChannelModel.dart';
+
 
 class AgoraBackend {
   static const BASE_URL = "https://api.agora.io";
@@ -15,7 +16,6 @@ class AgoraBackend {
 
 
   static Future<AgoraChannelModel> getChannels() async{
-
     var response = await http.get(Uri.parse("$BASE_URL/dev/v1/channel/$APP_ID"),headers: {HttpHeaders.authorizationHeader: auth});
     var temp = AgoraChannelModel.fromJson(jsonDecode(response.body));
     return temp;

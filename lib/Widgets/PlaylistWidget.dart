@@ -6,7 +6,7 @@ import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/FirebaseQueries.dart';
 import 'package:church_app/QueueSystem.dart';
 import 'package:flutter/material.dart';
-import 'package:church_app/AudioPlayerUI.dart';
+import 'package:church_app/Screens/AudioPlayerUI.dart';
 
 void _entryPoint() => AudioServiceBackground.run(() => AudioPlayerTask());
 

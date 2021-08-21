@@ -36,6 +36,7 @@ dependencies:
   flutter_local_notifications: ^8.1.1+1
   firebase_auth: ^3.0.2
   provider: ^6.0.0
+  flutter_svg: ^0.22.0
 
 
 dev_dependencies:
@@ -56,6 +57,8 @@ flutter:
     - images/logo.jpg
     - images/podcast.jpg
     - images/album.jpg
+    - images/login.svg
+    - images/signup.svg
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
