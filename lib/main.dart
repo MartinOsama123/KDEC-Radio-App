@@ -1,14 +1,19 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/AudioPlayerUI.dart';
+import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/LibraryScreen.dart';
+import 'package:church_app/LoginScreen.dart';
 import 'package:church_app/NewScreen.dart';
+import 'package:church_app/ProfileScreen.dart';
 import 'package:church_app/SplashScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:provider/provider.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel("channel", "title", "Description"
 ,importance: Importance.high,playSound: true);
@@ -23,7 +28,7 @@ Future<void> main() async  {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true,badge: true,sound: true);
-  await FirebaseMessaging.instance.subscribeToTopic("Global");
+ // await FirebaseMessaging.instance.subscribeToTopic("Global");
   runApp(MyApp());
 }
 
@@ -61,9 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
     FirebaseMessaging.onMessage.listen((event) {RemoteNotification? notification = event.notification;
     AndroidNotification? androidNotification = event.notification?.android;
     if(notification != null && androidNotification != null){
-      flutterLocalNotificationsPlugin.show(notification.hashCode, notification.title, notification.title,
+      flutterLocalNotificationsPlugin.show(notification.hashCode, notification.title, notification.body,
           NotificationDetails(android: AndroidNotificationDetails(channel.id,channel.name,channel.description,color: Colors.black,playSound: true,icon: "@mipmap/ic_launcher")));
-
     }
     });
     super.initState();
@@ -81,32 +85,42 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingContainer(),
-        body: Center(
-              child: _buildScreens().elementAt(_selectedIndex),
-            ),
+    return MultiProvider(
+      providers: [
+        Provider<FirebaseAuthService>(
+          create: (_) => FirebaseAuthService(FirebaseAuth.instance),
+        ),
+        StreamProvider(
+          create: (context) => context.read<FirebaseAuthService>().authStateChanges, initialData: null,
+        )
+      ],
+      child: SafeArea(
+        child: Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingContainer(),
+          body: Center(
+                child: _buildScreens().elementAt(_selectedIndex),
+              ),
 
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.list_bullet),
-              label: ("Library"),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.mic),
-              label: ("New"),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.person),
-              label: ("Profile"),
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: AppColor.PrimaryColor,
-          onTap: _onItemTapped,
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.list_bullet),
+                label: ("Library"),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.mic),
+                label: ("New"),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.person),
+                label: ("Profile"),
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: AppColor.PrimaryColor,
+            onTap: _onItemTapped,
+          ),
         ),
       ),
     );
@@ -116,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return [
       LibraryScreen(),
       NewScreen(),
-      Container(),
+      ProfileScreen()
     ];
   }
 }

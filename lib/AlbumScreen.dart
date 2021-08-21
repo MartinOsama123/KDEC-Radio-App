@@ -44,7 +44,7 @@ class AlbumScreen extends StatelessWidget {
                       primary: AppColor.SecondaryColor,
                     ),
                     icon: Icon(Icons.bookmark_border),
-                    label: const Text("Add Favorite")),
+                    label: const Text("Subscribe")),
               ),
               PlaylistWidget(albumName: albumName),
             ],
