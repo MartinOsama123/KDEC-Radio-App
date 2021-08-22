@@ -128,8 +128,9 @@ class _LibraryScreenState extends State<LibraryScreen> {
       children: [
         Expanded(
           child: InkWell(
-                  onTap: () => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => LiveStream(channelName: sessionInfo.channelName,token: sessionInfo.token))),
+
+                  onTap: () {Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => LiveStream(channelName: sessionInfo.channelName,token: sessionInfo.token)));    print("https://zingerfinger.000webhostapp.com/imgs/${sessionInfo.imgPath}");},
                   child: Container(
                     child: ClipRRect(child: Image.network("https://kdechurch.herokuapp.com/api/img/${sessionInfo.imgPath}"),borderRadius: BorderRadius.circular(10)),
                   ),

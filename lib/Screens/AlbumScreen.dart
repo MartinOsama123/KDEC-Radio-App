@@ -1,12 +1,13 @@
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
 import 'package:church_app/main.dart';
+import 'package:church_app/models/AlbumInfo.dart';
 import 'package:flutter/material.dart';
 
 class AlbumScreen extends StatelessWidget {
-  final albumName;
+  final AlbumInfo albumInfo;
 
-  const AlbumScreen({Key? key, this.albumName}) : super(key: key);
+  const AlbumScreen({Key? key, required this.albumInfo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +29,11 @@ class AlbumScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: Container(height: 180, width: 180, color: Colors.grey),
+                child: Hero(tag: albumInfo.albumName,child: Image.network("https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}")),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Text(albumName),
+                child: Text(albumInfo.albumName),
               ),
               Text("Author Name"),
               Padding(
@@ -46,7 +47,7 @@ class AlbumScreen extends StatelessWidget {
                     icon: Icon(Icons.bookmark_border),
                     label: const Text("Subscribe")),
               ),
-              PlaylistWidget(albumName: albumName),
+              PlaylistWidget(albumName: albumInfo.albumName),
             ],
           ),
         ),

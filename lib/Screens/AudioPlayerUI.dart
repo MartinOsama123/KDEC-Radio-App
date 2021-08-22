@@ -6,13 +6,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AudioPlayerUI extends StatelessWidget {
+   final String songName;
 
+  const AudioPlayerUI({Key? key, required this.songName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      appBar: AppBar(leading: IconButton(onPressed: ()=>Navigator.pop(context),icon: Icon(Icons.arrow_back),color: AppColor.PrimaryColor),backgroundColor: Colors.white,elevation: 0,),
+      appBar: AppBar(leading: IconButton(onPressed: ()=>Navigator.pop(context),icon: Icon(Icons.arrow_back),color: AppColor.PrimaryColor),backgroundColor: Colors.white,elevation: 0,title: Text(songName,style: TextStyle(color: Colors.black),)),
         body: SafeArea(
           child: StreamBuilder<MediaItem?>(
             stream: AudioService.currentMediaItemStream,

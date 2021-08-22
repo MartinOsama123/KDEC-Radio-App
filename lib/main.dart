@@ -1,5 +1,6 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/AppColor.dart';
+import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/Screens/AudioPlayerUI.dart';
 import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/Screens/LibraryScreen.dart';
@@ -17,6 +18,7 @@ import 'package:provider/provider.dart';
 
 import 'Screens/NewScreen.dart';
 import 'Screens/SplashScreen.dart';
+import 'models/UserInfo.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel("channel", "title", "Description"
 ,importance: Importance.high,playSound: true);
@@ -31,7 +33,8 @@ Future<void> main() async  {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true,badge: true,sound: true);
- // await FirebaseMessaging.instance.subscribeToTopic("Global");
+  await FirebaseMessaging.instance.subscribeToTopic("Global");
+
   runApp(MyApp());
 }
 
@@ -73,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
           NotificationDetails(android: AndroidNotificationDetails(channel.id,channel.name,channel.description,color: Colors.black,playSound: true,icon: "@mipmap/ic_launcher")));
     }
     });
+
     super.initState();
   }
 
@@ -111,10 +115,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(CupertinoIcons.list_bullet),
                 label: ("Library"),
               ),
-              BottomNavigationBarItem(
+             /* BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.mic),
                 label: ("New"),
-              ),
+              ),*/
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.person),
                 label: ("Profile"),
@@ -132,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _buildScreens() {
     return [
       LibraryScreen(),
-      NewScreen(),
+     // NewScreen(),
       ProfileScreen()
     ];
   }

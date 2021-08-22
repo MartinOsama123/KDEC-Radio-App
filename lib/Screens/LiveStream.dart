@@ -51,6 +51,7 @@ class _LiveStreamState extends State<LiveStream> {
 
     /// Join channel
     await _engine.joinChannel(widget.token, widget.channelName, null, 0);
+
   }
 
   Future<void> _initAgoraRtcEngine() async {

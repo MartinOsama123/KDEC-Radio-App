@@ -1,6 +1,7 @@
 
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/Screens/AlbumScreen.dart';
+import 'package:church_app/models/AlbumInfo.dart';
 import 'package:flutter/material.dart';
 
 
@@ -39,7 +40,7 @@ class CarouselWidget extends StatelessWidget {
 }
 
 Widget _buildCarousel(BuildContext context, int carouselIndex) {
-  return FutureBuilder<List<String>>(
+  return FutureBuilder<List<AlbumInfo>>(
     future: BackendQueries.getAllAlbums(),
     builder: (context, snapshot) =>
     snapshot.connectionState == ConnectionState.done
@@ -54,7 +55,7 @@ Widget _buildCarousel(BuildContext context, int carouselIndex) {
             controller: PageController(viewportFraction: 0.8),
             itemBuilder: (BuildContext context, int itemIndex) {
               return _buildCarouselItem(context, carouselIndex,
-                  itemIndex, snapshot.data?[itemIndex] ?? "Anonymous");
+                  itemIndex, snapshot.data?[itemIndex] ?? new AlbumInfo(albumName: "", imgPath: ""));
             },
           ),
         ),
@@ -66,7 +67,7 @@ Widget _buildCarousel(BuildContext context, int carouselIndex) {
 
 
 Widget _buildCarouselItem(
-    BuildContext context, int carouselIndex, int itemIndex, String name) {
+    BuildContext context, int carouselIndex, int itemIndex, AlbumInfo albumInfo) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8),
     child: Column(
@@ -74,15 +75,15 @@ Widget _buildCarouselItem(
         Expanded(
           child: InkWell(
             onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AlbumScreen(albumName: name))),
+                context, MaterialPageRoute(builder: (context) => AlbumScreen(albumInfo: albumInfo))),
             child: Container(
-              child: ClipRRect(child: Image.asset("images/album.jpg"),borderRadius: BorderRadius.circular(10)),
+              child: ClipRRect(child: Hero(tag: albumInfo.albumName,child: Image.network("https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}")),borderRadius: BorderRadius.circular(10)),
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(name),
+          child: Text(albumInfo.albumName),
         ),
       ],
     ),

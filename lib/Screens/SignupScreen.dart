@@ -23,83 +23,85 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       appBar: AppBar(elevation: 0, backgroundColor: Colors.transparent, leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.black,onPressed: () => Navigator.pop(context))),
       body: SafeArea(
-        child: Column(
-          children: [
-            SvgPicture.asset(
-                "images/signup.svg",
-                semanticsLabel: 'Login Logo'),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "SIGNUP",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SvgPicture.asset(
+                  "images/signup.svg",
+                  semanticsLabel: 'Login Logo'),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "SIGNUP",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
 
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          controller: _nameController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Full Name',
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: _nameController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Full Name',
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          controller: _phoneController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Phone',
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: _phoneController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Phone',
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email',
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Email',
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Password',
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Password',
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: size.width / 2,
-                        child: ElevatedButton(
-                          child: Text("Sign up"),
-                          style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor),
-                          onPressed: () {
-                            context.read<FirebaseAuthService>().signUp(
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text.trim(),
-                            );},
+                        Container(
+                          width: size.width / 2,
+                          child: ElevatedButton(
+                            child: Text("Sign up"),
+                            style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor),
+                            onPressed: () {
+                              context.read<FirebaseAuthService>().signUp(
+                                email: _emailController.text.trim(),
+                                password: _passwordController.text.trim(),
+                              );},
+                          ),
                         ),
-                      ),
-                      SizedBox(height: size.height * 0.03),
-                    ],
+                        SizedBox(height: size.height * 0.03),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
