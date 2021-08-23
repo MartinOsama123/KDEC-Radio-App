@@ -11,12 +11,7 @@ class LibraryScreen extends StatefulWidget {
 class _LibraryScreenState extends State<LibraryScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title:  const Text(
-        "Library",
-        style: TextStyle(
-            fontSize: 36,
-            color: Colors.black,
-        ))),
+    return Scaffold(
       /*DefaultTabController(
       initialIndex: 0,
       length: 3,

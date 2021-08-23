@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
-import 'Screens/NewScreen.dart';
+import 'Screens/NotificationScreen.dart';
 import 'Screens/SplashScreen.dart';
 import 'models/UserInfo.dart';
 
@@ -49,7 +49,15 @@ class MyApp extends StatelessWidget {
           primaryColor: AppColor.PrimaryColor,
           accentColor: AppColor.SecondaryColor,
           fontFamily: language ? 'GESSTwo' : 'ABEAKRG'),
-      home:  SplashScreen(),
+      home:  MultiProvider(
+          providers: [
+            Provider<FirebaseAuthService>(
+              create: (_) => FirebaseAuthService(FirebaseAuth.instance),
+            ),
+            StreamProvider(
+              create: (context) => context.read<FirebaseAuthService>().authStateChanges, initialData: null,
+            )
+          ],child: SplashScreen()),
     );
   }
 }
@@ -61,10 +69,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-
+  String _selectedName = "Library";
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      _selectedName = index == 0 ? "Library" : index == 1 ? "Browse" : "Notification";
     });
   }
   @override
@@ -93,52 +102,55 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<FirebaseAuthService>(
-          create: (_) => FirebaseAuthService(FirebaseAuth.instance),
-        ),
-        StreamProvider(
-          create: (context) => context.read<FirebaseAuthService>().authStateChanges, initialData: null,
-        )
-      ],
-      child: SafeArea(
-        child: Scaffold(
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: FloatingContainer(),
-          body: Center(
-                child: _buildScreens().elementAt(_selectedIndex),
-              ),
+    return Scaffold(
+      appBar:  AppBar(title:   Text(
+         _selectedName,
+          style: TextStyle(
+            fontSize: 40,
+            color: Colors.black,
+          )),elevation: 0,backgroundColor: Colors.transparent,actions: [CircleAvatar(backgroundColor: Colors.grey,child: IconButton(onPressed: (){}, icon: Icon(Icons.search))),Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(backgroundColor: AppColor.SecondaryColor,child: IconButton(onPressed: (){}, icon: Icon(Icons.person))),
+          ),]),
+      body: SafeArea(
+          child: Scaffold(
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: FloatingContainer(),
+            body: Center(
+                  child: _buildScreens().elementAt(_selectedIndex),
+                ),
 
-          bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.list_bullet),
-                label: ("Library"),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.square_list),
-                label: ("Browse"),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.person),
-                label: ("Profile"),
-              ),
-            ],
-            currentIndex: _selectedIndex,
-            selectedItemColor: AppColor.PrimaryColor,
-            onTap: _onItemTapped,
+            bottomNavigationBar: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.circle_fill),
+                  label: ("Library"),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.square_list),
+                  label: ("Browse"),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.bell),
+                  label: ("Notifications"),
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              selectedItemColor: AppColor.PrimaryColor,
+              unselectedItemColor: Colors.grey,
+
+              onTap: _onItemTapped,
+            ),
           ),
         ),
-      ),
     );
   }
 
   List<Widget> _buildScreens() {
     return [
       LibraryScreen(),
-     DiscoverScreen(),
-      ProfileScreen()
+      DiscoverScreen(),
+      NotificationScreen(),
     ];
   }
 }
