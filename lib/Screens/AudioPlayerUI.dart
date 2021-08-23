@@ -21,7 +21,7 @@ class AudioPlayerUI extends StatelessWidget {
             builder: (context, mediaItem) => mediaItem.hasData ? Column(
       children: [
              Expanded(
-                child: Image.asset('images/logo.jpg')),
+                child: Hero(tag: mediaItem.data?.album ?? "",child: Image.network("https://kdechurch.herokuapp.com/api/img/${mediaItem.data?.album ?? ""}"))),
             AudioSlider(duration: mediaItem.data?.duration ?? Duration()),
      Padding(
        padding: const EdgeInsets.all(8.0),
