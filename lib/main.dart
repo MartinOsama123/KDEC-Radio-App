@@ -153,37 +153,40 @@ class FloatingContainer extends StatelessWidget {
     return StreamBuilder<MediaItem?>(
                     stream: AudioService.currentMediaItemStream,
                     builder: (context, mediaSnap) => mediaSnap.hasData
-                        ? Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                              height: 50,
-                              width: MediaQuery.of(context).size.width - 20,
-                              decoration: BoxDecoration(
-                                  color: AppColor.SecondaryColor,
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                  Column(
-                                    children: [
-                                      Text(mediaSnap.data?.title ?? "",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16)),
-                                      Text(mediaSnap.data?.album ?? "",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 10)),
-                                    ],
-                                  ),
-                                      Spacer(),
-                                      PlayButton(radius: 15,iconSize: 15),
-                                      IconButton(onPressed: (){}, icon: Icon(Icons.stop))
-                                ]),
-                              )),
+                        ? GestureDetector(
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AudioPlayerUI(songName: mediaSnap.data?.title ?? ""))),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width - 20,
+                                decoration: BoxDecoration(
+                                    color: AppColor.SecondaryColor,
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                    Column(
+                                      children: [
+                                        Text(mediaSnap.data?.title ?? "",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16)),
+                                        Text(mediaSnap.data?.album ?? "",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                        Spacer(),
+                                        PlayButton(radius: 15,iconSize: 15),
+                                        IconButton(onPressed: (){}, icon: Icon(Icons.stop))
+                                  ]),
+                                )),
+                          ),
                         )
                         : Container());
   }

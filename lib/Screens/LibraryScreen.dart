@@ -1,8 +1,5 @@
-import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
-import 'package:church_app/Screens/DiscoverScreen.dart';
 import 'package:church_app/Screens/LiveStream.dart';
-import 'package:church_app/main.dart';
 import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:flutter/material.dart';
 
