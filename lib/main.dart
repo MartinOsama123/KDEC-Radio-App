@@ -3,6 +3,7 @@ import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/Screens/AudioPlayerUI.dart';
 import 'package:church_app/FirebaseAuthService.dart';
+import 'package:church_app/Screens/DiscoverScreen.dart';
 import 'package:church_app/Screens/LibraryScreen.dart';
 
 
@@ -115,10 +116,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(CupertinoIcons.list_bullet),
                 label: ("Library"),
               ),
-             /* BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.mic),
-                label: ("New"),
-              ),*/
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.square_list),
+                label: ("Browse"),
+              ),
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.person),
                 label: ("Profile"),
@@ -136,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _buildScreens() {
     return [
       LibraryScreen(),
-     // NewScreen(),
+     DiscoverScreen(),
       ProfileScreen()
     ];
   }
