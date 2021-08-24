@@ -1,6 +1,8 @@
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/FirebaseAuthService.dart';
+import 'package:church_app/Screens/ProfileScreen.dart';
 import 'package:church_app/Screens/SignupScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -10,14 +12,12 @@ class LoginScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
+    return context.watch<User?>() == null  ? Scaffold(
       body: Column(
-
         children: [
           SvgPicture.asset(
           "images/login.svg",
           semanticsLabel: 'Login Logo'),
-
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
@@ -46,7 +46,6 @@ class LoginScreen extends StatelessWidget{
                         child: TextField(
                             controller: _passwordController,
                             obscureText: true,
-
                             decoration: InputDecoration(
                               fillColor: AppColor.PrimaryColor,
                               border: OutlineInputBorder(),
@@ -75,12 +74,9 @@ class LoginScreen extends StatelessWidget{
                             password: _passwordController.text.trim(),
                           );},
                         ),
-                      ),
-
-
-
+                      )
         ],
       ),
-    );
+    ):ProfileScreen();
   }
 }

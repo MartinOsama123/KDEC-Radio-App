@@ -77,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   @override
   void initState() {
+
     connectAudio();
     FirebaseMessaging.onMessage.listen((event) {RemoteNotification? notification = event.notification;
     AndroidNotification? androidNotification = event.notification?.android;

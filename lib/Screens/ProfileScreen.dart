@@ -7,14 +7,16 @@ import 'package:provider/provider.dart';
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  context.watch<User?>() != null ? Center(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(children: [
-          TextIcon(text: "Change E-Mail",icons: Icons.email),
-          TextIcon(text: "Change Password",icons: Icons.password,),
-          InkWell(onTap: (){ context.read<FirebaseAuthService>().signOut();},child: TextIcon(text: "Logout",icons: Icons.person_off,)),
-        ],),
+    return  context.watch<User?>() != null ? Scaffold(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(children: [
+            TextIcon(text: "Change E-Mail",icons: Icons.email),
+            TextIcon(text: "Change Password",icons: Icons.password,),
+            InkWell(onTap: (){ context.read<FirebaseAuthService>().signOut();},child: TextIcon(text: "Logout",icons: Icons.person_off,)),
+          ],),
+        ),
       ),
     ) : LoginScreen();
   }

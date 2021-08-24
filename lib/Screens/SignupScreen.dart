@@ -97,11 +97,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               UserModel user = new UserModel(email: _emailController.text.trim(), name: _nameController.text.trim(), phone: _phoneController.text.trim(), subs: []);
                               context.read<FirebaseAuthService>().signUp(
                                 email: _emailController.text.trim(),
-                                password: _passwordController.text.trim(),
-                              ); String token = await FirebaseAuth.instance.currentUser?.getIdToken() ?? "";
+                                password: _passwordController.text.trim());
+                              String token = await FirebaseAuth.instance.currentUser?.getIdToken() ?? "";
                               var en = jsonEncode(user.toJson());
                               print(en);
                               print(token);
+
                              print( await BackendQueries.createUser(token,en));},
                           ),
                         ),
