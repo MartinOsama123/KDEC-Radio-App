@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:church_app/AppColor.dart';
+import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/FirebaseAuthService.dart';
+import 'package:church_app/models/UserInfo.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -87,11 +92,17 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: ElevatedButton(
                             child: Text("Sign up"),
                             style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor),
-                            onPressed: () {
+                            onPressed: () async {
+
+                              UserModel user = new UserModel(email: _emailController.text.trim(), name: _nameController.text.trim(), phone: _phoneController.text.trim(), subs: []);
                               context.read<FirebaseAuthService>().signUp(
                                 email: _emailController.text.trim(),
                                 password: _passwordController.text.trim(),
-                              );},
+                              ); String token = await FirebaseAuth.instance.currentUser?.getIdToken() ?? "";
+                              var en = jsonEncode(user.toJson());
+                              print(en);
+                              print(token);
+                             print( await BackendQueries.createUser(token,en));},
                           ),
                         ),
                         SizedBox(height: size.height * 0.03),

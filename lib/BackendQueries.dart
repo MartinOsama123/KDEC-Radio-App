@@ -60,4 +60,10 @@ class BackendQueries {
     var result = UserModel.fromJson(jsonDecode(response.body));
     return result;
   }
+  static Future<String> createUser(String token,String user) async {
+    var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/users/create/$token"),  headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },body: user);
+    return response.body;
+  }
 }

@@ -5,9 +5,7 @@ import 'package:church_app/Screens/AudioPlayerUI.dart';
 import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/Screens/DiscoverScreen.dart';
 import 'package:church_app/Screens/LibraryScreen.dart';
-
-
-import 'package:church_app/Screens/ProfileScreen.dart';
+import 'package:church_app/Screens/LoginScreen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +17,6 @@ import 'package:provider/provider.dart';
 
 import 'Screens/NotificationScreen.dart';
 import 'Screens/SplashScreen.dart';
-import 'models/UserInfo.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel("channel", "title", "Description"
 ,importance: Importance.high,playSound: true);
@@ -43,21 +40,23 @@ class MyApp extends StatelessWidget {
   final language = false;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MultiProvider(
+        providers: [
+        Provider<FirebaseAuthService>(
+        create: (_) => FirebaseAuthService(FirebaseAuth.instance),
+    ),
+    StreamProvider(
+    create: (context) => context.read<FirebaseAuthService>().authStateChanges, initialData: null,
+    )
+    ],
+      child: MaterialApp(
 
-      theme: ThemeData(
-          primaryColor: AppColor.PrimaryColor,
-          accentColor: AppColor.SecondaryColor,
-          fontFamily: language ? 'GESSTwo' : 'ABEAKRG'),
-      home:  MultiProvider(
-          providers: [
-            Provider<FirebaseAuthService>(
-              create: (_) => FirebaseAuthService(FirebaseAuth.instance),
-            ),
-            StreamProvider(
-              create: (context) => context.read<FirebaseAuthService>().authStateChanges, initialData: null,
-            )
-          ],child: SplashScreen()),
+        theme: ThemeData(
+            primaryColor: AppColor.PrimaryColor,
+            accentColor: AppColor.SecondaryColor,
+            fontFamily: language ? 'GESSTwo' : 'ABEAKRG'),
+        home:  SplashScreen(),
+      ),
     );
   }
 }
@@ -108,7 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(
             fontSize: 40,
             color: Colors.black,
-          )),elevation: 0,backgroundColor: Colors.transparent,actions: [CircleAvatar(backgroundColor: Colors.grey,child: IconButton(onPressed: (){}, icon: Icon(Icons.search))),Padding(
+          )),elevation: 0,backgroundColor: Colors.transparent,actions: [CircleAvatar(backgroundColor: Colors.grey,child: IconButton(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      }, icon: Icon(Icons.search))),Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(backgroundColor: AppColor.SecondaryColor,child: IconButton(onPressed: (){}, icon: Icon(Icons.person))),
           ),]),

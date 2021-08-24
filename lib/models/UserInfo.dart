@@ -19,7 +19,7 @@ class UserModel {
     data['email'] = this.email;
     data['name'] = this.name;
     data['phone'] = this.phone;
-    data['subs'] = this.subs;
+
     return data;
   }
 
