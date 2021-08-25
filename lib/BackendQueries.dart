@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/models/AlbumInfo.dart';
+import 'package:church_app/models/NotificationInfo.dart';
 
 import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:church_app/models/UserInfo.dart';
@@ -55,11 +56,23 @@ class BackendQueries {
     list.forEach((e) => sessionList.add(SessionInfo.fromJson(e)));
     return sessionList;
   }
+  static Future<List<NotificationInfo>> getAllNotifications(String idToken) async {
+    print("http://10.0.2.2:8080/api/notification/$idToken");
+    var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/notification/$idToken"));
+    var list =   (jsonDecode(response.body) as List);
+    print(list);
+    List<NotificationInfo> notifications = <NotificationInfo>[];
+    list.forEach((e) => notifications.add(NotificationInfo.fromJson(e)));
+    print(notifications);
+    return notifications;
+  }
+
   static Future<UserModel> getUserInfo(String email) async {
     var response = await http.get(Uri.parse("$BASE_URL/api/users/$email"));
     var result = UserModel.fromJson(jsonDecode(response.body));
     return result;
   }
+
   static Future<String> createUser(String token,String user) async {
     var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/users/create/$token"),  headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',

@@ -1,11 +1,14 @@
+import 'package:church_app/models/NotificationInfo.dart';
+
 class UserModel {
   late String email;
   late String name;
   late String phone;
   late List<String> subs;
+  late List<NotificationInfo> notifications;
 
 
-  UserModel({required this.email, required this.name, required this.phone, required this.subs});
+  UserModel({required this.email, required this.name, required this.phone, required this.subs,required this.notifications});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];
@@ -19,7 +22,8 @@ class UserModel {
     data['email'] = this.email;
     data['name'] = this.name;
     data['phone'] = this.phone;
-
+    data['notifications'] = <NotificationInfo>[];
+    this.notifications.forEach((element) {data['notifications'].add(element);});
     return data;
   }
 

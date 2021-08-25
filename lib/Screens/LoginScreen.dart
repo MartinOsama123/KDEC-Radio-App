@@ -68,11 +68,11 @@ class LoginScreen extends StatelessWidget{
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor),
                           child: Text("Login"),
-                          onPressed: () {
-                            context.read<FirebaseAuthService>().signIn(
+                          onPressed: () async {
+                            await context.read<FirebaseAuthService>().signIn(
                             email: _emailController.text.trim(),
                             password: _passwordController.text.trim(),
-                          );},
+                          ); print(await context.read<User?>()?.getIdToken(true));},
                         ),
                       )
         ],

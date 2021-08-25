@@ -94,11 +94,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor),
                             onPressed: () async {
 
-                              UserModel user = new UserModel(email: _emailController.text.trim(), name: _nameController.text.trim(), phone: _phoneController.text.trim(), subs: []);
-                              context.read<FirebaseAuthService>().signUp(
+                              UserModel user = new UserModel(email: _emailController.text.trim(), name: _nameController.text.trim(), phone: _phoneController.text.trim(), subs: [],notifications: []);
+                              await context.read<FirebaseAuthService>().signUp(
                                 email: _emailController.text.trim(),
                                 password: _passwordController.text.trim());
-                              String token = await FirebaseAuth.instance.currentUser?.getIdToken() ?? "";
+                              String token = await context.read<User?>()?.getIdToken() ?? "";
                               var en = jsonEncode(user.toJson());
                               print(en);
                               print(token);
