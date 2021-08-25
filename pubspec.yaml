@@ -37,6 +37,7 @@ dependencies:
   firebase_auth: ^3.0.2
   provider: ^6.0.0
   flutter_svg: ^0.22.0
+  social_share: ^2.1.1
 
 
 dev_dependencies:
@@ -54,11 +55,15 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - images/logo.jpg
+    - images/kdec.png
     - images/podcast.jpg
     - images/album.jpg
     - images/login.svg
     - images/signup.svg
+    - images/facebook-logo.png
+    - images/instagram-logo.png
+    - images/twitter-logo.png
+    - images/whatsapp-logo.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

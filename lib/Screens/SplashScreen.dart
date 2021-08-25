@@ -8,11 +8,12 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: Image.asset('images/logo.jpg'),
-      nextScreen: AudioServiceWidget(child: MyHomePage()),
-      splashTransition: SplashTransition.rotationTransition,
-     pageTransitionType: PageTransitionType.fade,
-    );
+        splash: Image.asset('images/kdec.png'),
+        splashIconSize: MediaQuery.of(context).size.height / 1.5,
+        nextScreen: AudioServiceWidget(child: MyHomePage()),
+        splashTransition: SplashTransition.fadeTransition,
+       pageTransitionType: PageTransitionType.fade,
+      );
   }
 
 }

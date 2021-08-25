@@ -1,11 +1,13 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
+import 'package:church_app/Screens/AlbumScreen.dart';
 import 'package:church_app/Screens/AudioPlayerUI.dart';
 import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/Screens/DiscoverScreen.dart';
 import 'package:church_app/Screens/LibraryScreen.dart';
 import 'package:church_app/Screens/LoginScreen.dart';
+import 'package:church_app/models/AlbumInfo.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -50,7 +52,21 @@ class MyApp extends StatelessWidget {
     )
     ],
       child: MaterialApp(
+        onGenerateRoute: (settings) {
+      // Handle '/'
+      if (settings.name == '/') {
+        return MaterialPageRoute(builder: (context) => MyHomePage());
+      }
 
+      // Handle '/details/:id'
+      var uri = Uri.parse(settings.name ?? "");
+      if (uri.pathSegments.first == 'album') {
+        var id = uri.pathSegments[1];
+        var path = uri.pathSegments[2];
+        return MaterialPageRoute(builder: (context) =>
+            AlbumScreen(
+                albumInfo: new AlbumInfo(albumName: id, imgPath: path)));
+      }},
         theme: ThemeData(
             primaryColor: AppColor.PrimaryColor,
             accentColor: AppColor.SecondaryColor,
