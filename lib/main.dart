@@ -7,6 +7,7 @@ import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/Screens/DiscoverScreen.dart';
 import 'package:church_app/Screens/LibraryScreen.dart';
 import 'package:church_app/Screens/LoginScreen.dart';
+import 'package:church_app/Search.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -151,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
           elevation: 0,
           backgroundColor: Colors.transparent,
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+            IconButton(onPressed: () {showSearch(context: context, delegate: Search());}, icon: Icon(Icons.search)),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CircleAvatar(
