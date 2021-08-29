@@ -200,6 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<Widget> _buildScreens() {
+    print(FirebaseAuth.instance.currentUser?.getIdToken(true));
     return [
       LibraryScreen(),
       DiscoverScreen(),

@@ -79,4 +79,10 @@ class BackendQueries {
     },body: user);
     return response.body;
   }
+  static Future<void> addSub(String token,String topic) async {
+    var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/users/subscription/$topic/$token"));
+  }
+  static Future<void> deleteSub(String token,String topic) async {
+    var response = await http.delete(Uri.parse("http://10.0.2.2:8080/api/users/subscription/$topic/$token"));
+  }
 }
