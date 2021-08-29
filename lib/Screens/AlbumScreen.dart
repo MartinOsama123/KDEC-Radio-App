@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
 import 'package:church_app/main.dart';
@@ -35,10 +36,13 @@ class AlbumScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Hero(
                     tag: albumInfo.albumName,
-                    child: Image.network(
-                        "https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}",
-                        height: MediaQuery.of(context).size.height / 2)),
-              ),
+                    child: CachedNetworkImage(
+                      height: MediaQuery.of(context).size.height / 2,
+                      imageUrl: "https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}",
+                      placeholder: (context, url) => CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
+              )),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: Text(albumInfo.albumName),

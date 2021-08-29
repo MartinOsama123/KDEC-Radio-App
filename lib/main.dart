@@ -217,7 +217,7 @@ class FloatingContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(child: IconButton(onPressed: (){},icon: Icon(Icons.message))),
+
         StreamBuilder<MediaItem?>(
             stream: AudioService.currentMediaItemStream,
             builder: (context, mediaSnap) => mediaSnap.hasData
@@ -262,7 +262,11 @@ class FloatingContainer extends StatelessWidget {
                           )),
                     ),
                   )
-                : Container()),
+                : Expanded(child: SizedBox(width: MediaQuery.of(context).size.width))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(child: IconButton(onPressed: (){},icon: Icon(Icons.message))),
+        ),
       ],
     );
   }

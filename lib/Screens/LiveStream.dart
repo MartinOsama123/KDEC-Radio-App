@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:agora_rtc_engine/rtc_engine.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 final appId = "343e0fece606410eb65bc1b9a877b65e";
@@ -9,6 +10,7 @@ class LiveStream extends StatefulWidget {
   final String channelName;
   final String token;
   final ClientRole role = ClientRole.Audience;
+
   const LiveStream({required this.channelName,required this.token});
 
   @override
@@ -193,7 +195,14 @@ class _LiveStreamState extends State<LiveStream> {
       body: Center(
         child: Stack(
           children: <Widget>[
-            Image.asset("images/logo.jpg",width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,fit: BoxFit.contain,),
+        CachedNetworkImage(
+        imageUrl:
+        "https://kdechurch.herokuapp.com/api/img/${widget.channelName}",
+        placeholder: (context, url) =>
+            CircularProgressIndicator(),
+        errorWidget: (context, url, error) =>
+            Icon(Icons.error),
+      width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,fit: BoxFit.contain,),
             _panel(),
             _toolbar(),
           ],

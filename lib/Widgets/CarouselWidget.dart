@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/Screens/AlbumScreen.dart';
 import 'package:church_app/models/AlbumInfo.dart';
@@ -77,7 +78,15 @@ Widget _buildCarouselItem(
             onTap: () => Navigator.push(
                 context, MaterialPageRoute(builder: (context) => AlbumScreen(albumInfo: albumInfo))),
             child: Container(
-              child: ClipRRect(child: Hero(tag: albumInfo.albumName,child: Image.network("https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}")),borderRadius: BorderRadius.circular(10)),
+              child: ClipRRect(child: Hero(tag: albumInfo.albumName,child: CachedNetworkImage(
+                height: MediaQuery.of(context).size.height / 2,
+                imageUrl:
+                "https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}",
+                placeholder: (context, url) =>
+                    CircularProgressIndicator(),
+                errorWidget: (context, url, error) =>
+                    Icon(Icons.error),
+              ),),borderRadius: BorderRadius.circular(10)),
             ),
           ),
         ),
