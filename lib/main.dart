@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
@@ -9,6 +11,8 @@ import 'package:church_app/Screens/LibraryScreen.dart';
 import 'package:church_app/Screens/LoginScreen.dart';
 import 'package:church_app/Search.dart';
 import 'package:church_app/models/AlbumInfo.dart';
+import 'package:church_app/models/NotificationInfo.dart';
+import 'package:church_app/models/UserInfo.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -54,6 +58,9 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider<FirebaseAuthService>(
           create: (_) => FirebaseAuthService(FirebaseAuth.instance),
+        ),
+        ChangeNotifierProvider<UserModel>(
+          create: (_) => UserModel(email: "", name: "", phone: "", subs: [], notifications: []),
         ),
         StreamProvider(
           create: (context) =>
@@ -124,10 +131,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.black,
                     playSound: true,
                     icon: "@mipmap/ic_launcher")));
+        addNotification(new NotificationInfo( notification.title ?? "" , notification.body ?? "" ));
+        print("hi");
+
       }
+
+
     });
 
     super.initState();
+  }
+  Future<void> addNotification(NotificationInfo n) async {
+   await BackendQueries.addNotification(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "", jsonEncode(n.toJson()));
   }
 
   @override
@@ -232,7 +247,7 @@ class FloatingContainer extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: MediaQuery.of(context).size.width - 20,
+                          width: MediaQuery.of(context).size.width /1.2 ,
                           decoration: BoxDecoration(
                               color: AppColor.SecondaryColor,
                               borderRadius: BorderRadius.circular(8)),
@@ -265,7 +280,7 @@ class FloatingContainer extends StatelessWidget {
                   )
                 : Expanded(child: SizedBox(width: MediaQuery.of(context).size.width))),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 2),
           child: CircleAvatar(child: IconButton(onPressed: (){},icon: Icon(Icons.message))),
         ),
       ],

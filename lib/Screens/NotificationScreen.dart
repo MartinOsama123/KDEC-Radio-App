@@ -20,16 +20,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
         builder: (context, token) => token.connectionState == ConnectionState.done ? FutureBuilder<List<NotificationInfo>>(
           future: BackendQueries.getAllNotifications(token.data ?? ""),
           builder: (context, snapshot) =>  snapshot.connectionState == ConnectionState.done ? ListView.separated(
-
-            separatorBuilder: (_ , __ ) => Divider(height:1),itemBuilder: (context, index) => notificationContainer(snapshot.data?[index].title ?? "", snapshot.data?[index].body ?? ""),itemCount: snapshot.data?.length ?? 0) : Text("NO"),
-
-        ) : CircularProgressIndicator(),
+            separatorBuilder: (_ , __ ) => Divider(height:1),itemBuilder: (context, index) => notificationContainer(snapshot.data?[index].title ?? "", snapshot.data?[index].body ?? ""),itemCount: snapshot.data?.length ?? 0) : !snapshot.hasData ? Text("You don't have notifications") : CircularProgressIndicator(),
+        ) : !token.hasData ? Text("Please Login to see your notifications") : CircularProgressIndicator(),
       )
     );
   }
 
   Widget notificationContainer(String head,String body){
-    return ListTile(title: Text(head,style: TextStyle(fontSize: 20),),subtitle: Text(body),tileColor: Colors.lightBlueAccent,);
+    return ListTile(title: Text(head,style: TextStyle(fontSize: 20),),subtitle: Text(body),tileColor: Colors.lightBlueAccent);
   }
 
 }

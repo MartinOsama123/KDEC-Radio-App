@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
 import 'package:church_app/main.dart';
 import 'package:church_app/models/AlbumInfo.dart';
+import 'package:church_app/models/UserInfo.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_share/social_share.dart';
+import 'package:provider/provider.dart';
 
 class AlbumScreen extends StatelessWidget {
   final AlbumInfo albumInfo;
@@ -142,13 +147,17 @@ class AlbumScreen extends StatelessWidget {
                     label: const Text("Share")),
               ),
               ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () async {
+                    String albumName = albumInfo.albumName;
+                    String token = await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "";
+                    context.read<UserModel>().subs.contains(albumInfo.albumName) ? await context.read<UserModel>().removeSub(token, albumName) : await context.read<UserModel>().addSub(token, albumName);
+                  },
                   style: ElevatedButton.styleFrom(
                     onPrimary: Colors.white,
                     primary: AppColor.SecondaryColor,
                   ),
                   icon: Icon(Icons.bookmark_border),
-                  label: const Text("Subscribe")),
+                  label: context.watch<UserModel>().subs.contains(albumInfo.albumName)? const Text("Unsubscribe") : const Text("Subscribe")),
               PlaylistWidget(albumName: albumInfo.albumName),
             ],
           ),

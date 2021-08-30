@@ -58,7 +58,7 @@ class BackendQueries {
   }
   static Future<List<NotificationInfo>> getAllNotifications(String idToken) async {
     print("http://10.0.2.2:8080/api/notification/$idToken");
-    var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/notification/$idToken"));
+    var response = await http.get(Uri.parse("$BASE_URL/api/notification/$idToken"));
     var list =   (jsonDecode(response.body) as List);
     print(list);
     List<NotificationInfo> notifications = <NotificationInfo>[];
@@ -67,22 +67,30 @@ class BackendQueries {
     return notifications;
   }
 
-  static Future<UserModel> getUserInfo(String email) async {
-    var response = await http.get(Uri.parse("$BASE_URL/api/users/$email"));
+  static Future<UserModel> getUserInfo(String idToken) async {
+    var response = await http.get(Uri.parse("$BASE_URL/api/users/$idToken"));
     var result = UserModel.fromJson(jsonDecode(response.body));
     return result;
   }
 
   static Future<String> createUser(String token,String user) async {
-    var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/users/create/$token"),  headers: <String, String>{
+    var response = await http.post(Uri.parse("$BASE_URL/api/users/create/$token"),  headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },body: user);
     return response.body;
   }
+  static Future<String> addNotification(String token,String notification) async {
+    print(notification);
+    var response = await http.post(Uri.parse("$BASE_URL/api/notification/add/$token"),  headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },body: notification);
+    return response.body;
+  }
+
   static Future<void> addSub(String token,String topic) async {
-    var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/users/subscription/$topic/$token"));
+    var response = await http.post(Uri.parse("$BASE_URL/api/users/subscription/$topic/$token"));
   }
   static Future<void> deleteSub(String token,String topic) async {
-    var response = await http.delete(Uri.parse("http://10.0.2.2:8080/api/users/subscription/$topic/$token"));
+    var response = await http.delete(Uri.parse("$BASE_URL/api/users/subscription/$topic/$token"));
   }
 }

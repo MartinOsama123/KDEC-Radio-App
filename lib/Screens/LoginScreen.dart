@@ -1,7 +1,9 @@
 import 'package:church_app/AppColor.dart';
+import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/Screens/ProfileScreen.dart';
 import 'package:church_app/Screens/SignupScreen.dart';
+import 'package:church_app/models/UserInfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,8 +29,6 @@ class LoginScreen extends StatelessWidget{
                           ),
                         ),
                       ),
-
-
                        Padding(
                          padding: const EdgeInsets.all(8.0),
                          child: TextField(
@@ -71,8 +71,9 @@ class LoginScreen extends StatelessWidget{
                           onPressed: () async {
                             await context.read<FirebaseAuthService>().signIn(
                             email: _emailController.text.trim(),
-                            password: _passwordController.text.trim(),
-                          ); print(await context.read<User?>()?.getIdToken(true));},
+                            password: _passwordController.text.trim());
+                            context.watch<UserModel>().setUser(await BackendQueries.getUserInfo(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? ""));
+                            },
                         ),
                       )
         ],
