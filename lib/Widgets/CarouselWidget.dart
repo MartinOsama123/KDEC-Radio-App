@@ -83,7 +83,7 @@ Widget _buildCarouselItem(
                 imageUrl:
                 "https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}",
                 placeholder: (context, url) =>
-                    CircularProgressIndicator(),
+                    Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) =>
                     Icon(Icons.error),
               ),),borderRadius: BorderRadius.circular(10)),

@@ -54,16 +54,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   });
                 },
                 child: Column(children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: const Text(
-                          "Live Radio",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        )),
-                  ),
+
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),

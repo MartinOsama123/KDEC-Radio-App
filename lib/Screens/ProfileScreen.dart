@@ -8,14 +8,27 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  context.watch<User?>() != null ? Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(children: [
-            TextIcon(text: "Change E-Mail",icons: Icons.email),
-            TextIcon(text: "Change Password",icons: Icons.password,),
-            InkWell(onTap: (){ context.read<FirebaseAuthService>().signOut();},child: TextIcon(text: "Logout",icons: Icons.person_off,)),
-          ],),
+      body: Scaffold(
+        appBar: AppBar(
+          title: const Text("Profile",
+              style: TextStyle(
+                fontSize: 40,
+                color: Colors.black,
+              )),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.black,),onPressed: ()=> Navigator.pop(context))),
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(children: [
+                InkWell(onTap:(){},child: const TextIcon(text: "Change E-Mail",icons: Icons.email)),
+                InkWell(onTap:(){},child: const TextIcon(text: "Change Password",icons: Icons.password,)),
+                InkWell(onTap: (){ context.read<FirebaseAuthService>().signOut();},child: const TextIcon(text: "Logout",icons: Icons.person_off,)),
+              ],),
+            ),
+          ),
         ),
       ),
     ) : LoginScreen();

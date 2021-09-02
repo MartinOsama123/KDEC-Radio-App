@@ -40,12 +40,15 @@ class BackendQueries {
 
     AudioPlayer audioPlayer = new AudioPlayer();
     QueueSystem.clearQueue();
-    for(var a in jsonDecode(response.body)){
+    for(var a in jsonDecode(response.body)) {
       String download = "$BASE_URL/church/mp3/${a['songName']}";
-      print(download);
-      await audioPlayer.setUrl(download);
-      print(audioPlayer.duration);
-      QueueSystem.add(new MediaItem(id: download, album: album, title:a['songName'].toString() , duration: audioPlayer.duration ?? Duration()));
+      try {
+        await audioPlayer.setUrl(download);
+        QueueSystem.add(new MediaItem(id: download,
+            album: album,
+            title: a['songName'].toString(),
+            duration: audioPlayer.duration ?? Duration()));
+      }catch(e){print(e.toString());}
     }
     return QueueSystem.getQueue;
   }
@@ -60,10 +63,8 @@ class BackendQueries {
     print("http://10.0.2.2:8080/api/notification/$idToken");
     var response = await http.get(Uri.parse("$BASE_URL/api/notification/$idToken"));
     var list =   (jsonDecode(response.body) as List);
-    print(list);
     List<NotificationInfo> notifications = <NotificationInfo>[];
     list.forEach((e) => notifications.add(NotificationInfo.fromJson(e)));
-    print(notifications);
     return notifications;
   }
 

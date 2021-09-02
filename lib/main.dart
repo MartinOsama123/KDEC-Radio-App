@@ -103,15 +103,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  String _selectedName = "Library";
+  String _selectedName = "Live";
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       _selectedName = index == 0
-          ? "Library"
+          ? "Live"
           : index == 1
               ? "Browse"
-              : "Notification";
+              : "Notifications";
     });
   }
 
@@ -133,11 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     playSound: true,
                     icon: "@mipmap/ic_launcher")));
         addNotification(new NotificationInfo( notification.title ?? "" , notification.body ?? "" ));
-        print("hi");
-
       }
-
-
     });
 
     super.initState();
@@ -168,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
           elevation: 0,
           backgroundColor: Colors.transparent,
           actions: [
-            IconButton(onPressed: () {showSearch(context: context, delegate: Search());}, icon: Icon(Icons.search)),
+            IconButton(onPressed: () {showSearch(context: context, delegate: Search());}, icon: Icon(Icons.search,color: Colors.black,)),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CircleAvatar(
