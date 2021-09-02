@@ -22,6 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
+import 'Screens/MessegeScreen.dart';
 import 'Screens/NotificationScreen.dart';
 import 'Screens/SplashScreen.dart';
 
@@ -281,7 +282,7 @@ class FloatingContainer extends StatelessWidget {
                 : Expanded(child: SizedBox(width: MediaQuery.of(context).size.width))),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 2),
-          child: CircleAvatar(child: IconButton(onPressed: (){},icon: Icon(Icons.message))),
+          child: CircleAvatar(child: IconButton(onPressed: ()=>  Navigator.push(context, MaterialPageRoute(builder: (context) => MessegeScreen())),icon: Icon(Icons.message))),
         ),
       ],
     );
