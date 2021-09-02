@@ -80,6 +80,14 @@ class BackendQueries {
     },body: user);
     return response.body;
   }
+  static Future<String> createMessage(String token,String message) async {
+    print(message);
+    print('http://10.0.2.2:8080/api/messages/create/$token');
+    var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/messages/create/$token"),  headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },body: message);
+    return response.body;
+  }
   static Future<String> addNotification(String token,String notification) async {
     print(notification);
     var response = await http.post(Uri.parse("$BASE_URL/api/notification/add/$token"),  headers: <String, String>{

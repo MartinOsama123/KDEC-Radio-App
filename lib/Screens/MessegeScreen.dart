@@ -1,8 +1,13 @@
+import 'dart:convert';
+
+import 'package:church_app/BackendQueries.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../AppColor.dart';
 
 class MessegeScreen extends StatelessWidget {
+  final TextEditingController _messageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +32,7 @@ class MessegeScreen extends StatelessWidget {
                     expands: true,
                     minLines: null,
                     maxLines: null,
+                    controller: _messageController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Subject',
@@ -34,8 +40,9 @@ class MessegeScreen extends StatelessWidget {
                   )),
             )),
             ElevatedButton(
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MessegeScreen())),
+                onPressed: () async {
+                  await BackendQueries.createMessage(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "",_messageController.text);
+                },
                 child: Text("Send"),
                 style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor))
           ],
