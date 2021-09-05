@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/AppColor.dart';
+import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
 import 'package:church_app/main.dart';
 import 'package:church_app/models/AlbumInfo.dart';
@@ -44,7 +45,7 @@ class AlbumScreen extends StatelessWidget {
                     tag: albumInfo.albumName,
                     child: CachedNetworkImage(
                       height: MediaQuery.of(context).size.height / 2,
-                      imageUrl: "https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}",
+                      imageUrl: "${BackendQueries.IMG_URL}${albumInfo.imgPath}",
                       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) => Icon(Icons.image_not_supported),
                     ),

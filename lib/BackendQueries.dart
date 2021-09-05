@@ -6,6 +6,7 @@ import 'package:church_app/models/AlbumInfo.dart';
 import 'package:church_app/models/NotificationInfo.dart';
 
 import 'package:church_app/models/SessionInfoModel.dart';
+import 'package:church_app/models/SongInfo.dart';
 import 'package:church_app/models/UserInfo.dart';
 
 
@@ -16,6 +17,7 @@ import 'QueueSystem.dart';
 
 class BackendQueries {
   static const BASE_URL = "https://kdechurch.herokuapp.com";
+  static const IMG_URL = "$BASE_URL/api/img/";
   static Future<List<AlbumInfo>> getAllAlbums() async {
    
     var response = await http.get(Uri.parse("$BASE_URL/api/albums"));
@@ -33,6 +35,10 @@ class BackendQueries {
       }
     }
     return list;
+  }
+  static Future<AlbumInfo> getAlbumInfo(String album) async {
+    var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/albums/$album"));
+    return AlbumInfo.fromJson(jsonDecode(response.body));
   }
   static Future<List<MediaItem>> getAllSongs(String album) async {
 
@@ -58,6 +64,15 @@ class BackendQueries {
     List<SessionInfo> sessionList = <SessionInfo>[];
     list.forEach((e) => sessionList.add(SessionInfo.fromJson(e)));
     return sessionList;
+  }
+  static Future<List<SongInfo>> getSearch(String query) async {
+    var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/songs?search=$query"));
+    print(response.body);
+    var list =   (jsonDecode(response.body) as List);
+    List<SongInfo> songList = <SongInfo>[];
+    list.forEach((e) => songList.add(SongInfo.fromJson(e)));
+    print(songList[0].albumName);
+    return songList;
   }
   static Future<List<NotificationInfo>> getAllNotifications(String idToken) async {
     print("http://10.0.2.2:8080/api/notification/$idToken");
