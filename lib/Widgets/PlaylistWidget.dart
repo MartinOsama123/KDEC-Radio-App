@@ -5,8 +5,10 @@ import 'package:church_app/AudioPlayerTask.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/FirebaseQueries.dart';
 import 'package:church_app/QueueSystem.dart';
+import 'package:church_app/models/AlbumInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:church_app/Screens/AudioPlayerUI.dart';
+import 'package:provider/provider.dart';
 
 void _entryPoint() => AudioServiceBackground.run(() => AudioPlayerTask());
 
@@ -51,8 +53,17 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                        InkWell(
                                 onTap: () async {
                                   if (AudioService.running) await AudioService.stop();
-                                   AudioService.start(backgroundTaskEntrypoint: _entryPoint, params: {'list': jsonEncode(QueueSystem.getQueue)});
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => AudioPlayerUI(songName: snapshot.data?[index].title ?? "")));
+                                   AudioService.start(backgroundTaskEntrypoint: _entryPoint, params: {'list': jsonEncode(QueueSystem.getQueue),'current':jsonEncode(index)});
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (newcontext) =>
+                                     Provider<AlbumInfo>.value(
+                                          value: Provider.of<AlbumInfo>(context),
+                                          child: AudioPlayerUI(songName: snapshot.data?[index].title ?? ""),
+                                        )
+                                    ),
+                                  );
                                 },
                                 child: ListTile(
                                   leading: Icon(Icons.arrow_right_outlined),

@@ -66,7 +66,7 @@ class BackendQueries {
     return sessionList;
   }
   static Future<List<SongInfo>> getSearch(String query) async {
-    var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/songs?search=$query"));
+    var response = await http.get(Uri.parse("$BASE_URL/api/songs?search=$query"));
     print(response.body);
     var list =   (jsonDecode(response.body) as List);
     List<SongInfo> songList = <SongInfo>[];
@@ -75,7 +75,7 @@ class BackendQueries {
     return songList;
   }
   static Future<List<NotificationInfo>> getAllNotifications(String idToken) async {
-    print("http://10.0.2.2:8080/api/notification/$idToken");
+    print("$BASE_URL/api/notification/$idToken");
     var response = await http.get(Uri.parse("$BASE_URL/api/notification/$idToken"));
     var list =   (jsonDecode(response.body) as List);
     List<NotificationInfo> notifications = <NotificationInfo>[];
@@ -97,7 +97,7 @@ class BackendQueries {
   }
   static Future<String> createMessage(String token,String message) async {
     print(message);
-    print('http://10.0.2.2:8080/api/messages/create/$token');
+    print('$BASE_URL/api/messages/create/$token');
     var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/messages/create/$token"),  headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },body: message);

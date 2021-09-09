@@ -15,8 +15,8 @@ class CarouselWidget extends StatelessWidget {
   Widget build(BuildContext context) {
    return  Padding(
      padding: const EdgeInsets.all(8.0),
-     child: SingleChildScrollView(
-       child: Column(
+     child:  Column(
+       mainAxisSize: MainAxisSize.min,
          children: [
            Padding(
              padding: const EdgeInsets.all(8.0),
@@ -28,13 +28,16 @@ class CarouselWidget extends StatelessWidget {
                        fontSize: 20, fontWeight: FontWeight.bold),
                  )),
            ),
-           Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: _buildCarousel(context, 1),
+           Flexible(
+             fit: FlexFit.loose,
+             child: Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: _buildCarousel(context, 1),
+             ),
            ),
          ],
        ),
-     ),
+
    );
   }
 
@@ -53,7 +56,7 @@ Widget _buildCarousel(BuildContext context, int carouselIndex) {
           child: PageView.builder(
 
             itemCount: snapshot.data?.length ?? 0,
-            controller: PageController(viewportFraction: 0.8),
+            controller: PageController(viewportFraction: 0.9),
             itemBuilder: (BuildContext context, int itemIndex) {
               return _buildCarouselItem(context, carouselIndex,
                   itemIndex, snapshot.data?[itemIndex] ?? new AlbumInfo(albumName: "", imgPath: ""));
@@ -78,8 +81,10 @@ Widget _buildCarouselItem(
             onTap: () => Navigator.push(
                 context, MaterialPageRoute(builder: (context) => AlbumScreen(albumInfo: albumInfo))),
             child: Container(
+           width: MediaQuery.of(context).size.width,
               child: ClipRRect(child: Hero(tag: albumInfo.albumName,child: CachedNetworkImage(
-                height: MediaQuery.of(context).size.height / 2,
+             fit: BoxFit.cover,
+
                 imageUrl:
                 "https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}",
                 placeholder: (context, url) =>

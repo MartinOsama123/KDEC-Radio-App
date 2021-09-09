@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/AppColor.dart';
+import 'package:church_app/models/AlbumInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AudioPlayerUI extends StatelessWidget {
   final String songName;
@@ -12,65 +14,66 @@ class AudioPlayerUI extends StatelessWidget {
   const AudioPlayerUI({Key? key, required this.songName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-            leading: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.arrow_back),
-                color: AppColor.PrimaryColor),
-            backgroundColor: Colors.white,
-            elevation: 0,
-            title: Text(
-              songName,
-              style: TextStyle(color: Colors.black),
-            )),
-        body: SafeArea(
-          child: StreamBuilder<MediaItem?>(
-            stream: AudioService.currentMediaItemStream,
-            builder: (context, mediaItem) => mediaItem.hasData
-                ? Column(
-                    children: [
-                      Expanded(
-                          child: Hero(
-                        tag: mediaItem.data?.album ?? "",
-                        child: CachedNetworkImage(
-                          height: MediaQuery.of(context).size.height / 2,
-                          imageUrl:
-                              "https://kdechurch.herokuapp.com/api/img/${mediaItem.data?.album ?? ""}",
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+    return Consumer<AlbumInfo>(
+      builder: (context, value, child) => StreamBuilder<MediaItem?>(
+      stream: AudioService.currentMediaItemStream,  builder: (context, mediaItem) => Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+              leading: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(Icons.arrow_back),
+                  color: AppColor.PrimaryColor),
+              backgroundColor: Colors.white,
+              elevation: 0,
+              title: Text(
+                mediaItem.data?.title ?? "",
+                style: TextStyle(color: Colors.black),
+              )),
+          body: SafeArea(
+            child: mediaItem.hasData
+                  ? Column(
+                      children: [
+                        Expanded(
+                            child: Hero(
+                          tag: mediaItem.data?.album ?? "",
+                          child: CachedNetworkImage(
+                            height: MediaQuery.of(context).size.height / 2,
+                            imageUrl:
+                                "https://kdechurch.herokuapp.com/api/img/${value.imgPath}",
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          ),
+                        )),
+                        AudioSlider(
+                            duration: mediaItem.data?.duration ?? Duration()),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                    onPressed: () {}, icon: Icon(Icons.repeat)),
+                                IconButton(
+                                    onPressed: () =>
+                                        AudioService.skipToPrevious(),
+                                    icon: Icon(Icons.skip_previous)),
+                                PlayButton(),
+                                IconButton(
+                                    onPressed: () => AudioService.skipToNext(),
+                                    icon: Icon(Icons.skip_next)),
+                                IconButton(
+                                    onPressed: () {}, icon: Icon(Icons.shuffle)),
+                              ]),
                         ),
-                      )),
-                      AudioSlider(
-                          duration: mediaItem.data?.duration ?? Duration()),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                  onPressed: () {}, icon: Icon(Icons.repeat)),
-                              IconButton(
-                                  onPressed: () =>
-                                      AudioService.skipToPrevious(),
-                                  icon: Icon(Icons.skip_previous)),
-                              PlayButton(),
-                              IconButton(
-                                  onPressed: () => AudioService.skipToNext(),
-                                  icon: Icon(Icons.skip_next)),
-                              IconButton(
-                                  onPressed: () {}, icon: Icon(Icons.shuffle)),
-                            ]),
-                      ),
-                    ],
-                  )
-                : CircularProgressIndicator(),
-          ),
-        ));
+                      ],
+                    )
+                  : CircularProgressIndicator(),
+
+          )),
+    ));
   }
 }
 

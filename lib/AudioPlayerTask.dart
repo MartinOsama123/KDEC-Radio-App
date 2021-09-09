@@ -13,7 +13,8 @@ class AudioPlayerTask extends BackgroundAudioTask {
 
   onStart(Map<String, dynamic>? params) async {
     _list =  (jsonDecode(params!['list']) as List).map((i) => MediaItem.fromJson(i)).toList();
-print(_list);
+    _current = (jsonDecode(params['current']));
+    print(_current);
    await _player.setUrl(_list[_current].id);
  //  final MediaItem mediaItem = new MediaItem(id: params['url'], album: params['album'], title: params['title'],duration: _player.duration);
     AudioServiceBackground.setMediaItem(_list[_current]);

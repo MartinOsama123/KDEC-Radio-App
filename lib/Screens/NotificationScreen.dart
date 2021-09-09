@@ -21,7 +21,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           future: BackendQueries.getAllNotifications(token.data ?? ""),
           builder: (context, snapshot) =>  snapshot.connectionState == ConnectionState.done ? ListView.separated(
             separatorBuilder: (_ , __ ) => Divider(height:1),itemBuilder: (context, index) => notificationContainer(snapshot.data?[index].title ?? "", snapshot.data?[index].body ?? ""),itemCount: snapshot.data?.length ?? 0) : !snapshot.hasData ? Text("You don't have notifications") : CircularProgressIndicator(),
-        ) : !token.hasData ? Text("Please Login to see your notifications") : CircularProgressIndicator(),
+        ) : !token.hasData ? Center(child: Text("Please Login to see your notifications")) : CircularProgressIndicator(),
       )
     );
   }

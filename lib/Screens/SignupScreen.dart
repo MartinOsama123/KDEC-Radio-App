@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/FirebaseAuthService.dart';
+import 'package:church_app/main.dart';
 import 'package:church_app/models/UserInfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
+      return context.watch<User?>() == null  ? Scaffold(
       appBar: AppBar(elevation: 0, backgroundColor: Colors.transparent, leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.black,onPressed: () => Navigator.pop(context))),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -116,6 +117,6 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
         ),
       ),
-    );
+    ) : MyHomePage();
   }
 }
