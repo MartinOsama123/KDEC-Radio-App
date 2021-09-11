@@ -8,7 +8,9 @@ import 'package:church_app/QueueSystem.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:church_app/Screens/AudioPlayerUI.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void _entryPoint() => AudioServiceBackground.run(() => AudioPlayerTask());
 
@@ -54,7 +56,12 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                 onTap: () async {
                                   if (AudioService.running) await AudioService.stop();
                                    AudioService.start(backgroundTaskEntrypoint: _entryPoint, params: {'list': jsonEncode(QueueSystem.getQueue),'current':jsonEncode(index)});
-                                  Navigator.push(
+                                   await BackendQueries.viewSong(snapshot.data![index].title);
+                                   String url = "${BackendQueries.BASE_URL}/church/mp3/${snapshot.data![index].title}";
+                                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                                  print(jsonEncode(snapshot.data));
+                                  await prefs.setString(url, jsonEncode(snapshot.data![index]));
+                                /*  await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (newcontext) =>
@@ -63,7 +70,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                           child: AudioPlayerUI(songName: snapshot.data?[index].title ?? ""),
                                         )
                                     ),
-                                  );
+                                  );*/
                                 },
                                 child: ListTile(
                                   leading: Icon(Icons.arrow_right_outlined),

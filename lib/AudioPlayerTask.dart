@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:audio_service/audio_service.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:just_audio/just_audio.dart';
 import 'dart:core';
 
@@ -14,8 +15,8 @@ class AudioPlayerTask extends BackgroundAudioTask {
   onStart(Map<String, dynamic>? params) async {
     _list =  (jsonDecode(params!['list']) as List).map((i) => MediaItem.fromJson(i)).toList();
     _current = (jsonDecode(params['current']));
-    print(_current);
-   await _player.setUrl(_list[_current].id);
+ var file = await DefaultCacheManager().getSingleFile(_list[_current].id);
+ await _player.setFilePath(file.path);
  //  final MediaItem mediaItem = new MediaItem(id: params['url'], album: params['album'], title: params['title'],duration: _player.duration);
     AudioServiceBackground.setMediaItem(_list[_current]);
     print('entered');

@@ -37,7 +37,7 @@ class BackendQueries {
     return list;
   }
   static Future<AlbumInfo> getAlbumInfo(String album) async {
-    var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/albums/$album"));
+    var response = await http.get(Uri.parse("$BASE_URL/api/albums/$album"));
     return AlbumInfo.fromJson(jsonDecode(response.body));
   }
   static Future<List<MediaItem>> getAllSongs(String album) async {
@@ -95,10 +95,13 @@ class BackendQueries {
     },body: user);
     return response.body;
   }
+  static Future<void> viewSong(String name) async {
+     await http.post(Uri.parse("$BASE_URL/api/songs/$name"));
+  }
   static Future<String> createMessage(String token,String message) async {
     print(message);
     print('$BASE_URL/api/messages/create/$token');
-    var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/messages/create/$token"),  headers: <String, String>{
+    var response = await http.post(Uri.parse("$BASE_URL/api/messages/create/$token"),  headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },body: message);
     return response.body;

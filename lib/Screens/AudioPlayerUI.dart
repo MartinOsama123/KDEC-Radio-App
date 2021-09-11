@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/AppColor.dart';
+import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,11 @@ import 'package:provider/provider.dart';
 
 class AudioPlayerUI extends StatelessWidget {
   final String songName;
-
-  const AudioPlayerUI({Key? key, required this.songName}) : super(key: key);
+  final String albumName;
+  const AudioPlayerUI({Key? key, required this.songName,required this.albumName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Consumer<AlbumInfo>(
-      builder: (context, value, child) => StreamBuilder<MediaItem?>(
+    return  StreamBuilder<MediaItem?>(
       stream: AudioService.currentMediaItemStream,  builder: (context, mediaItem) => Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -36,14 +36,17 @@ class AudioPlayerUI extends StatelessWidget {
                         Expanded(
                             child: Hero(
                           tag: mediaItem.data?.album ?? "",
-                          child: CachedNetworkImage(
-                            height: MediaQuery.of(context).size.height / 2,
-                            imageUrl:
-                                "https://kdechurch.herokuapp.com/api/img/${value.imgPath}",
-                            placeholder: (context, url) =>
-                                CircularProgressIndicator(),
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                          child: FutureBuilder<AlbumInfo>(
+                            future: BackendQueries.getAlbumInfo(albumName),
+                            builder:(context, imgInfo) =>  CachedNetworkImage(
+                              height: MediaQuery.of(context).size.height / 2,
+                              imageUrl:
+                                  "${BackendQueries.IMG_URL}${imgInfo.data?.imgPath ?? ""}",
+                              placeholder: (context, url) =>
+                                  Center(child: CircularProgressIndicator()),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
+                            ),
                           ),
                         )),
                         AudioSlider(
@@ -70,10 +73,10 @@ class AudioPlayerUI extends StatelessWidget {
                         ),
                       ],
                     )
-                  : CircularProgressIndicator(),
+                  : Center(child: CircularProgressIndicator()),
 
           )),
-    ));
+    );
   }
 }
 

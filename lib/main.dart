@@ -9,6 +9,7 @@ import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/Screens/DiscoverScreen.dart';
 import 'package:church_app/Screens/LibraryScreen.dart';
 import 'package:church_app/Screens/LoginScreen.dart';
+import 'package:church_app/Screens/OfflineScreen.dart';
 import 'package:church_app/Search.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:church_app/models/NotificationInfo.dart';
@@ -111,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ? "Live"
           : index == 1
               ? "Browse"
-              : "Notifications";
+              : index == 2 ? "Notifications" : "Offline";
     });
   }
 
@@ -201,6 +202,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(CupertinoIcons.bell),
                 label: ("Notifications"),
               ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.wifi_slash),
+                label: ("Offline"),
+              ),
             ],
             currentIndex: _selectedIndex,
             selectedItemColor: AppColor.PrimaryColor,
@@ -218,6 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
       LibraryScreen(),
       DiscoverScreen(),
       NotificationScreen(),
+      OfflineScreen(),
     ];
   }
 }
@@ -240,7 +246,7 @@ class FloatingContainer extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => AudioPlayerUI(
-                                songName: mediaSnap.data?.title ?? ""))),
+                                songName: mediaSnap.data?.title ?? "",albumName: mediaSnap.data?.album ?? ""))),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
