@@ -1,17 +1,18 @@
 import 'dart:async';
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:flutter/material.dart';
 
 final appId = "343e0fece606410eb65bc1b9a877b65e";
 
 
 class LiveStream extends StatefulWidget {
-  final String channelName;
-  final String token;
+  final SessionInfo sessionInfo;
+
   final ClientRole role = ClientRole.Audience;
 
-  const LiveStream({required this.channelName,required this.token});
+  const LiveStream({required this.sessionInfo});
 
   @override
   _LiveStreamState createState() => _LiveStreamState();
@@ -52,7 +53,7 @@ class _LiveStreamState extends State<LiveStream> {
     _addAgoraEventHandlers();
 
     /// Join channel
-    await _engine.joinChannel(widget.token, widget.channelName, null, 0);
+    await _engine.joinChannel(widget.sessionInfo.token, widget.sessionInfo.channelName, null, 0);
 
   }
 
@@ -61,7 +62,7 @@ class _LiveStreamState extends State<LiveStream> {
     _engine = await RtcEngine.create(appId);
     await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
     await _engine.setClientRole(widget.role);
-
+    _engine.muteLocalAudioStream(muted);
   }
 
 
@@ -197,7 +198,7 @@ class _LiveStreamState extends State<LiveStream> {
           children: <Widget>[
         CachedNetworkImage(
         imageUrl:
-        "https://kdechurch.herokuapp.com/api/img/${widget.channelName}",
+        "https://kdechurch.herokuapp.com/api/img/${widget.sessionInfo.imgPath}",
         placeholder: (context, url) =>
             CircularProgressIndicator(),
         errorWidget: (context, url, error) =>

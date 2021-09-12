@@ -8,6 +8,7 @@ import 'package:church_app/models/NotificationInfo.dart';
 import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:church_app/models/SongInfo.dart';
 import 'package:church_app/models/UserInfo.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 
 import 'package:http/http.dart' as http;
@@ -22,7 +23,7 @@ class BackendQueries {
    
     var response = await http.get(Uri.parse("$BASE_URL/api/albums"));
 
-    print("entered ${response.body}");
+
     List<AlbumInfo> list = <AlbumInfo>[];
     if (response.statusCode == 200) {
       try {
@@ -115,9 +116,12 @@ class BackendQueries {
   }
 
   static Future<void> addSub(String token,String topic) async {
+    await FirebaseMessaging.instance.subscribeToTopic(topic);
     var response = await http.post(Uri.parse("$BASE_URL/api/users/subscription/$topic/$token"));
+
   }
   static Future<void> deleteSub(String token,String topic) async {
+    await FirebaseMessaging.instance.unsubscribeFromTopic(topic);
     var response = await http.delete(Uri.parse("$BASE_URL/api/users/subscription/$topic/$token"));
   }
 }

@@ -85,13 +85,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                                 carouselIndex,
                                 itemIndex,
                                 snapshot.data?[itemIndex] ??
-                                    new SessionInfo(
-                                        channelName: "",
-                                        token: "",
-                                        description: "",
-                                        hostName: "",
-                                        lang: "",
-                                        imgPath: ""));
+                                    new SessionInfo(channelName: "", token: "", description: "", hostName: "", lang: "", imgPath: ""));
                           },
                         ),
                       ),
@@ -116,11 +110,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => LiveStream(
-                          channelName: sessionInfo.channelName,
-                          token: sessionInfo.token)));
-              print(
-                  "https://zingerfinger.000webhostapp.com/imgs/${sessionInfo.imgPath}");
+                      builder: (context) => LiveStream(sessionInfo: sessionInfo)));
             },
             child: Container(
               child: ClipRRect(

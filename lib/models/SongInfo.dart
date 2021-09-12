@@ -2,14 +2,14 @@ class SongInfo {
   late String albumName;
   late String lang;
   late String songName;
- // late String author;
+  late String author;
 
   SongInfo(this.albumName, this.lang, this.songName);
   SongInfo.fromJson(Map<String, dynamic> json) {
     albumName = json['albumName'];
     lang = json['lang'];
     songName = json['songName'];
-    //author = json['author'];
+    author = json['author'];
 
   }
 
@@ -18,7 +18,7 @@ class SongInfo {
     data['albumName'] = this.albumName;
     data['lang'] = this.lang;
     data['songName'] = this.songName;
-  //  data['author'] = this.author;
+    data['author'] = this.author;
     return data;
   }
 }

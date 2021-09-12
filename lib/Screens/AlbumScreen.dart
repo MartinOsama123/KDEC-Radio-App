@@ -111,18 +111,21 @@ class AlbumScreen extends StatelessWidget {
                       icon: Icon(Icons.share),
                       label: const Text("Share")),
                 ),
-                ElevatedButton.icon(
-                    onPressed: () async {
-                      String albumName = albumInfo.albumName;
-                      String token = await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "";
-                      context.read<UserModel>().subs.contains(albumInfo.albumName) ? await context.read<UserModel>().removeSub(token, albumName) : await context.read<UserModel>().addSub(token, albumName);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.white,
-                      primary: AppColor.SecondaryColor,
-                    ),
-                    icon: Icon(Icons.bookmark_border),
-                    label: context.watch<UserModel>().subs.contains(albumInfo.albumName)? const Text("Unsubscribe") : const Text("Subscribe")),
+                FutureBuilder<String>(
+                  future: FirebaseAuth.instance.currentUser?.getIdToken(true),
+                  builder: (context, token) => token.data != null ? ElevatedButton.icon(
+                      onPressed: () async {
+                        String albumName = albumInfo.albumName;
+                        String token = await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "";
+                        context.read<UserModel>().subs.contains(albumInfo.albumName) ? await context.read<UserModel>().removeSub(token, albumName) : await context.read<UserModel>().addSub(token, albumName);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        onPrimary: Colors.white,
+                        primary: AppColor.SecondaryColor,
+                      ),
+                      icon: Icon(Icons.bookmark_border),
+                      label: context.watch<UserModel>().subs.contains(albumInfo.albumName)? const Text("Unsubscribe") : const Text("Subscribe")) : const Text("Please Login to so you can subscribe"),
+                ),
                  PlaylistWidget(albumName: albumInfo.albumName),
               ],
             ),
