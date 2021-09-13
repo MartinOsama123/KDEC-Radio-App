@@ -45,13 +45,17 @@ class BackendQueries {
   static Future<List<MediaItem>> getAllSongs(String album) async {
 
     var response = await http.get(Uri.parse("$BASE_URL/api/songs/$album"));
-
+    print("$BASE_URL/api/songs/$album");
     AudioPlayer audioPlayer = new AudioPlayer();
     QueueSystem.clearQueue();
-    for(var a in jsonDecode(Utf8Decoder().convert(response.bodyBytes))) {
-      String download = "$BASE_URL/church/mp3/${a['songName']}";
+    String decoded = Utf8Decoder().convert(response.bodyBytes);
+    print(decoded);
+    for(var a in jsonDecode(decoded)) {
+      String urlDecoded= Utf8Decoder().convert(a['songName'].toString().codeUnits);
+      String download = "$BASE_URL/church/mp3/$urlDecoded";
       try {
-        await audioPlayer.setUrl(download);
+        print(Utf8Decoder().convert(download.codeUnits));
+        await audioPlayer.setUrl(Utf8Decoder().convert(download.codeUnits));
         QueueSystem.add(new MediaItem(id: download,
             album: album,
             title: a['songName'].toString(),
