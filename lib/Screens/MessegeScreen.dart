@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +11,11 @@ class MessegeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Message",
+          title: const Text("prayer",
               style: TextStyle(
                 fontSize: 40,
                 color: Colors.black,
-              )),
+              )).tr(),
           elevation: 0,
           backgroundColor: Colors.transparent,),
       body: SafeArea(
@@ -43,7 +42,7 @@ class MessegeScreen extends StatelessWidget {
                 onPressed: () async {
                   await BackendQueries.createMessage(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "",_messageController.text);
                 },
-                child: Text("Send"),
+                child: Text("send").tr(),
                 style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor))
           ],
         ),

@@ -1,9 +1,8 @@
 import 'package:church_app/BackendQueries.dart';
-import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/models/NotificationInfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class NotificationScreen extends StatefulWidget {
   @override
@@ -21,7 +20,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           future: BackendQueries.getAllNotifications(token.data ?? ""),
           builder: (context, snapshot) =>  snapshot.connectionState == ConnectionState.done ? ListView.separated(
             separatorBuilder: (_ , __ ) => Divider(height:1),itemBuilder: (context, index) => notificationContainer(snapshot.data?[index].title ?? "", snapshot.data?[index].body ?? ""),itemCount: snapshot.data?.length ?? 0) : !snapshot.hasData ? Text("You don't have notifications") : CircularProgressIndicator(),
-        ) : !token.hasData ? Center(child: Text("Please Login to see your notifications")) : CircularProgressIndicator(),
+        ) : !token.hasData ? Center(child: Text("notificationLogin").tr()) : CircularProgressIndicator(),
       )
     );
   }

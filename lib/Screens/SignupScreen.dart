@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 class SignupScreen extends StatefulWidget {
   @override
   _SignupScreenState createState() => _SignupScreenState();
@@ -43,9 +44,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "SIGNUP",
+                          "signup",
                           style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
+                        ).tr(),
 
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -53,7 +54,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             controller: _nameController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Full Name',
+                              labelText: 'name'.tr(),
                             ),
                           ),
                         ),
@@ -63,7 +64,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             controller: _phoneController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Phone',
+                              labelText: 'phone'.tr(),
                             ),
                           ),
                         ),
@@ -73,7 +74,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             controller: _emailController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Email',
+                              labelText: 'email'.tr(),
                             ),
                           ),
                         ),
@@ -84,14 +85,14 @@ class _SignupScreenState extends State<SignupScreen> {
                             obscureText: true,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Password',
+                              labelText: 'password'.tr(),
                             ),
                           ),
                         ),
                         Container(
                           width: size.width / 2,
                           child: ElevatedButton(
-                            child: Text("Sign up"),
+                            child: Text("signup").tr(),
                             style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor),
                             onPressed: () async {
 

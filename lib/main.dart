@@ -14,6 +14,7 @@ import 'package:church_app/Search.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:church_app/models/NotificationInfo.dart';
 import 'package:church_app/models/UserInfo.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,6 +41,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await EasyLocalization.ensureInitialized();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
@@ -49,13 +51,23 @@ Future<void> main() async {
       alert: true, badge: true, sound: true);
   await FirebaseMessaging.instance.subscribeToTopic("Global");
 
-  runApp(MyApp());
+
+  runApp(
+    EasyLocalization(
+        supportedLocales: [Locale('en', 'US'), Locale('fr', 'FR'), Locale('ar', 'AR')],
+        path: 'assets/translation', // <-- change the path of the translation files
+        fallbackLocale: Locale('en', 'US'),
+        child: MyApp()
+    ),
+  );
 }
+
 
 class MyApp extends StatelessWidget {
   final language = false;
   @override
   Widget build(BuildContext context) {
+context.locale = Locale("ar","AR");
     return MultiProvider(
       providers: [
         Provider<FirebaseAuthService>(
@@ -71,6 +83,9 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        locale: context.locale,
+        supportedLocales: context.supportedLocales,
+        localizationsDelegates: context.localizationDelegates,
         onGenerateRoute: (settings) {
           // Handle '/'
           if (settings.name == '/') {
@@ -104,15 +119,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  String _selectedName = "Live";
+  String _selectedName = "live";
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       _selectedName = index == 0
-          ? "Live"
+          ? "live"
           : index == 1
-              ? "Browse"
-              : index == 2 ? "Notifications" : "Offline";
+              ? "browse"
+              : index == 2 ? "notifications" : "offline";
     });
   }
 
@@ -162,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(
                 fontSize: 40,
                 color: Colors.black,
-              )),
+              )).tr(),
           elevation: 0,
           backgroundColor: Colors.transparent,
           actions: [
@@ -189,22 +204,22 @@ class _MyHomePageState extends State<MyHomePage> {
             child: _buildScreens().elementAt(_selectedIndex),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
+            items:  <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.circle_fill),
-                label: ("Library"),
+                label: ("live").tr(),
               ),
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.square_list),
-                label: ("Browse"),
+                label: ("browse").tr(),
               ),
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.bell),
-                label: ("Notifications"),
+                label: ("notifications").tr(),
               ),
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.wifi_slash),
-                label: ("Offline"),
+                label: ("offline").tr(),
               ),
             ],
             currentIndex: _selectedIndex,

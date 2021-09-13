@@ -16,6 +16,7 @@ class AudioPlayerTask extends BackgroundAudioTask {
     _list =  (jsonDecode(params!['list']) as List).map((i) => MediaItem.fromJson(i)).toList();
     _current = (jsonDecode(params['current']));
  var file = await DefaultCacheManager().getSingleFile(_list[_current].id);
+ print(file.path);
  await _player.setFilePath(file.path);
  //  final MediaItem mediaItem = new MediaItem(id: params['url'], album: params['album'], title: params['title'],duration: _player.duration);
     AudioServiceBackground.setMediaItem(_list[_current]);

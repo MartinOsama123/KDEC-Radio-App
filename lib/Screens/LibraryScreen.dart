@@ -2,7 +2,7 @@ import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/Screens/LiveStream.dart';
 import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:flutter/material.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 class LibraryScreen extends StatefulWidget {
   @override
   _LibraryScreenState createState() => _LibraryScreenState();
@@ -12,40 +12,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*DefaultTabController(
-      initialIndex: 0,
-      length: 3,
-      child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingContainer(),*/
-       /* body:*/ /*NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                title:*/ /*Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child:   fontWeight: FontWeight.bold),
-                  ),
-                ),*/
-               /* backgroundColor: Colors.white,
-                pinned: true,
-                floating: true,
-                bottom: TabBar(
-                  labelColor: AppColor.PrimaryColor,
-                  unselectedLabelColor: Colors.grey,
-                  indicatorColor: AppColor.PrimaryColor,
-                  tabs: [
-                    Tab(child: const Text("Listen now")),
-                    Tab(child: const Text("Discover")),
-                    Tab(child: const Text("Favorite"))
-                  ],
-                ),
-              )*/
-           /* )
-          },*/
-          body: /*TabBarView(
-              children: [*/
-              Padding(
+          body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: RefreshIndicator(
                 onRefresh: () {
@@ -92,9 +59,9 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     )
                   : Center(
                       child: Text(
-                        "No available live podcasts right now..\nCheck again later",
+                        "noPodcast",
                         style: TextStyle(color: Colors.black, fontSize: 15),
-                      ),
+                      ).tr(),
                     )
               : Center(child: CircularProgressIndicator()),
     );

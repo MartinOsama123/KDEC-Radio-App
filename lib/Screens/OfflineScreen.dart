@@ -26,6 +26,7 @@ class _OfflineScreenState extends State<OfflineScreen> {
           List<String> list = snapshot.data?.getKeys().toList() ?? [];
           List<MediaItem?> media = <MediaItem?>[];
           for(int i = 0;i<list.length;i++){
+         if(list[i] == "locale") list.removeAt(i);
             media.add(MediaItem.fromJson(jsonDecode(snapshot.data?.getString(list[i]) ?? "")));
           }
           return ListView.separated(

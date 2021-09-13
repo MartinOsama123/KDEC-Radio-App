@@ -1,0 +1,19 @@
+{
+  "login": "Se connecter",
+  "email": "Email",
+  "password": "Mot de passe",
+  "noEmail": "Nouveau inscrit? Cliquez ici",
+  "guest": " Continue comme invite",
+  "live": "En direct",
+  "noPodcast": " Audio a la demande n’est pas disponible. Verifier plus tard",
+  "browse": "Recherche",
+  "library": "Librairie",
+  "notifications": "Notifications",
+  "notificationLogin": " Veuillez s’inscrire pour voir votre notifications",
+  "offline": "Hors ligne",
+  "prayer": "Demande de priere",
+  "name": "Nom",
+  "phone": "Téléphone",
+  "signup": "S'enregistrer",
+  "send": "Envoyer"
+}
