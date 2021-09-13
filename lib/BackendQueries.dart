@@ -27,7 +27,8 @@ class BackendQueries {
     List<AlbumInfo> list = <AlbumInfo>[];
     if (response.statusCode == 200) {
       try {
-         var albums = jsonDecode(response.body);
+
+         var albums = jsonDecode(Utf8Decoder().convert(response.bodyBytes));
          for(var a in albums){
            list.add(AlbumInfo.fromJson(a));
          }
@@ -39,7 +40,7 @@ class BackendQueries {
   }
   static Future<AlbumInfo> getAlbumInfo(String album) async {
     var response = await http.get(Uri.parse("$BASE_URL/api/albums/$album"));
-    return AlbumInfo.fromJson(jsonDecode(response.body));
+    return AlbumInfo.fromJson(jsonDecode(Utf8Decoder().convert(response.bodyBytes)));
   }
   static Future<List<MediaItem>> getAllSongs(String album) async {
 
@@ -47,7 +48,7 @@ class BackendQueries {
 
     AudioPlayer audioPlayer = new AudioPlayer();
     QueueSystem.clearQueue();
-    for(var a in jsonDecode(response.body)) {
+    for(var a in jsonDecode(Utf8Decoder().convert(response.bodyBytes))) {
       String download = "$BASE_URL/church/mp3/${a['songName']}";
       try {
         await audioPlayer.setUrl(download);
@@ -61,15 +62,15 @@ class BackendQueries {
   }
   static Future<List<SessionInfo>> getAllChannels() async {
     var response = await http.get(Uri.parse("$BASE_URL/api/channels"));
-    var list =   (jsonDecode(response.body) as List);
+    var list =   (jsonDecode(Utf8Decoder().convert(response.bodyBytes)) as List);
     List<SessionInfo> sessionList = <SessionInfo>[];
     list.forEach((e) => sessionList.add(SessionInfo.fromJson(e)));
     return sessionList;
   }
   static Future<List<SongInfo>> getSearch(String query) async {
     var response = await http.get(Uri.parse("$BASE_URL/api/songs?search=$query"));
-    print(response.body);
-    var list =   (jsonDecode(response.body) as List);
+    print(Utf8Decoder().convert(response.bodyBytes));
+    var list =   (jsonDecode(Utf8Decoder().convert(response.bodyBytes)) as List);
     List<SongInfo> songList = <SongInfo>[];
     list.forEach((e) => songList.add(SongInfo.fromJson(e)));
     print(songList[0].albumName);
@@ -78,7 +79,7 @@ class BackendQueries {
   static Future<List<NotificationInfo>> getAllNotifications(String idToken) async {
     print("$BASE_URL/api/notification/$idToken");
     var response = await http.get(Uri.parse("$BASE_URL/api/notification/$idToken"));
-    var list =   (jsonDecode(response.body) as List);
+    var list =   (jsonDecode(Utf8Decoder().convert(response.bodyBytes)) as List);
     List<NotificationInfo> notifications = <NotificationInfo>[];
     list.forEach((e) => notifications.add(NotificationInfo.fromJson(e)));
     return notifications;
@@ -86,7 +87,7 @@ class BackendQueries {
 
   static Future<UserModel> getUserInfo(String idToken) async {
     var response = await http.get(Uri.parse("$BASE_URL/api/users/$idToken"));
-    var result = UserModel.fromJson(jsonDecode(response.body));
+    var result = UserModel.fromJson(jsonDecode(Utf8Decoder().convert(response.bodyBytes)));
     return result;
   }
 
