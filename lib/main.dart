@@ -112,12 +112,12 @@ context.locale = Locale("ar","AR");
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget  {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   int _selectedIndex = 0;
   String _selectedName = "live";
   void _onItemTapped(int index) {
@@ -167,11 +167,22 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> connectAudio() async {
     await AudioService.connect();
   }
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeIn,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading:_selectedIndex == 0 ? FadeTransition(
+          opacity: _controller,
+         child:Icon(CupertinoIcons.circle_fill,color: Colors.red,size: 13,)):null,
           automaticallyImplyLeading: false,
           title: Text(_selectedName,
               style: TextStyle(

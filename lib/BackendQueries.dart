@@ -50,15 +50,14 @@ class BackendQueries {
     QueueSystem.clearQueue();
     String decoded = Utf8Decoder().convert(response.bodyBytes);
     print(decoded);
-    for(var a in jsonDecode(decoded)) {
-      String urlDecoded= Utf8Decoder().convert(a['songName'].toString().codeUnits);
-      String download = "$BASE_URL/church/mp3/$urlDecoded";
+    for(var a in jsonDecode(response.body)) {
+      String download = "$BASE_URL/church/mp3/${Utf8Decoder().convert(a['songName'].toString().codeUnits)}";
       try {
-        print(Utf8Decoder().convert(download.codeUnits));
-        await audioPlayer.setUrl(Utf8Decoder().convert(download.codeUnits));
+        print(download);
+        await audioPlayer.setUrl((Uri.parse(download).toString()));
         QueueSystem.add(new MediaItem(id: download,
             album: album,
-            title: a['songName'].toString(),
+            title: Utf8Decoder().convert(a['songName'].toString().codeUnits),
             duration: audioPlayer.duration ?? Duration()));
       }catch(e){print(e.toString());}
     }
