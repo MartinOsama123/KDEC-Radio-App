@@ -8,7 +8,6 @@ import 'package:church_app/main.dart';
 import 'package:church_app/models/UserInfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 class LoginScreen extends StatelessWidget{
@@ -21,76 +20,80 @@ class LoginScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return context.watch<User?>() == null  ? Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            SvgPicture.asset(
-            "images/login.svg",
-            semanticsLabel: 'Login Logo'),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              "login",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ).tr(),
-                          ),
-                        ),
-                         Padding(
-                           padding: const EdgeInsets.all(8.0),
-                           child: TextField(
-                              controller: _emailController,
-                              decoration: InputDecoration(
-                                fillColor: AppColor.PrimaryColor,
-                                border: OutlineInputBorder(),
-                                labelText: "email".tr(),
+    return context.watch<User?>() == null  ? Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/background.png"), fit: BoxFit.cover)),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+        body: SafeArea(
+              child: Column(
+                children: [
+                  Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    "login",
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ).tr(),
+                                ),
                               ),
-                            ),
-                         ),
+                               Padding(
+                                 padding: const EdgeInsets.all(8.0),
+                                 child: TextField(
+                                    controller: _emailController,
+                                    decoration: InputDecoration(
+                                      fillColor: AppColor.PrimaryColor,
+                                      border: OutlineInputBorder(),
+                                      labelText: "email".tr(),
+                                    ),
+                                  ),
+                               ),
 
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                              controller: _passwordController,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                fillColor: AppColor.PrimaryColor,
-                                border: OutlineInputBorder(),
-                                labelText: 'password'.tr(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextField(
+                                    controller: _passwordController,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                      fillColor: AppColor.PrimaryColor,
+                                      border: OutlineInputBorder(),
+                                      labelText: 'password'.tr(),
+                                    ),
+                                  ),
                               ),
-                            ),
-                        ),
 
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child:
-                              InkWell(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen())), child: const Text("noEmail",style: TextStyle(color: AppColor.SecondaryColor,decoration: TextDecoration.underline)).tr()),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child:
+                                    InkWell(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen())), child: const Text("noEmail",style: TextStyle(color: AppColor.SecondaryColor,decoration: TextDecoration.underline)).tr()),
 
-                        ),
-                        Container(
-                          width: size.width / 2,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor),
-                            child: Text("login").tr(),
-                            onPressed: () async {
-                              await context.read<FirebaseAuthService>().signIn(
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text.trim());
-                              context.watch<UserModel>().setUser(await BackendQueries.getUserInfo(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? ""));
-                              },
-                          ),
-                        ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: GestureDetector(onTap: ()=>  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => AudioServiceWidget(child: MyHomePage()))),child: const Text("guest",style: TextStyle(decoration: TextDecoration.underline,color: Colors.blue)).tr()),
-            )
-          ],
-        ),
+                              ),
+                              Container(
+                                width: size.width / 2,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor),
+                                  child: Text("login").tr(),
+                                  onPressed: () async {
+                                    await context.read<FirebaseAuthService>().signIn(
+                                    email: _emailController.text.trim(),
+                                    password: _passwordController.text.trim());
+                                    context.watch<UserModel>().setUser(await BackendQueries.getUserInfo(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? ""));
+                                    },
+                                ),
+                              ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: GestureDetector(onTap: ()=>  Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AudioServiceWidget(child: MyHomePage()))),child: const Text("guest",style: TextStyle(decoration: TextDecoration.underline,color: Colors.blue)).tr()),
+                  )
+                ],
+              ),
+        )
       ),
     ):skip ? MyHomePage() : ProfileScreen();
   }

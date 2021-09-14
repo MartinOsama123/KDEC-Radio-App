@@ -9,6 +9,7 @@ import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/Screens/DiscoverScreen.dart';
 import 'package:church_app/Screens/LibraryScreen.dart';
 import 'package:church_app/Screens/LoginScreen.dart';
+import 'package:church_app/Screens/MessegeScreen.dart';
 import 'package:church_app/Screens/OfflineScreen.dart';
 import 'package:church_app/Search.dart';
 import 'package:church_app/models/AlbumInfo.dart';
@@ -22,9 +23,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_speed_dial/simple_speed_dial.dart';
 
-import 'Screens/MessegeScreen.dart';
 import 'Screens/NotificationScreen.dart';
 import 'Screens/SplashScreen.dart';
 
@@ -51,30 +53,32 @@ Future<void> main() async {
       alert: true, badge: true, sound: true);
   await FirebaseMessaging.instance.subscribeToTopic("Global");
 
-
   runApp(
     EasyLocalization(
-        supportedLocales: [Locale('en', 'US'), Locale('fr', 'FR'), Locale('ar', 'AR')],
-        path: 'assets/translation', // <-- change the path of the translation files
+        supportedLocales: [
+          Locale('en', 'US'),
+          Locale('fr', 'FR'),
+          Locale('ar', 'AR')
+        ],
+        path:
+            'assets/translation', // <-- change the path of the translation files
         fallbackLocale: Locale('en', 'US'),
-        child: MyApp()
-    ),
+        child: MyApp()),
   );
 }
 
-
 class MyApp extends StatelessWidget {
-  final language = false;
   @override
   Widget build(BuildContext context) {
-context.locale = Locale("ar","AR");
+    context.locale = Locale("ar", "AR");
     return MultiProvider(
       providers: [
         Provider<FirebaseAuthService>(
           create: (_) => FirebaseAuthService(FirebaseAuth.instance),
         ),
         ChangeNotifierProvider<UserModel>(
-          create: (_) => UserModel(email: "", name: "", phone: "", subs: [], notifications: []),
+          create: (_) => UserModel(
+              email: "", name: "", phone: "", subs: [], notifications: []),
         ),
         StreamProvider(
           create: (context) =>
@@ -105,19 +109,22 @@ context.locale = Locale("ar","AR");
         theme: ThemeData(
             primaryColor: AppColor.PrimaryColor,
             accentColor: AppColor.SecondaryColor,
-            fontFamily: language ? 'GESSTwo' : 'ABEAKRG'),
+            fontFamily: EasyLocalization.of(context)?.currentLocale ==
+                    Locale("ar", "AR")
+                ? 'GESSTwo'
+                : 'ABEAKRG'),
         home: SplashScreen(),
       ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget  {
+class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _selectedIndex = 0;
   String _selectedName = "live";
   void _onItemTapped(int index) {
@@ -127,7 +134,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
           ? "live"
           : index == 1
               ? "browse"
-              : index == 2 ? "notifications" : "offline";
+              : index == 2
+                  ? "notifications"
+                  : "offline";
     });
   }
 
@@ -148,14 +157,18 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
                     color: Colors.black,
                     playSound: true,
                     icon: "@mipmap/ic_launcher")));
-        addNotification(new NotificationInfo( notification.title ?? "" , notification.body ?? "" ));
+        addNotification(new NotificationInfo(
+            notification.title ?? "", notification.body ?? ""));
       }
     });
 
     super.initState();
   }
+
   Future<void> addNotification(NotificationInfo n) async {
-   await BackendQueries.addNotification(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "", jsonEncode(n.toJson()));
+    await BackendQueries.addNotification(
+        await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "",
+        jsonEncode(n.toJson()));
   }
 
   @override
@@ -167,6 +180,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   Future<void> connectAudio() async {
     await AudioService.connect();
   }
+
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,
@@ -180,9 +194,15 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:_selectedIndex == 0 ? FadeTransition(
-          opacity: _controller,
-         child:Icon(CupertinoIcons.circle_fill,color: Colors.red,size: 13,)):null,
+          leading: _selectedIndex == 0
+              ? FadeTransition(
+                  opacity: _controller,
+                  child: Icon(
+                    CupertinoIcons.circle_fill,
+                    color: Colors.red,
+                    size: 13,
+                  ))
+              : null,
           automaticallyImplyLeading: false,
           title: Text(_selectedName,
               style: TextStyle(
@@ -192,7 +212,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
           elevation: 0,
           backgroundColor: Colors.transparent,
           actions: [
-            IconButton(onPressed: () {showSearch(context: context, delegate: Search());}, icon: Icon(Icons.search,color: Colors.black,)),
+            IconButton(
+                onPressed: () {
+                  showSearch(context: context, delegate: Search());
+                },
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                )),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CircleAvatar(
@@ -207,7 +234,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
           ]),
       body: SafeArea(
         child: Scaffold(
-
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingContainer(),
@@ -215,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
             child: _buildScreens().elementAt(_selectedIndex),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            items:  <BottomNavigationBarItem>[
+            items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.circle_fill),
                 label: ("live").tr(),
@@ -263,7 +289,6 @@ class FloatingContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-
         StreamBuilder<MediaItem?>(
             stream: AudioService.currentMediaItemStream,
             builder: (context, mediaSnap) => mediaSnap.hasData
@@ -272,19 +297,21 @@ class FloatingContainer extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => AudioPlayerUI(
-                                songName: mediaSnap.data?.title ?? "",albumName: mediaSnap.data?.album ?? ""))),
+                                songName: mediaSnap.data?.title ?? "",
+                                albumName: mediaSnap.data?.album ?? ""))),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: MediaQuery.of(context).size.width /1.2 ,
+                          width: MediaQuery.of(context).size.width / 1.2,
                           decoration: BoxDecoration(
                               color: AppColor.SecondaryColor,
                               borderRadius: BorderRadius.circular(8)),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
@@ -308,10 +335,42 @@ class FloatingContainer extends StatelessWidget {
                           )),
                     ),
                   )
-                : Expanded(child: SizedBox(width: MediaQuery.of(context).size.width))),
+                : Expanded(
+                    child: SizedBox(width: MediaQuery.of(context).size.width))),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2),
-          child: CircleAvatar(child: IconButton(onPressed: ()=>  Navigator.push(context, MaterialPageRoute(builder: (context) => MessegeScreen())),icon: Icon(Icons.message))),
+          padding: const EdgeInsets.symmetric(horizontal: 7),
+          child: SpeedDial(
+            child: Icon(Icons.add),
+            closedForegroundColor: Colors.black,
+            openForegroundColor: AppColor.SecondaryColor,
+            closedBackgroundColor: AppColor.SecondaryColor,
+            openBackgroundColor: Colors.black,
+            speedDialChildren: <SpeedDialChild>[
+              SpeedDialChild(
+                child: FaIcon(FontAwesomeIcons.donate),
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.red,
+                label: 'donate'.tr(),
+                onPressed: () {
+
+                },
+                closeSpeedDialOnPressed: false,
+              ),
+              SpeedDialChild(
+                child: FaIcon(FontAwesomeIcons.comment),
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.yellow,
+                label: 'prayer'.tr(),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MessegeScreen()));
+                },
+              ),
+              //  Your other SpeeDialChildren go here.
+            ],
+          ),
         ),
       ],
     );

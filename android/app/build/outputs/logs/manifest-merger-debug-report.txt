@@ -204,7 +204,7 @@ MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\PC\.gradle\
 	android:label
 		ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:7:9-35
 	android:icon
-		ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:8:9-43
+		ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:8:9-45
 activity#com.genesiscreations.church_app.MainActivity
 ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:9:9-45:20
 	android:launchMode
