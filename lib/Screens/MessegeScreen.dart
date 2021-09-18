@@ -14,7 +14,7 @@ class MessegeScreen extends StatefulWidget {
 class _MessegeScreenState extends State<MessegeScreen> {
   final TextEditingController _messageController = TextEditingController();
   List<MessageInfo> messages = <MessageInfo>[];
-  _buildMessage(String message, bool isMe) {
+  _buildMessage(MessageInfo message, bool isMe) {
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -39,19 +39,17 @@ class _MessegeScreenState extends State<MessegeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-          /*  Text(
+            Text(
               message.time,
               style: TextStyle(
                 color: Colors.blueGrey,
                 fontSize: 16.0,
                 fontWeight: FontWeight.w600,
               ),
-            ),*/
-      //      SizedBox(height: 8.0),
+            ),
+           SizedBox(height: 8.0),
             Text(
-
-              message,
-
+              message.text,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 13.0,
@@ -64,7 +62,7 @@ class _MessegeScreenState extends State<MessegeScreen> {
   }
   @override
   void initState() {
-    messages.add(new MessageInfo("Here you can write your prayer requests", DateTime.now().toIso8601String(), false));
+    messages.add(new MessageInfo("prayerMsg".tr(), DateTime.now().toIso8601String(), false));
     super.initState();
   }
   @override
@@ -81,7 +79,7 @@ class _MessegeScreenState extends State<MessegeScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(child: ListView.builder(itemBuilder: (context, index) => _buildMessage(messages[index].text,messages[index].isMe),itemCount: messages.length,)),
+            Expanded(child: ListView.builder(itemBuilder: (context, index) => _buildMessage(messages[index],messages[index].isMe),itemCount: messages.length,)),
            Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -99,7 +97,6 @@ class _MessegeScreenState extends State<MessegeScreen> {
                   setState(() {
                     messages.add(new MessageInfo(_messageController.text, DateTime.now().toIso8601String(), true));
                   });
-
                 },
                 child: Text("send").tr(),
                 style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor))

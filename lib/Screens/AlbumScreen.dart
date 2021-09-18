@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
+import 'package:church_app/Widgets/FloatingContainer.dart';
 import 'package:church_app/Widgets/PlaylistWidget.dart';
 import 'package:church_app/main.dart';
 import 'package:church_app/models/AlbumInfo.dart';

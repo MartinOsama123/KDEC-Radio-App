@@ -1,6 +1,6 @@
 import 'package:church_app/FirebaseAuthService.dart';
 import 'package:church_app/Screens/LoginScreen.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,9 +23,10 @@ class ProfileScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(children: [
-                InkWell(onTap:(){},child: const TextIcon(text: "Change E-Mail",icons: Icons.email)),
-                InkWell(onTap:(){},child: const TextIcon(text: "Change Password",icons: Icons.password,)),
-                InkWell(onTap: (){ context.read<FirebaseAuthService>().signOut();},child: const TextIcon(text: "Logout",icons: Icons.person_off,)),
+                InkWell(onTap:(){},child:  TextIcon(text: "changeEmail".tr(),icons: Icons.email)),
+                InkWell(onTap:(){},child:  TextIcon(text: "changePass".tr(),icons: Icons.password,)),
+                InkWell(onTap:(){},child:  TextIcon(text: "language".tr(),icons: Icons.language,)),
+                InkWell(onTap: (){ context.read<FirebaseAuthService>().signOut();},child:  TextIcon(text: "logout".tr(),icons: Icons.person_off,)),
               ],),
             ),
           ),

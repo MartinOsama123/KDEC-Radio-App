@@ -16,5 +16,11 @@
   "phone": "Phone",
   "signup": "Signup",
   "send": "Send",
-  "donate": "Donate"
+  "donate": "Donate",
+  "prayerMsg": "Send your prayer requests here",
+  "language": "Language",
+  "profile" : "Profile",
+  "changeEmail": "Change Email",
+  "changePass": "Change Password",
+  "logout": "Logout"
 }

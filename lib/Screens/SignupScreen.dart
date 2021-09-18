@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/FirebaseAuthService.dart';
-import 'package:church_app/main.dart';
 import 'package:church_app/models/UserInfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import 'HomeScreen.dart';
 class SignupScreen extends StatefulWidget {
   @override
   _SignupScreenState createState() => _SignupScreenState();
@@ -15,11 +16,8 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _emailController = TextEditingController();
-
   final TextEditingController _passwordController = TextEditingController();
-
   final TextEditingController _phoneController = TextEditingController();
-
   final TextEditingController _nameController = TextEditingController();
 
   @override

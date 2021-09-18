@@ -21,7 +21,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   });
                 },
                 child: Column(children: [
-
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
