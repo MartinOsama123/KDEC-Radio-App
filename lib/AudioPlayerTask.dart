@@ -15,12 +15,15 @@ class AudioPlayerTask extends BackgroundAudioTask {
   onStart(Map<String, dynamic>? params) async {
     _list =  (jsonDecode(params!['list']) as List).map((i) => MediaItem.fromJson(i)).toList();
     _current = (jsonDecode(params['current']));
- var file = await DefaultCacheManager().getSingleFile(_list[_current].id);
- print(file.path);
- await _player.setFilePath(file.path);
+    print("ypoooooo");
+    if(_list[_current].id != "live") {
+      var file = await DefaultCacheManager().getSingleFile(_list[_current].id);
+      print(file.path);
+      await _player.setUrl(_list[_current].id);
+    }
  //  final MediaItem mediaItem = new MediaItem(id: params['url'], album: params['album'], title: params['title'],duration: _player.duration);
+    print(_list[_current]);
     AudioServiceBackground.setMediaItem(_list[_current]);
-    print('entered');
     AudioServiceBackground.setState(controls: [
       MediaControl.skipToPrevious,
       MediaControl.pause,
@@ -29,17 +32,19 @@ class AudioPlayerTask extends BackgroundAudioTask {
     ], systemActions: [
       MediaAction.seekTo
     ], playing: true, processingState: AudioProcessingState.connecting);
+    if(_list[_current].id != "live") {
+      _player.play();
 
-    _player.play();
+      AudioServiceBackground.setState(controls: [
+        MediaControl.skipToPrevious,
+        MediaControl.pause,
+        MediaControl.skipToNext,
 
-    AudioServiceBackground.setState(controls: [
-      MediaControl.skipToPrevious,
-      MediaControl.pause,
-      MediaControl.skipToNext,
-
-    ], systemActions: [
-      MediaAction.seekTo
-    ], playing: true, processingState: AudioProcessingState.ready);
+      ], systemActions: [
+        MediaAction.seekTo
+      ], playing: true, processingState: AudioProcessingState.ready);
+    }
+    else AudioServiceBackground.setState(controls: [MediaControl.stop],playing: true, processingState: AudioProcessingState.ready);
 
   }
 

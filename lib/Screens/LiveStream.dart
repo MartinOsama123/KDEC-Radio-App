@@ -1,11 +1,15 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:agora_rtc_engine/rtc_engine.dart';
+import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:flutter/material.dart';
 
+import '../AudioPlayerTask.dart';
+import '../QueueSystem.dart';
+void _entryPoint() => AudioServiceBackground.run(() => AudioPlayerTask());
 final appId = "343e0fece606410eb65bc1b9a877b65e";
-
 
 class LiveStream extends StatefulWidget {
   final SessionInfo sessionInfo;
@@ -19,16 +23,14 @@ class LiveStream extends StatefulWidget {
 }
 
 class _LiveStreamState extends State<LiveStream> {
-  final _users = <int>[];
+  static final _users = <int>[];
   final _infoStrings = <String>[];
-  bool muted = true;
   late RtcEngine _engine;
+  bool muted = true;
+
 
   @override
   void dispose() {
-    _users.clear();
-    _engine.leaveChannel();
-    _engine.destroy();
     super.dispose();
   }
 
@@ -62,8 +64,13 @@ class _LiveStreamState extends State<LiveStream> {
     _engine = await RtcEngine.create(appId);
     await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
     await _engine.setClientRole(widget.role);
-    _engine.muteLocalAudioStream(muted);
+   await _engine.muteLocalAudioStream(true);
+    QueueSystem.clearQueue();
+    QueueSystem.add(new MediaItem(id: "live", album: "Live", title: widget.sessionInfo.channelName));
+    AudioService.start(backgroundTaskEntrypoint: _entryPoint, params: {'list': jsonEncode(QueueSystem.getQueue),'current':jsonEncode(0)});
+
   }
+
 
 
   void _addAgoraEventHandlers() {
@@ -107,7 +114,7 @@ class _LiveStreamState extends State<LiveStream> {
           RawMaterialButton(
             onPressed: () => _onCallEnd(context),
             child: Icon(
-              Icons.call_end,
+              Icons.close,
               color: Colors.white,
               size: 35.0,
             ),
@@ -173,7 +180,10 @@ class _LiveStreamState extends State<LiveStream> {
   }
 
   /// Stop live streaming
-  void _onCallEnd(BuildContext context) {
+   void _onCallEnd(BuildContext context) {
+    _users.clear();
+    _engine.leaveChannel();
+    _engine.destroy();
     Navigator.pop(context);
   }
 
@@ -204,7 +214,7 @@ class _LiveStreamState extends State<LiveStream> {
         errorWidget: (context, url, error) =>
             Icon(Icons.error),
       width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,fit: BoxFit.contain,),
-            _panel(),
+        //    _panel(),
             _toolbar(),
           ],
         ),

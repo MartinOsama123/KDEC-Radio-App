@@ -1,19 +1,18 @@
 import 'package:church_app/Widgets/CarouselWidget.dart';
 import 'package:flutter/material.dart';
 
-
-class DiscoverScreen extends StatelessWidget{
+class DiscoverScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-  return SingleChildScrollView(
-    child: Column(children: [
-       CarouselWidget(lang: "FR"),
-     CarouselWidget(lang: "EN"),
-      CarouselWidget(lang: "AR"),
-    ],
-
-    ),
-  );
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          CarouselWidget(lang: "KDEC Family"),
+          CarouselWidget(lang: "KDEC Youth"),
+          CarouselWidget(lang: "HOP"),
+          CarouselWidget(lang: "Others"),
+        ],
+      ),
+    );
   }
-
 }

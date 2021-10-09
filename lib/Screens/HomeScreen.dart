@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 label: ("notifications").tr(),
               ),
               BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.wifi_slash),
+                icon: Icon(CupertinoIcons.collections),
                 label: ("offline").tr(),
               ),
             ],
