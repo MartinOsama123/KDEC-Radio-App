@@ -1,6 +1,10 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/Screens/AlbumScreen.dart';
 import 'package:church_app/FirebaseAuthService.dart';
+import 'package:church_app/amplifyconfiguration.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:church_app/models/UserInfo.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -23,9 +27,15 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print("a bg message just showed up ${message.messageId}");
 }
+Future<void> configureAmplify()async {
+  await Amplify.addPlugins([AmplifyAuthCognito(), AmplifyStorageS3()]);
+// ... add other plugins, if any
+  await Amplify.configure(amplifyconfig);
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await configureAmplify();
   await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
