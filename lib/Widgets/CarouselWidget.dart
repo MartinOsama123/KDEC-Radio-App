@@ -1,4 +1,6 @@
 
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/Screens/AlbumScreen.dart';
@@ -82,15 +84,16 @@ Widget _buildCarouselItem(
                 context, MaterialPageRoute(builder: (context) => AlbumScreen(albumInfo: albumInfo))),
             child: Container(
            width: MediaQuery.of(context).size.width,
-              child: ClipRRect(child: Hero(tag: albumInfo.albumName,child: CachedNetworkImage(
+              child: ClipRRect(child: Hero(tag: albumInfo.albumName,child: FutureBuilder<GetUrlResult>(
+                future:  Amplify.Storage.getUrl(key: "${albumInfo.albumName}/${albumInfo.imgPath}"),
+                builder:(context, snapshot) =>  CachedNetworkImage(
              fit: BoxFit.cover,
-
-                imageUrl:
-                "https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}",
-                placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) =>
-                    Icon(Icons.error),
+                  imageUrl: snapshot.data?.url ?? "",
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) =>
+                      Icon(Icons.error),
+                ),
               ),),borderRadius: BorderRadius.circular(10)),
             ),
           ),

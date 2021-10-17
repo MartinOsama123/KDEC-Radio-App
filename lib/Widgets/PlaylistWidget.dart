@@ -56,11 +56,10 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                 onTap: () async {
                                   if (AudioService.running) await AudioService.stop();
                                    AudioService.start(backgroundTaskEntrypoint: _entryPoint, params: {'list': jsonEncode(QueueSystem.getQueue),'current':jsonEncode(index)});
-                                   await BackendQueries.viewSong(snapshot.data![index].title);
-                                   String url = "${BackendQueries.BASE_URL}/church/mp3/${snapshot.data![index].title}";
+                                   BackendQueries.viewSong(snapshot.data![index].title);
+                                   String url = "public/${snapshot.data![index].album}/${snapshot.data![index].title}";
                                   SharedPreferences prefs = await SharedPreferences.getInstance();
-                                  print(jsonEncode(snapshot.data));
-                                  await prefs.setString(url, jsonEncode(snapshot.data![index]));
+                                   prefs.setString(url, jsonEncode(snapshot.data![index]));
                                 /*  await Navigator.push(
                                     context,
                                     MaterialPageRoute(

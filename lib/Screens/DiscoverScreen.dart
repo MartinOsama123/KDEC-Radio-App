@@ -8,9 +8,9 @@ class DiscoverScreen extends StatelessWidget {
       child: Column(
         children: [
           CarouselWidget(lang: "KDEC Family"),
-          CarouselWidget(lang: "KDEC Youth"),
+    /*      CarouselWidget(lang: "KDEC Youth"),
           CarouselWidget(lang: "HOP"),
-          CarouselWidget(lang: "Others"),
+          CarouselWidget(lang: "Others"),*/
         ],
       ),
     );

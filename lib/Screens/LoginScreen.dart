@@ -125,6 +125,6 @@ class LoginScreen extends StatelessWidget{
               ),
         )
       ),
-    ):skip ? MyHomePage() : ProfileScreen();
+    ):skip ? AudioServiceWidget(child: MyHomePage()) : ProfileScreen();
   }
 }

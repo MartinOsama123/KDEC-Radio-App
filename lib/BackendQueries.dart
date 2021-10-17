@@ -1,6 +1,8 @@
 
 import 'dart:convert';
 
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:church_app/models/NotificationInfo.dart';
@@ -49,15 +51,15 @@ class BackendQueries {
     AudioPlayer audioPlayer = new AudioPlayer();
     QueueSystem.clearQueue();
     String decoded = Utf8Decoder().convert(response.bodyBytes);
-    print(decoded);
+
     for(var a in jsonDecode(response.body)) {
-      String download = "$BASE_URL/church/mp3/${Utf8Decoder().convert(a['songName'].toString().codeUnits)}";
+     GetUrlResult download = await Amplify.Storage.getUrl(key: "$album/${Utf8Decoder().convert(a['songName'].toString().codeUnits)}");
       try {
-        print(download);
-        await audioPlayer.setUrl((Uri.parse(download).toString()));
-        QueueSystem.add(new MediaItem(id: download,
+       String temp =  Utf8Decoder().convert(a['songName'].toString().codeUnits);
+       await audioPlayer.setUrl((Uri.parse(download.url).toString()));
+        QueueSystem.add(new MediaItem(id: download.url,
             album: album,
-            title: Utf8Decoder().convert(a['songName'].toString().codeUnits),
+            title: temp.substring(0,temp.toString().lastIndexOf(".")),
             duration: audioPlayer.duration ?? Duration()));
       }catch(e){print(e.toString());}
     }

@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "churchappa670a5e8_identitypool_a670a5e8",
+    "identityPoolName": "churchapp07b06c7d_identitypool_07b06c7d",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "churcha670a5e8",
-    "userPoolName": "churchappa670a5e8_userpool_a670a5e8",
+    "resourceNameTruncated": "church07b06c7d",
+    "userPoolName": "churchapp07b06c7d_userpool_07b06c7d",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -29,10 +29,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "churcha670a5e8_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "church07b06c7d_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "a670a5e8",
-    "resourceName": "churchappa670a5e8",
+    "sharedId": "07b06c7d",
+    "resourceName": "churchapp07b06c7d",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [

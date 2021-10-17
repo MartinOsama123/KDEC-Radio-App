@@ -1,10 +1,11 @@
+
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/Screens/AlbumScreen.dart';
 import 'package:church_app/FirebaseAuthService.dart';
-import 'package:church_app/amplifyconfiguration.dart';
+import 'amplifyconfiguration.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:church_app/models/UserInfo.dart';
 import 'package:easy_localization/easy_localization.dart';

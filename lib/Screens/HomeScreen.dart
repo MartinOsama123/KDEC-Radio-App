@@ -85,26 +85,36 @@ class _MyHomePageState extends State<MyHomePage> {
     await AudioService.connect();
   }
   Future<void> uploadFile() async {
-    // Select a file from the device
-    final FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-    if (result == null) {
-      print('No file selected');
-      return;
-    }
-
-    // Upload file with its filename as the key
-    final platformFile = result.files.single;
-    final path = platformFile.path!;
-    final key = platformFile.name;
-    final file = File(path);
+   /* FilePickerResult? result = await FilePicker.platform.pickFiles();
+    final key = new DateTime.now().toString();
+    File local =  File( "");
+    if (result != null) {
+      File file = File(result.files.single.path ?? "");
+      local = file;
+    } else {
+      // User canceled the picker
+    }*/
     try {
-      final UploadFileResult result =
-      await Amplify.Storage.uploadFile(local: file, key: key);
-      print('Successfully uploaded file: ${result.key}');
+      ListResult res = await Amplify.Storage.list();
+      for(StorageItem s in res.items){
+        print(s.key);
+        print(s.eTag);
+        print(s.size);
+
+      }
     } on StorageException catch (e) {
-      print('Error uploading file: $e');
+      print(e.message);
     }
+    print("DONE");
+
+   /* try {
+      UploadFileResult result = await Amplify.Storage.uploadFile(
+          key: key,
+          local: local
+      );
+    } on StorageException catch (e) {
+      print(e.message);
+    }*/
   }
 
 

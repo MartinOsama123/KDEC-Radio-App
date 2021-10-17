@@ -1,6 +1,6 @@
 {
   "auth": {
-    "churchappa670a5e8": {
+    "churchapp07b06c7d": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -27,7 +27,7 @@
     }
   },
   "storage": {
-    "kdecradio": {
+    "s3131b4be7": {
       "service": "S3",
       "providerPlugin": "awscloudformation"
     }

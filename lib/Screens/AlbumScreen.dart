@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/BackendQueries.dart';
@@ -47,11 +49,14 @@ class AlbumScreen extends StatelessWidget {
                       tag: albumInfo.albumName,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: CachedNetworkImage(
+                        child: FutureBuilder<GetUrlResult>(
+                          future:  Amplify.Storage.getUrl(key: "${albumInfo.albumName}/${albumInfo.imgPath}"),
+                          builder:(context, snapshot) => CachedNetworkImage(
                     fit: BoxFit.cover,
-                          imageUrl: "${BackendQueries.IMG_URL}${albumInfo.imgPath}",
-                          placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) => Icon(Icons.image_not_supported),
+                            imageUrl:  snapshot.data?.url ?? "",
+                            placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) => Icon(Icons.image_not_supported),
+                          ),
                         ),
                       ),
                 )),

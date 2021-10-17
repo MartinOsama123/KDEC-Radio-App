@@ -4,6 +4,7 @@ import 'package:church_app/Screens/LiveStream.dart';
 import 'package:church_app/Screens/MessegeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:miniplayer/miniplayer.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../AppColor.dart';
@@ -29,54 +30,41 @@ class _FloatingContainerState extends State<FloatingContainer> {
             StreamBuilder<MediaItem?>(
                 stream: AudioService.currentMediaItemStream,
                 builder: (context, mediaSnap) => mediaSnap.hasData
-                    ? Positioned(
-                  bottom: 4,
-                      left: 5,
-                      child: GestureDetector(
-                  onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AudioPlayerUI(
-                                songName: mediaSnap.data?.title ?? "",
-                                albumName: mediaSnap.data?.album ?? ""))),
-
-                          child: Container(
-                              height: 50,
-                              width: MediaQuery.of(context).size.width * 0.8 ,
-                              decoration: BoxDecoration(
-                                  color: AppColor.SecondaryColor,
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Text(mediaSnap.data?.title ?? "",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 16)),
-                                          Text(mediaSnap.data?.album ?? "",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 10)),
-                                        ],
-                                      ),
-                                      Spacer(),
-                                      PlayButton(radius: 15, iconSize: 15),
-                                      IconButton(
-                                          onPressed: () {}, icon: Icon(Icons.stop))
-                                    ]),
+                    ? Miniplayer(minHeight: 70, maxHeight: 600, builder: (height, percentage) => Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * 0.8 ,
+                  decoration: BoxDecoration(
+                      color: AppColor.SecondaryColor,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              Expanded(
+                                child: Text(mediaSnap.data?.title ?? "",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16)),
                               ),
-                        ),
-
-
-                ),
-                    )
+                              Text(mediaSnap.data?.album ?? "",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 10)),
+                            ],
+                          ),
+                          Spacer(),
+                          PlayButton(radius: 15, iconSize: 15),
+                          IconButton(
+                              onPressed: () {AudioService.stop();}, icon: Icon(Icons.stop))
+                        ]),
+                  ),
+                ))
                     :  SizedBox(width: MediaQuery.of(context).size.width * 0.8)),
             Positioned(
               right: 5,
