@@ -1,16 +1,11 @@
 import 'dart:convert';
 
 import 'package:audio_service/audio_service.dart';
-import 'package:church_app/AudioPlayerTask.dart';
 import 'package:church_app/BackendQueries.dart';
-import 'package:church_app/FirebaseQueries.dart';
 import 'package:church_app/QueueSystem.dart';
 import 'package:church_app/Services/service_locator.dart';
-import 'package:church_app/models/AlbumInfo.dart';
+import 'package:church_app/models/MediaDetails.dart';
 import 'package:flutter/material.dart';
-import 'package:church_app/Screens/AudioPlayerUI.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../PageManager.dart';
@@ -57,24 +52,11 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                       ),
                        InkWell(
                                 onTap: () async {
-                                 // if (AudioService.running) await AudioService.stop();
                                   _pageManager.add(QueueSystem.getQueue,index);
-
                                    BackendQueries.viewSong(snapshot.data![index].title);
                                    String url = "public/${snapshot.data![index].album}/${snapshot.data![index].title}";
                                   SharedPreferences prefs = await SharedPreferences.getInstance();
-                                   prefs.setString(url, jsonEncode(snapshot.data![index].toJson()));
-                                   print( prefs.getString(url));
-                                /*  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (newcontext) =>
-                                     Provider<AlbumInfo>.value(
-                                          value: Provider.of<AlbumInfo>(context),
-                                          child: AudioPlayerUI(songName: snapshot.data?[index].title ?? ""),
-                                        )
-                                    ),
-                                  );*/
+                                   prefs.setString(url, jsonEncode(new MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album)));
                                 },
                                 child: ListTile(
                                   leading: Icon(Icons.arrow_right_outlined),

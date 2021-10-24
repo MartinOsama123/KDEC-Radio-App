@@ -1,12 +1,9 @@
 import 'package:audio_service/audio_service.dart';
-import 'package:church_app/PageManager.dart';
 import 'package:church_app/Screens/AudioPlayerUI.dart';
-import 'package:church_app/Screens/LiveStream.dart';
 import 'package:church_app/Screens/MessegeScreen.dart';
 import 'package:church_app/Services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:miniplayer/miniplayer.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../AppColor.dart';
