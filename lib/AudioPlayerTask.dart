@@ -1,3 +1,4 @@
+/*
 import 'dart:convert';
 
 import 'package:audio_service/audio_service.dart';
@@ -7,7 +8,9 @@ import 'dart:core';
 
 import 'QueueSystem.dart';
 
-class AudioPlayerTask extends BackgroundAudioTask {
+class AudioPlayerTask extends  BaseAudioHandler
+with QueueHandler, // mix in default queue callback implementations
+SeekHandler {
   int _current = 0;
   late List<MediaItem> _list;
   final _player = AudioPlayer();
@@ -15,43 +18,44 @@ class AudioPlayerTask extends BackgroundAudioTask {
   onStart(Map<String, dynamic>? params) async {
     _list =  (jsonDecode(params!['list']) as List).map((i) => MediaItem.fromJson(i)).toList();
     _current = (jsonDecode(params['current']));
-    print("ypoooooo");
-    if(_list[_current].id != "live") {
-   DefaultCacheManager().getSingleFile(_list[_current].id);
 
-      await _player.setUrl(_list[_current].id);
-    }
  //  final MediaItem mediaItem = new MediaItem(id: params['url'], album: params['album'], title: params['title'],duration: _player.duration);
     print(_list[_current]);
     await AudioServiceBackground.setMediaItem(_list[_current]);
-   await AudioServiceBackground.setState(controls: [
+
+    AudioServiceBackground.setState(controls: [
       MediaControl.skipToPrevious,
       MediaControl.pause,
       MediaControl.skipToNext,
-
     ], systemActions: [
-      MediaAction.seekTo
+      MediaAction.seek
     ], playing: true, processingState: AudioProcessingState.connecting);
+    if(_list[_current].id != "live") {
+      DefaultCacheManager().getSingleFile(_list[_current].id);
 
+      await _player.setUrl(_list[_current].id);
+    }
       _player.play();
 
-    await  AudioServiceBackground.setState(controls: [
+      AudioServiceBackground.setState(controls: [
         MediaControl.skipToPrevious,
         MediaControl.pause,
         MediaControl.skipToNext,
 
       ], systemActions: [
-        MediaAction.seekTo
+        MediaAction.seek
       ], playing: true, processingState: AudioProcessingState.ready);
 
- /*AudioServiceBackground.setState(controls: [MediaControl.stop],playing: true, processingState: AudioProcessingState.ready);*/
+ */
+/*AudioServiceBackground.setState(controls: [MediaControl.stop],playing: true, processingState: AudioProcessingState.ready);*//*
+
 
   }
 
   @override
   Future<void> onStop() async {
     await _player.dispose();
-    return super.onStop();
+
   }
 
   @override
@@ -63,11 +67,11 @@ class AudioPlayerTask extends BackgroundAudioTask {
       MediaControl.skipToNext,
 
     ], systemActions: [
-      MediaAction.seekTo
+      MediaAction.seek
     ], playing: true, processingState: AudioProcessingState.ready);
 
     await _player.play();
-    return super.onPlay();
+
   }
 
   @override
@@ -77,16 +81,15 @@ class AudioPlayerTask extends BackgroundAudioTask {
       MediaControl.play,
       MediaControl.skipToNext,
     ], systemActions: [
-      MediaAction.seekTo
+      MediaAction.seek
     ], playing: false, processingState: AudioProcessingState.ready);
-    _player.pause();
-    return super.onPause();
+    await _player.pause();
+
   }
   @override
-  Future<void> onSeekTo(Duration position) {
+  Future<void> onSeek(Duration position) async {
     _player.seek(position);
     AudioServiceBackground.setState(position: position);
-    return super.onSeekTo(position);
   }
   @override
    Future<void> onSkipToNext() async {
@@ -94,7 +97,7 @@ class AudioPlayerTask extends BackgroundAudioTask {
     AudioServiceBackground.setMediaItem(_list[_current]);
     await _player.setUrl(_list[_current].id);
     AudioServiceBackground.setState(position: Duration.zero);
-    return super.onSkipToNext();
+
   }
   @override
   Future<void> onSkipToPrevious() async {
@@ -102,9 +105,10 @@ class AudioPlayerTask extends BackgroundAudioTask {
     AudioServiceBackground.setMediaItem(_list[_current]);
     await _player.setUrl(_list[_current].id);
     AudioServiceBackground.setState(position: Duration.zero);
-    return super.onSkipToPrevious();
+
   }
 
 }
 
 
+*/

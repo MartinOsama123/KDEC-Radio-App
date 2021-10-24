@@ -54,11 +54,13 @@ class BackendQueries {
 
     for(var a in jsonDecode(response.body)) {
      GetUrlResult download = await Amplify.Storage.getUrl(key: "$album/${Utf8Decoder().convert(a['songName'].toString().codeUnits)}");
+     final albumInfo = await getAlbumInfo(album);
       try {
        String temp =  Utf8Decoder().convert(a['songName'].toString().codeUnits);
        await audioPlayer.setUrl((Uri.parse(download.url).toString()));
         QueueSystem.add(new MediaItem(id: download.url,
             album: album,
+            displayTitle: "${albumInfo.albumName}/${albumInfo.imgPath}",
             title: temp.substring(0,temp.toString().lastIndexOf(".")),
             duration: audioPlayer.duration ?? Duration()));
       }catch(e){print(e.toString());}

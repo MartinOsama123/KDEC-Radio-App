@@ -6,6 +6,7 @@ import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/Screens/AlbumScreen.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -81,7 +82,7 @@ Widget _buildCarouselItem(
         Expanded(
           child: InkWell(
             onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AlbumScreen(albumInfo: albumInfo))),
+                context, MaterialPageRoute(builder: (context) => Provider<AlbumInfo>.value(value:albumInfo,child: AlbumScreen(albumInfo: albumInfo)))),
             child: Container(
            width: MediaQuery.of(context).size.width,
               child: ClipRRect(child: Hero(tag: albumInfo.albumName,child: FutureBuilder<GetUrlResult>(

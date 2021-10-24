@@ -5,6 +5,7 @@ import 'package:church_app/AudioPlayerTask.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/FirebaseQueries.dart';
 import 'package:church_app/QueueSystem.dart';
+import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:church_app/Screens/AudioPlayerUI.dart';
@@ -12,7 +13,8 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void _entryPoint() => AudioServiceBackground.run(() => AudioPlayerTask());
+import '../PageManager.dart';
+
 
 class PlaylistWidget extends StatefulWidget {
   final String albumName;
@@ -26,6 +28,7 @@ class PlaylistWidget extends StatefulWidget {
 }
 
 class _PlaylistWidgetState extends State<PlaylistWidget> {
+  final _pageManager = getIt<PageManager>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -54,12 +57,14 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                       ),
                        InkWell(
                                 onTap: () async {
-                                  if (AudioService.running) await AudioService.stop();
-                                   AudioService.start(backgroundTaskEntrypoint: _entryPoint, params: {'list': jsonEncode(QueueSystem.getQueue),'current':jsonEncode(index)});
+                                 // if (AudioService.running) await AudioService.stop();
+                                  _pageManager.add(QueueSystem.getQueue,index);
+
                                    BackendQueries.viewSong(snapshot.data![index].title);
                                    String url = "public/${snapshot.data![index].album}/${snapshot.data![index].title}";
                                   SharedPreferences prefs = await SharedPreferences.getInstance();
-                                   prefs.setString(url, jsonEncode(snapshot.data![index]));
+                                   prefs.setString(url, jsonEncode(snapshot.data![index].toJson()));
+                                   print( prefs.getString(url));
                                 /*  await Navigator.push(
                                     context,
                                     MaterialPageRoute(

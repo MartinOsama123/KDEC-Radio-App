@@ -5,6 +5,7 @@ import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:church_app/AppColor.dart';
 import 'package:church_app/Screens/AlbumScreen.dart';
 import 'package:church_app/FirebaseAuthService.dart';
+import 'Services/service_locator.dart';
 import 'amplifyconfiguration.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:church_app/models/UserInfo.dart';
@@ -35,7 +36,9 @@ Future<void> configureAmplify()async {
 }
 
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
+  await setupServiceLocator();
   await configureAmplify();
   await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();

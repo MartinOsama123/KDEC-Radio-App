@@ -16,8 +16,6 @@ MERGED from [:amplify_core] C:\Users\PC\AndroidStudioProjects\church-app\build\a
 MERGED from [:firebase_auth] C:\Users\PC\AndroidStudioProjects\church-app\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_messaging] C:\Users\PC\AndroidStudioProjects\church-app\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-46:12
 MERGED from [:firebase_core] C:\Users\PC\AndroidStudioProjects\church-app\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
-MERGED from [:file_picker] C:\Users\PC\AndroidStudioProjects\church-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-17:12
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\PC\AndroidStudioProjects\church-app\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] C:\Users\PC\AndroidStudioProjects\church-app\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:audio_service] C:\Users\PC\AndroidStudioProjects\church-app\build\audio_service\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite] C:\Users\PC\AndroidStudioProjects\church-app\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
@@ -25,7 +23,6 @@ MERGED from [:flutter_local_notifications] C:\Users\PC\AndroidStudioProjects\chu
 MERGED from [:social_share] C:\Users\PC\AndroidStudioProjects\church-app\build\social_share\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-8:12
 MERGED from [:just_audio] C:\Users\PC\AndroidStudioProjects\church-app\build\just_audio\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider] C:\Users\PC\AndroidStudioProjects\church-app\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:flutter_isolate] C:\Users\PC\AndroidStudioProjects\church-app\build\flutter_isolate\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-23:12
 MERGED from [:audio_session] C:\Users\PC\AndroidStudioProjects\church-app\build\audio_session\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:permission_handler] C:\Users\PC\AndroidStudioProjects\church-app\build\permission_handler\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
@@ -53,28 +50,24 @@ MERGED from [com.amazonaws:aws-android-sdk-mobile-client:2.26.0] C:\Users\PC\.gr
 MERGED from [com.amazonaws:aws-android-sdk-auth-core:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\8ec63c4f44c6dc145dc2708ae6d14b51\jetified-aws-android-sdk-auth-core-2.26.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1b5cc9d371151a5452e0bcbdf26cf396\jetified-aws-android-sdk-cognitoidentityprovider-2.26.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.amazonaws:aws-android-sdk-core:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c0f65032063b144118a7521c1a33a6b0\jetified-aws-android-sdk-core-2.26.0\AndroidManifest.xml:2:1-16:12
-MERGED from [com.google.android.exoplayer:exoplayer-dash:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ced05f26261c2bd490d3a922cb342d98\jetified-exoplayer-dash-2.13.1\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.exoplayer:exoplayer-hls:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a425346a814619ce5dc4d568ad942fd1\jetified-exoplayer-hls-2.13.1\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\7dd2552856c0495217db667a76de3e49\jetified-exoplayer-smoothstreaming-2.13.1\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\5a66618f0f082d8a46e3b3b2fbb0ca3e\jetified-exoplayer-core-2.13.1\AndroidManifest.xml:17:1-26:12
-MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:17:1-46:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\7bb5c5e6f20214c118c84587d3a1cae2\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-measurement-sdk:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e67c63a07123e35a7847a347c78ea142\jetified-play-services-measurement-sdk-19.0.0\AndroidManifest.xml:17:1-25:12
-MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\631f9a28abc6ee730f6a8d9f83d10342\jetified-play-services-measurement-impl-19.0.0\AndroidManifest.xml:17:1-31:12
-MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\93c9bebe5eb4b9aade28142be46f16cf\jetified-play-services-stats-17.0.0\AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.navigation:navigation-ui-ktx:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e0558bc3aa1591234f18595b3d46d0e3\navigation-ui-ktx-2.3.4\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.navigation:navigation-ui:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\410807309ee5d2aaf87632445e0fb963\navigation-ui-2.3.4\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3729ec88b6da98cedb4b6290bc08bf4b\recyclerview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e52d5f229bd85336d69204474da3f363\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e4e4f35ed48a1e108643b890227ec12f\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3c68d448c638b0174dbb31be7a097ce2\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\457cf6f8946150c7b7e6720511a2f6f9\jetified-firebase-components-17.0.0\AndroidManifest.xml:15:1-23:12
-MERGED from [androidx.transition:transition:1.3.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\adae7dd05dd8e4a8a56dbc57c5873094\transition-1.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.media2:media2-common:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e325adf22eb5f1e67486413da2fa405e\jetified-media2-common-1.1.3\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.4.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d442ad331d9bb53416fa2e9c6a06fcab\media-1.4.1\AndroidManifest.xml:17:1-30:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4bcbd890793371b7c2e223b3beb0461a\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4589bfabb27c17845544bd5364b58895\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:17:1-29:12
+MERGED from [androidx.navigation:navigation-ui-ktx:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e0558bc3aa1591234f18595b3d46d0e3\navigation-ui-ktx-2.3.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-ui:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\410807309ee5d2aaf87632445e0fb963\navigation-ui-2.3.4\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\bbe7fc63965f21720b39b4bb6bbd1b67\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:17:1-46:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e67c63a07123e35a7847a347c78ea142\jetified-play-services-measurement-sdk-19.0.0\AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\631f9a28abc6ee730f6a8d9f83d10342\jetified-play-services-measurement-impl-19.0.0\AndroidManifest.xml:17:1-31:12
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\93c9bebe5eb4b9aade28142be46f16cf\jetified-play-services-stats-17.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3729ec88b6da98cedb4b6290bc08bf4b\recyclerview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e52d5f229bd85336d69204474da3f363\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e4e4f35ed48a1e108643b890227ec12f\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-dynamic-features-fragment:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\01ff225b53583471665eb620db7ec126\jetified-navigation-dynamic-features-fragment-2.3.4\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-fragment-ktx:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e6fce922bdebdbbee15b8299c782600e\navigation-fragment-ktx-2.3.4\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-fragment:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c7da2e5a0ecadc4c4310a7a3973d8cf6\navigation-fragment-2.3.4\AndroidManifest.xml:17:1-24:12
@@ -95,10 +88,8 @@ MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\PC\.gradle\caches\tran
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\b758f8baf51eb789e1f64101ed7f216a\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4eacad781ee94dd028f506f0dd272c1a\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\60a4c936847f475149c5c18e3e933bf2\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.3.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\adae7dd05dd8e4a8a56dbc57c5873094\transition-1.3.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0b7002964ac6db19a7cbbf3ed19d4e2b\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.media2:media2-session:1.1.0-alpha01] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\bb0bd4755442506a5dd959b14f1d1684\jetified-media2-session-1.1.0-alpha01\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.media2:media2-common:1.1.0-alpha01] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\123fafe12e59a0f42abdc202eb5c90ec\jetified-media2-common-1.1.0-alpha01\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.media:media:1.2.0-alpha03] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\6cb548e03e6529eed5425c33e948abc4\media-1.2.0-alpha03\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.browser:browser:1.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e5d65d65d9785d1957a4a5197ab7a35c\browser-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\838aa2309a1589f1fb758bd50c0e5a68\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\2b22cf52f1fa4e349a4c7fffe18f3fdd\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -112,7 +103,13 @@ MERGED from [androidx.navigation:navigation-common:2.3.4] C:\Users\PC\.gradle\ca
 MERGED from [androidx.core:core-ktx:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\5c6258fce670b1fd7755957c708c6754\jetified-core-ktx-1.1.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d9f0b52002621955f3cc279a84766a31\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\da8817a1c3896e06095c0857bbbe29cd\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.core:core:1.3.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\f05a3bab4c11b50c1cadbb620caf3162\core-1.3.1\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.core:core:1.6.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\b034dae9f9238607a1261d0b3c8632c9\core-1.6.0\AndroidManifest.xml:17:1-26:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\40a7d4afe11b3082e211e236ef49b2f0\jetified-exoplayer-dash-2.15.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3ff1bebade5f7bfa2a29cd124a0e3591\jetified-exoplayer-hls-2.15.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\fc6e7f7081d9ad8047a1727e3e6f59da\jetified-exoplayer-smoothstreaming-2.15.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4e3ea76568b7d67dcb6149a4dbcde1b6\jetified-exoplayer-core-2.15.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3c68d448c638b0174dbb31be7a097ce2\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\457cf6f8946150c7b7e6720511a2f6f9\jetified-firebase-components-17.0.0\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\6a23fa6631f0be56da1a54662d0e5230\jetified-lifecycle-runtime-ktx-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d59c69fcbb7ac85e06fb77c451ac0441\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3ef43fa4aba3aca4541ddb1fc9d6025f\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
@@ -120,8 +117,9 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\P
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c156009ec66b45e6f6b2a55ceb4bf0d4\jetified-lifecycle-livedata-core-ktx-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\52831b07c58f4d6e78df734b474c7b2a\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d6c51b06d2f3e153cfd357aa21a612ef\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\36366cd96905f5882473e761aad5b077\jetified-exoplayer-extractor-2.13.1\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\544045bb574ea1253cece71925b21242\jetified-exoplayer-common-2.13.1\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\497a96bbdfc2d024aeecd48f229593d6\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ab037c9a24215f09c319e2db495f770f\jetified-exoplayer-extractor-2.15.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\137e7df6e683f87ad2e063f29724f56f\jetified-exoplayer-common-2.15.0\AndroidManifest.xml:17:1-26:12
 MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d1778efc92f4bf7b8193425cd1651e0a\jetified-transport-runtime-3.0.0\AndroidManifest.xml:15:1-41:12
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\44c0dd7f1cf7462c0774519ea0589052\jetified-transport-api-3.0.0\AndroidManifest.xml:15:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c5d7d7d593b9633bd64c5c08bbcea1f7\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
@@ -129,12 +127,12 @@ MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\PC\.gradle\cac
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\b7701fc4230c674b949ef9ece9e102f3\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\592633eb87411ac8b9775656b174281e\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9790fb9ca19b16c4b5042e8dc820264a\print-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ecdebbe58df3451ab9128826aa9cd381\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ae39f1071702b041d02b3c1fe114505a\jetified-lifecycle-viewmodel-ktx-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\8e0d6fa179c976c3b1d78bf21d796207\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e239aae55cca200c9a1f6ed6d23364e9\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\fe784e4aac865cf134bed8ed948bf095\jetified-threetenabp-1.2.3\AndroidManifest.xml:2:1-9:12
 MERGED from [com.github.agorabuilder:native-full-sdk:3.4.6] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\6b0f3a145aa9f009b82923a178b271ad\jetified-native-full-sdk-3.4.6\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0061fe068a5109711a2ad4545c26ec5a\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.play:core:1.9.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9f54301977b26a4627e1f4229976c7a3\jetified-core-1.9.1\AndroidManifest.xml:2:1-23:12
 INJECTED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -220,6 +218,12 @@ MERGED from [com.amazonaws:aws-android-sdk-cognitoauth:2.26.0] C:\Users\PC\.grad
 MERGED from [com.amazonaws:aws-android-sdk-cognitoauth:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e7787a818c70d51777816560471ccc26\jetified-aws-android-sdk-cognitoauth-2.26.0\AndroidManifest.xml:11:5-17:19
 MERGED from [com.amazonaws:aws-android-sdk-core:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c0f65032063b144118a7521c1a33a6b0\jetified-aws-android-sdk-core-2.26.0\AndroidManifest.xml:10:5-14:19
 MERGED from [com.amazonaws:aws-android-sdk-core:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c0f65032063b144118a7521c1a33a6b0\jetified-aws-android-sdk-core-2.26.0\AndroidManifest.xml:10:5-14:19
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4589bfabb27c17845544bd5364b58895\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4589bfabb27c17845544bd5364b58895\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:28:5-44:19
 MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:28:5-44:19
 MERGED from [com.google.android.gms:play-services-measurement-sdk:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e67c63a07123e35a7847a347c78ea142\jetified-play-services-measurement-sdk-19.0.0\AndroidManifest.xml:22:5-23:19
@@ -228,12 +232,6 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Us
 MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\631f9a28abc6ee730f6a8d9f83d10342\jetified-play-services-measurement-impl-19.0.0\AndroidManifest.xml:28:5-29:19
 MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\93c9bebe5eb4b9aade28142be46f16cf\jetified-play-services-stats-17.0.0\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\93c9bebe5eb4b9aade28142be46f16cf\jetified-play-services-stats-17.0.0\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4589bfabb27c17845544bd5364b58895\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4589bfabb27c17845544bd5364b58895\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:22:5-27:19
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\20f34df5f7c01f8c20e9f7e7835a3c51\jetified-firebase-iid-interop-17.1.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\20f34df5f7c01f8c20e9f7e7835a3c51\jetified-firebase-iid-interop-17.1.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ec6fef4d05c3a4c751a351d199253ecc\jetified-play-services-tasks-17.0.0\AndroidManifest.xml:7:5-20
@@ -246,23 +244,23 @@ MERGED from [com.google.android.gms:play-services-measurement-base:19.0.0] C:\Us
 MERGED from [com.google.android.gms:play-services-measurement-base:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\f9be7580824edaeed979c351881fc780\jetified-play-services-measurement-base-19.0.0\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\bd56cef4a94604e93c35cb69c7a9da4f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\bd56cef4a94604e93c35cb69c7a9da4f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.core:core:1.3.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\f05a3bab4c11b50c1cadbb620caf3162\core-1.3.1\AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.3.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\f05a3bab4c11b50c1cadbb620caf3162\core-1.3.1\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\b034dae9f9238607a1261d0b3c8632c9\core-1.6.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\b034dae9f9238607a1261d0b3c8632c9\core-1.6.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\497a96bbdfc2d024aeecd48f229593d6\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\497a96bbdfc2d024aeecd48f229593d6\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d1778efc92f4bf7b8193425cd1651e0a\jetified-transport-runtime-3.0.0\AndroidManifest.xml:25:5-39:19
 MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d1778efc92f4bf7b8193425cd1651e0a\jetified-transport-runtime-3.0.0\AndroidManifest.xml:25:5-39:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ecdebbe58df3451ab9128826aa9cd381\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ecdebbe58df3451ab9128826aa9cd381\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
 MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\fe784e4aac865cf134bed8ed948bf095\jetified-threetenabp-1.2.3\AndroidManifest.xml:7:5-20
 MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\fe784e4aac865cf134bed8ed948bf095\jetified-threetenabp-1.2.3\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.play:core:1.9.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9f54301977b26a4627e1f4229976c7a3\jetified-core-1.9.1\AndroidManifest.xml:10:3-21:17
 MERGED from [com.google.android.play:core:1.9.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9f54301977b26a4627e1f4229976c7a3\jetified-core-1.9.1\AndroidManifest.xml:10:3-21:17
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.3.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\f05a3bab4c11b50c1cadbb620caf3162\core-1.3.1\AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.6.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\b034dae9f9238607a1261d0b3c8632c9\core-1.6.0\AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:7:9-35
 	android:icon
 		ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:8:9-45
-activity#com.genesiscreations.church_app.MainActivity
+activity#com.ryanheise.audioservice.AudioServiceActivity
 ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:9:9-45:20
 	android:launchMode
 		ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:11:13-43
@@ -275,7 +273,7 @@ ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\And
 	android:theme
 		ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:12:13-47
 	android:name
-		ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:10:13-41
+		ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:10:13-75
 meta-data#flutter_deeplinking_enabled
 ADDED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\main\AndroidManifest.xml:20:13-90
 	android:value
@@ -370,10 +368,6 @@ MERGED from [:firebase_messaging] C:\Users\PC\AndroidStudioProjects\church-app\b
 MERGED from [:firebase_messaging] C:\Users\PC\AndroidStudioProjects\church-app\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\Users\PC\AndroidStudioProjects\church-app\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\Users\PC\AndroidStudioProjects\church-app\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:file_picker] C:\Users\PC\AndroidStudioProjects\church-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:file_picker] C:\Users\PC\AndroidStudioProjects\church-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\PC\AndroidStudioProjects\church-app\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\PC\AndroidStudioProjects\church-app\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] C:\Users\PC\AndroidStudioProjects\church-app\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] C:\Users\PC\AndroidStudioProjects\church-app\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:audio_service] C:\Users\PC\AndroidStudioProjects\church-app\build\audio_service\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -388,8 +382,6 @@ MERGED from [:just_audio] C:\Users\PC\AndroidStudioProjects\church-app\build\jus
 MERGED from [:just_audio] C:\Users\PC\AndroidStudioProjects\church-app\build\just_audio\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] C:\Users\PC\AndroidStudioProjects\church-app\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] C:\Users\PC\AndroidStudioProjects\church-app\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_isolate] C:\Users\PC\AndroidStudioProjects\church-app\build\flutter_isolate\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_isolate] C:\Users\PC\AndroidStudioProjects\church-app\build\flutter_isolate\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-8:41
 MERGED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-8:41
 MERGED from [:audio_session] C:\Users\PC\AndroidStudioProjects\church-app\build\audio_session\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -444,50 +436,42 @@ MERGED from [com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.26.0] C:\Us
 MERGED from [com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1b5cc9d371151a5452e0bcbdf26cf396\jetified-aws-android-sdk-cognitoidentityprovider-2.26.0\AndroidManifest.xml:6:5-8:41
 MERGED from [com.amazonaws:aws-android-sdk-core:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c0f65032063b144118a7521c1a33a6b0\jetified-aws-android-sdk-core-2.26.0\AndroidManifest.xml:6:5-8:41
 MERGED from [com.amazonaws:aws-android-sdk-core:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c0f65032063b144118a7521c1a33a6b0\jetified-aws-android-sdk-core-2.26.0\AndroidManifest.xml:6:5-8:41
-MERGED from [com.google.android.exoplayer:exoplayer-dash:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ced05f26261c2bd490d3a922cb342d98\jetified-exoplayer-dash-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-dash:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ced05f26261c2bd490d3a922cb342d98\jetified-exoplayer-dash-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-hls:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a425346a814619ce5dc4d568ad942fd1\jetified-exoplayer-hls-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-hls:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a425346a814619ce5dc4d568ad942fd1\jetified-exoplayer-hls-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\7dd2552856c0495217db667a76de3e49\jetified-exoplayer-smoothstreaming-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\7dd2552856c0495217db667a76de3e49\jetified-exoplayer-smoothstreaming-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\5a66618f0f082d8a46e3b3b2fbb0ca3e\jetified-exoplayer-core-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\5a66618f0f082d8a46e3b3b2fbb0ca3e\jetified-exoplayer-core-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\7bb5c5e6f20214c118c84587d3a1cae2\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\7bb5c5e6f20214c118c84587d3a1cae2\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e67c63a07123e35a7847a347c78ea142\jetified-play-services-measurement-sdk-19.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e67c63a07123e35a7847a347c78ea142\jetified-play-services-measurement-sdk-19.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\631f9a28abc6ee730f6a8d9f83d10342\jetified-play-services-measurement-impl-19.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\631f9a28abc6ee730f6a8d9f83d10342\jetified-play-services-measurement-impl-19.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\93c9bebe5eb4b9aade28142be46f16cf\jetified-play-services-stats-17.0.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\93c9bebe5eb4b9aade28142be46f16cf\jetified-play-services-stats-17.0.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-ui-ktx:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e0558bc3aa1591234f18595b3d46d0e3\navigation-ui-ktx-2.3.4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-ui-ktx:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e0558bc3aa1591234f18595b3d46d0e3\navigation-ui-ktx-2.3.4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-ui:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\410807309ee5d2aaf87632445e0fb963\navigation-ui-2.3.4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-ui:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\410807309ee5d2aaf87632445e0fb963\navigation-ui-2.3.4\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3729ec88b6da98cedb4b6290bc08bf4b\recyclerview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3729ec88b6da98cedb4b6290bc08bf4b\recyclerview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e52d5f229bd85336d69204474da3f363\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e52d5f229bd85336d69204474da3f363\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e4e4f35ed48a1e108643b890227ec12f\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e4e4f35ed48a1e108643b890227ec12f\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3c68d448c638b0174dbb31be7a097ce2\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3c68d448c638b0174dbb31be7a097ce2\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\457cf6f8946150c7b7e6720511a2f6f9\jetified-firebase-components-17.0.0\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\457cf6f8946150c7b7e6720511a2f6f9\jetified-firebase-components-17.0.0\AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.transition:transition:1.3.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\adae7dd05dd8e4a8a56dbc57c5873094\transition-1.3.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.3.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\adae7dd05dd8e4a8a56dbc57c5873094\transition-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media2:media2-common:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e325adf22eb5f1e67486413da2fa405e\jetified-media2-common-1.1.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media2:media2-common:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e325adf22eb5f1e67486413da2fa405e\jetified-media2-common-1.1.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.4.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d442ad331d9bb53416fa2e9c6a06fcab\media-1.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.4.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d442ad331d9bb53416fa2e9c6a06fcab\media-1.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4bcbd890793371b7c2e223b3beb0461a\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4bcbd890793371b7c2e223b3beb0461a\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4589bfabb27c17845544bd5364b58895\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4589bfabb27c17845544bd5364b58895\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-ui-ktx:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e0558bc3aa1591234f18595b3d46d0e3\navigation-ui-ktx-2.3.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-ui-ktx:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e0558bc3aa1591234f18595b3d46d0e3\navigation-ui-ktx-2.3.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-ui:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\410807309ee5d2aaf87632445e0fb963\navigation-ui-2.3.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-ui:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\410807309ee5d2aaf87632445e0fb963\navigation-ui-2.3.4\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\a27e6cc57bc1fec87779646d6b937d76\material-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\bbe7fc63965f21720b39b4bb6bbd1b67\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\bbe7fc63965f21720b39b4bb6bbd1b67\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e67c63a07123e35a7847a347c78ea142\jetified-play-services-measurement-sdk-19.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e67c63a07123e35a7847a347c78ea142\jetified-play-services-measurement-sdk-19.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\631f9a28abc6ee730f6a8d9f83d10342\jetified-play-services-measurement-impl-19.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\631f9a28abc6ee730f6a8d9f83d10342\jetified-play-services-measurement-impl-19.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\93c9bebe5eb4b9aade28142be46f16cf\jetified-play-services-stats-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\93c9bebe5eb4b9aade28142be46f16cf\jetified-play-services-stats-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3729ec88b6da98cedb4b6290bc08bf4b\recyclerview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3729ec88b6da98cedb4b6290bc08bf4b\recyclerview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e52d5f229bd85336d69204474da3f363\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e52d5f229bd85336d69204474da3f363\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e4e4f35ed48a1e108643b890227ec12f\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e4e4f35ed48a1e108643b890227ec12f\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-dynamic-features-fragment:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\01ff225b53583471665eb620db7ec126\jetified-navigation-dynamic-features-fragment-2.3.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-dynamic-features-fragment:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\01ff225b53583471665eb620db7ec126\jetified-navigation-dynamic-features-fragment-2.3.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-fragment-ktx:2.3.4] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e6fce922bdebdbbee15b8299c782600e\navigation-fragment-ktx-2.3.4\AndroidManifest.xml:20:5-22:41
@@ -528,14 +512,10 @@ MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\PC\.gr
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4eacad781ee94dd028f506f0dd272c1a\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\60a4c936847f475149c5c18e3e933bf2\customview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\60a4c936847f475149c5c18e3e933bf2\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.3.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\adae7dd05dd8e4a8a56dbc57c5873094\transition-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.3.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\adae7dd05dd8e4a8a56dbc57c5873094\transition-1.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0b7002964ac6db19a7cbbf3ed19d4e2b\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0b7002964ac6db19a7cbbf3ed19d4e2b\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media2:media2-session:1.1.0-alpha01] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\bb0bd4755442506a5dd959b14f1d1684\jetified-media2-session-1.1.0-alpha01\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media2:media2-session:1.1.0-alpha01] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\bb0bd4755442506a5dd959b14f1d1684\jetified-media2-session-1.1.0-alpha01\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media2:media2-common:1.1.0-alpha01] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\123fafe12e59a0f42abdc202eb5c90ec\jetified-media2-common-1.1.0-alpha01\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media2:media2-common:1.1.0-alpha01] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\123fafe12e59a0f42abdc202eb5c90ec\jetified-media2-common-1.1.0-alpha01\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media:media:1.2.0-alpha03] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\6cb548e03e6529eed5425c33e948abc4\media-1.2.0-alpha03\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media:media:1.2.0-alpha03] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\6cb548e03e6529eed5425c33e948abc4\media-1.2.0-alpha03\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e5d65d65d9785d1957a4a5197ab7a35c\browser-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\e5d65d65d9785d1957a4a5197ab7a35c\browser-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\838aa2309a1589f1fb758bd50c0e5a68\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
@@ -562,8 +542,20 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\PC\
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d9f0b52002621955f3cc279a84766a31\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\da8817a1c3896e06095c0857bbbe29cd\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\da8817a1c3896e06095c0857bbbe29cd\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.3.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\f05a3bab4c11b50c1cadbb620caf3162\core-1.3.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.3.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\f05a3bab4c11b50c1cadbb620caf3162\core-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\b034dae9f9238607a1261d0b3c8632c9\core-1.6.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\b034dae9f9238607a1261d0b3c8632c9\core-1.6.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\40a7d4afe11b3082e211e236ef49b2f0\jetified-exoplayer-dash-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\40a7d4afe11b3082e211e236ef49b2f0\jetified-exoplayer-dash-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3ff1bebade5f7bfa2a29cd124a0e3591\jetified-exoplayer-hls-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3ff1bebade5f7bfa2a29cd124a0e3591\jetified-exoplayer-hls-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\fc6e7f7081d9ad8047a1727e3e6f59da\jetified-exoplayer-smoothstreaming-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\fc6e7f7081d9ad8047a1727e3e6f59da\jetified-exoplayer-smoothstreaming-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4e3ea76568b7d67dcb6149a4dbcde1b6\jetified-exoplayer-core-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4e3ea76568b7d67dcb6149a4dbcde1b6\jetified-exoplayer-core-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3c68d448c638b0174dbb31be7a097ce2\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3c68d448c638b0174dbb31be7a097ce2\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\457cf6f8946150c7b7e6720511a2f6f9\jetified-firebase-components-17.0.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\457cf6f8946150c7b7e6720511a2f6f9\jetified-firebase-components-17.0.0\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\6a23fa6631f0be56da1a54662d0e5230\jetified-lifecycle-runtime-ktx-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\6a23fa6631f0be56da1a54662d0e5230\jetified-lifecycle-runtime-ktx-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d59c69fcbb7ac85e06fb77c451ac0441\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
@@ -578,10 +570,12 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\PC\.grad
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\52831b07c58f4d6e78df734b474c7b2a\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d6c51b06d2f3e153cfd357aa21a612ef\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d6c51b06d2f3e153cfd357aa21a612ef\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\36366cd96905f5882473e761aad5b077\jetified-exoplayer-extractor-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\36366cd96905f5882473e761aad5b077\jetified-exoplayer-extractor-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\544045bb574ea1253cece71925b21242\jetified-exoplayer-common-2.13.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\544045bb574ea1253cece71925b21242\jetified-exoplayer-common-2.13.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\497a96bbdfc2d024aeecd48f229593d6\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\497a96bbdfc2d024aeecd48f229593d6\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ab037c9a24215f09c319e2db495f770f\jetified-exoplayer-extractor-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ab037c9a24215f09c319e2db495f770f\jetified-exoplayer-extractor-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\137e7df6e683f87ad2e063f29724f56f\jetified-exoplayer-common-2.15.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\137e7df6e683f87ad2e063f29724f56f\jetified-exoplayer-common-2.15.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d1778efc92f4bf7b8193425cd1651e0a\jetified-transport-runtime-3.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d1778efc92f4bf7b8193425cd1651e0a\jetified-transport-runtime-3.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\44c0dd7f1cf7462c0774519ea0589052\jetified-transport-api-3.0.0\AndroidManifest.xml:18:5-20:41
@@ -596,8 +590,6 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\PC\.gradle\cache
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\592633eb87411ac8b9775656b174281e\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9790fb9ca19b16c4b5042e8dc820264a\print-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9790fb9ca19b16c4b5042e8dc820264a\print-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ecdebbe58df3451ab9128826aa9cd381\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ecdebbe58df3451ab9128826aa9cd381\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ae39f1071702b041d02b3c1fe114505a\jetified-lifecycle-viewmodel-ktx-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\ae39f1071702b041d02b3c1fe114505a\jetified-lifecycle-viewmodel-ktx-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\8e0d6fa179c976c3b1d78bf21d796207\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:20:5-22:41
@@ -608,6 +600,8 @@ MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\PC\.gradle\
 MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\fe784e4aac865cf134bed8ed948bf095\jetified-threetenabp-1.2.3\AndroidManifest.xml:5:5-44
 MERGED from [com.github.agorabuilder:native-full-sdk:3.4.6] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\6b0f3a145aa9f009b82923a178b271ad\jetified-native-full-sdk-3.4.6\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.agorabuilder:native-full-sdk:3.4.6] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\6b0f3a145aa9f009b82923a178b271ad\jetified-native-full-sdk-3.4.6\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0061fe068a5109711a2ad4545c26ec5a\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0061fe068a5109711a2ad4545c26ec5a\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.play:core:1.9.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9f54301977b26a4627e1f4229976c7a3\jetified-core-1.9.1\AndroidManifest.xml:4:3-70
 MERGED from [com.google.android.play:core:1.9.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9f54301977b26a4627e1f4229976c7a3\jetified-core-1.9.1\AndroidManifest.xml:4:3-70
 INJECTED from C:\Users\PC\AndroidStudioProjects\church-app\android\app\src\debug\AndroidManifest.xml
@@ -700,8 +694,6 @@ MERGED from [com.amazonaws:aws-android-sdk-s3:2.26.0] C:\Users\PC\.gradle\caches
 MERGED from [com.amazonaws:aws-android-sdk-s3:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\baca44030716d5f612f7c639f39fe62b\jetified-aws-android-sdk-s3-2.26.0\AndroidManifest.xml:10:5-79
 MERGED from [com.amazonaws:aws-android-sdk-mobile-client:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\de0d420aecf9c47c01642ffd47000106\jetified-aws-android-sdk-mobile-client-2.26.0\AndroidManifest.xml:18:5-79
 MERGED from [com.amazonaws:aws-android-sdk-mobile-client:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\de0d420aecf9c47c01642ffd47000106\jetified-aws-android-sdk-mobile-client-2.26.0\AndroidManifest.xml:18:5-79
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\5a66618f0f082d8a46e3b3b2fbb0ca3e\jetified-exoplayer-core-2.13.1\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\5a66618f0f082d8a46e3b3b2fbb0ca3e\jetified-exoplayer-core-2.13.1\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\631f9a28abc6ee730f6a8d9f83d10342\jetified-play-services-measurement-impl-19.0.0\AndroidManifest.xml:24:5-79
@@ -710,8 +702,10 @@ MERGED from [com.google.android.gms:play-services-cloud-messaging:16.0.0] C:\Use
 MERGED from [com.google.android.gms:play-services-cloud-messaging:16.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\92622d0afb9dbeb36c6be728a447873c\jetified-play-services-cloud-messaging-16.0.0\AndroidManifest.xml:7:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9fa9bf1a4c788f9503260096b18bf810\jetified-play-services-measurement-sdk-api-19.0.0\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\9fa9bf1a4c788f9503260096b18bf810\jetified-play-services-measurement-sdk-api-19.0.0\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\544045bb574ea1253cece71925b21242\jetified-exoplayer-common-2.13.1\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\544045bb574ea1253cece71925b21242\jetified-exoplayer-common-2.13.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4e3ea76568b7d67dcb6149a4dbcde1b6\jetified-exoplayer-core-2.15.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4e3ea76568b7d67dcb6149a4dbcde1b6\jetified-exoplayer-core-2.15.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\137e7df6e683f87ad2e063f29724f56f\jetified-exoplayer-common-2.15.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.15.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\137e7df6e683f87ad2e063f29724f56f\jetified-exoplayer-common-2.15.0\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d1778efc92f4bf7b8193425cd1651e0a\jetified-transport-runtime-3.0.0\AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d1778efc92f4bf7b8193425cd1651e0a\jetified-transport-runtime-3.0.0\AndroidManifest.xml:22:5-79
 	android:name
@@ -772,20 +766,6 @@ ADDED from [:firebase_core] C:\Users\PC\AndroidStudioProjects\church-app\build\f
 		ADDED from [:firebase_core] C:\Users\PC\AndroidStudioProjects\church-app\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:firebase_core] C:\Users\PC\AndroidStudioProjects\church-app\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
-uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from [:file_picker] C:\Users\PC\AndroidStudioProjects\church-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-80
-MERGED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-80
-MERGED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-80
-	android:name
-		ADDED from [:file_picker] C:\Users\PC\AndroidStudioProjects\church-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-77
-queries
-ADDED from [:file_picker] C:\Users\PC\AndroidStudioProjects\church-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-15:15
-intent#action:name:android.intent.action.GET_CONTENT+data:mimeType:*/*
-ADDED from [:file_picker] C:\Users\PC\AndroidStudioProjects\church-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:9-14:18
-action#android.intent.action.GET_CONTENT
-ADDED from [:file_picker] C:\Users\PC\AndroidStudioProjects\church-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-72
-	android:name
-		ADDED from [:file_picker] C:\Users\PC\AndroidStudioProjects\church-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:21-69
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from [:flutter_local_notifications] C:\Users\PC\AndroidStudioProjects\church-app\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
 	android:name
@@ -848,6 +828,10 @@ uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:17:5-76
 	android:name
 		ADDED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:17:22-73
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-80
+	android:name
+		ADDED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:18:22-77
 uses-permission#android.permission.READ_PRIVILEGED_PHONE_STATE
 ADDED from [:agora_rtc_engine] C:\Users\PC\AndroidStudioProjects\church-app\build\agora_rtc_engine\intermediates\library_manifest\debug\AndroidManifest.xml:19:5-21:47
 	tools:ignore
@@ -1008,6 +992,32 @@ ADDED from [com.amazonaws:aws-android-sdk-core:2.26.0] C:\Users\PC\.gradle\cache
 		ADDED from [com.amazonaws:aws-android-sdk-core:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c0f65032063b144118a7521c1a33a6b0\jetified-aws-android-sdk-core-2.26.0\AndroidManifest.xml:13:13-37
 	android:name
 		ADDED from [com.amazonaws:aws-android-sdk-core:2.26.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\c0f65032063b144118a7521c1a33a6b0\jetified-aws-android-sdk-core-2.26.0\AndroidManifest.xml:12:13-50
+queries
+ADDED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:24:5-34:15
+MERGED from [androidx.media:media:1.4.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d442ad331d9bb53416fa2e9c6a06fcab\media-1.4.1\AndroidManifest.xml:24:5-28:15
+MERGED from [androidx.media:media:1.4.1] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\d442ad331d9bb53416fa2e9c6a06fcab\media-1.4.1\AndroidManifest.xml:24:5-28:15
+intent#action:name:android.media.browse.MediaBrowserService
+ADDED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:25:9-27:18
+intent#action:name:androidx.media2.session.MediaSessionService
+ADDED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:28:9-30:18
+action#androidx.media2.session.MediaSessionService
+ADDED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:29:13-82
+	android:name
+		ADDED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:29:21-79
+intent#action:name:androidx.media2.session.MediaLibraryService
+ADDED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:31:9-33:18
+action#androidx.media2.session.MediaLibraryService
+ADDED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:32:13-82
+	android:name
+		ADDED from [androidx.media2:media2-session:1.1.3] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\1831f5cc1e7b012110842d7be626ff9a\jetified-media2-session-1.1.3\AndroidManifest.xml:32:21-79
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
 uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
 ADDED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:26:5-110
 MERGED from [com.google.android.gms:play-services-measurement-impl:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\631f9a28abc6ee730f6a8d9f83d10342\jetified-play-services-measurement-impl-19.0.0\AndroidManifest.xml:26:5-110
@@ -1040,14 +1050,6 @@ ADDED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC
 		ADDED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:43:13-69
 	android:name
 		ADDED from [com.google.android.gms:play-services-measurement:19.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\15afbe07a527aa2fa46c7455b789ba8a\jetified-play-services-measurement-19.0.0\AndroidManifest.xml:40:13-87
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
-	android:exported
-		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
-	android:theme
-		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
-	android:name
-		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\0e8e6a89765928c1ad2decc9a07f4903\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
 meta-data#com.google.android.gms.version
 ADDED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\bd56cef4a94604e93c35cb69c7a9da4f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:23:9-25:69
 	android:value

@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:flutter/material.dart';
 
-import '../AudioPlayerTask.dart';
+import '../PageManager.dart';
 import '../QueueSystem.dart';
-void _entryPoint() => AudioServiceBackground.run(() => AudioPlayerTask());
 final appId = "343e0fece606410eb65bc1b9a877b65e";
 
 class LiveStream extends StatefulWidget {
@@ -67,7 +67,7 @@ class _LiveStreamState extends State<LiveStream> {
    await _engine.muteLocalAudioStream(true);
     QueueSystem.clearQueue();
     QueueSystem.add(new MediaItem(id: "live", album: "Live", title: widget.sessionInfo.channelName));
-    AudioService.start(backgroundTaskEntrypoint: _entryPoint, params: {'list': jsonEncode(QueueSystem.getQueue),'current':jsonEncode(0)});
+    getIt<PageManager>().add(QueueSystem.getQueue,0);
 
   }
 

@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:audio_service/audio_service.dart';
+import 'package:church_app/Services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../PageManager.dart';
+import '../QueueSystem.dart';
 
-import '../AudioPlayerTask.dart';
 
-
-void _entryPoint() => AudioServiceBackground.run(() => AudioPlayerTask());
 
 class OfflineScreen extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _OfflineScreenState extends State<OfflineScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InkWell(child: Padding(
+          /*InkWell(child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: 50,
@@ -33,7 +33,7 @@ class _OfflineScreenState extends State<OfflineScreen> {
               ],mainAxisAlignment: MainAxisAlignment.spaceBetween,),
             ),
           ),onTap: (){},),
-          Divider(),
+          Divider(),*/
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text("Recently Played",style:TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
@@ -45,6 +45,7 @@ class _OfflineScreenState extends State<OfflineScreen> {
               List<MediaItem?> media = <MediaItem?>[];
               for(int i = 0;i<list.length;i++){
              if(list[i] == "locale"){ list.removeAt(i); if(list.length == 0) break;}
+             print(snapshot.data?.getString(list[i]) ?? "");
                 media.add(MediaItem.fromJson(jsonDecode(snapshot.data?.getString(list[i]) ?? "")));
               }
               return ListView.separated(
@@ -58,13 +59,8 @@ class _OfflineScreenState extends State<OfflineScreen> {
                   subtitle: Text(media[index]?.album ?? ""),
                   trailing: Icon(Icons.play_arrow),
                   onTap: () async {
-                    if (AudioService.running) await AudioService.stop();
-                    AudioService.start(
-                        backgroundTaskEntrypoint: _entryPoint,
-                        params: {
-                          'list': jsonEncode(media),
-                          'current': jsonEncode(index)
-                        });
+                   // if (AudioService.running) await AudioService.stop();
+                    getIt<PageManager>().add(QueueSystem.getQueue,index);
                   },
                 ),
               );

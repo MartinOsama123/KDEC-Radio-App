@@ -119,12 +119,12 @@ class LoginScreen extends StatelessWidget{
                     child: GestureDetector(onTap: ()=>  Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AudioServiceWidget(child: MyHomePage()))),child: const Text("guest",style: TextStyle(decoration: TextDecoration.underline,color: Colors.blue)).tr()),
+                            builder: (context) => MyHomePage())),child: const Text("guest",style: TextStyle(decoration: TextDecoration.underline,color: Colors.blue)).tr()),
                   )
                 ],
               ),
         )
       ),
-    ):skip ? AudioServiceWidget(child: MyHomePage()) : ProfileScreen();
+    ):skip ? MyHomePage() : ProfileScreen();
   }
 }

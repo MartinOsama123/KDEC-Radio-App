@@ -1,13 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
-import 'package:audio_service/audio_service.dart';
+import 'package:church_app/AudioHandler.dart';
+import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/Widgets/FloatingContainer.dart';
 import 'package:church_app/main.dart';
 import 'package:church_app/models/NotificationInfo.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +14,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../AppColor.dart';
 import '../BackendQueries.dart';
+import '../PageManager.dart';
 import '../Search.dart';
 import 'DiscoverScreen.dart';
 import 'LibraryScreen.dart';
@@ -46,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    connectAudio();
+
     FirebaseMessaging.onMessage.listen((event) {
       RemoteNotification? notification = event.notification;
       AndroidNotification? androidNotification = event.notification?.android;
@@ -67,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     super.initState();
+    getIt<PageManager>().init();
   }
 
   Future<void> addNotification(NotificationInfo n) async {
@@ -77,13 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    AudioService.disconnect();
+    getIt<PageManager>().dispose();
     super.dispose();
   }
 
   Future<void> connectAudio() async {
-    await AudioService.connect();
   }
+
   Future<void> uploadFile() async {
    /* FilePickerResult? result = await FilePicker.platform.pickFiles();
     final key = new DateTime.now().toString();

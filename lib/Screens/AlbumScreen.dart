@@ -22,7 +22,7 @@ class AlbumScreen extends StatelessWidget {
   const AlbumScreen({Key? key, required this.albumInfo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Provider.value(value: albumInfo,builder: (context, child) => Scaffold(
+    return  Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingContainer(),
         backgroundColor: Colors.white,
@@ -137,7 +137,6 @@ class AlbumScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
