@@ -10,9 +10,9 @@ import 'package:provider/provider.dart';
 
 
 class CarouselWidget extends StatelessWidget {
-  final String lang;
+  final String category;
 
-  const CarouselWidget({Key? key, required this.lang}) : super(key: key);
+  const CarouselWidget({Key? key, required this.category}) : super(key: key);
   @override
   Widget build(BuildContext context) {
    return  Padding(
@@ -25,7 +25,7 @@ class CarouselWidget extends StatelessWidget {
              child: Align(
                  alignment: Alignment.centerLeft,
                  child:  Text(
-                   lang,
+                   category,
                    style: TextStyle(
                        fontSize: 20, fontWeight: FontWeight.bold),
                  )),
@@ -34,7 +34,7 @@ class CarouselWidget extends StatelessWidget {
              fit: FlexFit.loose,
              child: Padding(
                padding: const EdgeInsets.all(8.0),
-               child: _buildCarousel(context, 1),
+               child: _buildCarousel(context, 1,category),
              ),
            ),
          ],
@@ -45,9 +45,10 @@ class CarouselWidget extends StatelessWidget {
 
 }
 
-Widget _buildCarousel(BuildContext context, int carouselIndex) {
+Widget _buildCarousel(BuildContext context, int carouselIndex,String category) {
+
   return FutureBuilder<List<AlbumInfo>>(
-    future: BackendQueries.getAllAlbums(),
+    future: BackendQueries.getAllAlbums(category),
     builder: (context, snapshot) =>
     snapshot.connectionState == ConnectionState.done
         ? Column(

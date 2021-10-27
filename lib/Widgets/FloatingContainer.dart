@@ -8,6 +8,8 @@ import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../AppColor.dart';
 import '../AudioHandler.dart';
+import '../PageManager.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FloatingContainer extends StatefulWidget {
   const FloatingContainer({
@@ -64,7 +66,7 @@ class _FloatingContainerState extends State<FloatingContainer> {
                             Spacer(),
                             PlayButton(radius: 15, iconSize: 15),
                             IconButton(
-                                onPressed: () {getIt<MyAudioHandler>().stop();}, icon: Icon(Icons.stop))
+                                onPressed: () {getIt<PageManager>().stop(); }, icon: Icon(Icons.stop))
                           ]),
                   ),
                 )),
@@ -74,7 +76,7 @@ class _FloatingContainerState extends State<FloatingContainer> {
               right: 5,
               bottom:0,
              child: SpeedDial(
-                    child: Icon(Icons.add),
+                    child: Icon(Icons.add,color: Colors.white,),
                     closedForegroundColor: Colors.black,
                     openForegroundColor: AppColor.SecondaryColor,
                     closedBackgroundColor: AppColor.SecondaryColor,
@@ -85,8 +87,9 @@ class _FloatingContainerState extends State<FloatingContainer> {
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.red,
                         label: 'donate'.tr(),
-                        onPressed: () {
-
+                        onPressed: () async {
+                          const _url = 'https://giving.kdec.net/users/signup/';
+                          await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
                         },
                         closeSpeedDialOnPressed: false,
                       ),

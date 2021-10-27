@@ -21,9 +21,9 @@ import 'QueueSystem.dart';
 class BackendQueries {
   static const BASE_URL = "https://kdechurch.herokuapp.com";
   static const IMG_URL = "$BASE_URL/api/img/";
-  static Future<List<AlbumInfo>> getAllAlbums() async {
+  static Future<List<AlbumInfo>> getAllAlbums(String name) async {
    
-    var response = await http.get(Uri.parse("$BASE_URL/api/albums"));
+    var response = await http.get(Uri.parse("$BASE_URL/api/albums/category/$name"));
 
 
     List<AlbumInfo> list = <AlbumInfo>[];
@@ -90,6 +90,21 @@ class BackendQueries {
     List<NotificationInfo> notifications = <NotificationInfo>[];
     list.forEach((e) => notifications.add(NotificationInfo.fromJson(e)));
     return notifications;
+  }
+  static Future<List<String>> getCategories() async {
+    print("$BASE_URL/api/category");
+    var response = await http.get(Uri.parse("$BASE_URL/api/category"));
+    String decoded = Utf8Decoder().convert(response.bodyBytes);
+    List<String> categories = <String>[];
+    for(var a in jsonDecode(response.body)) {
+      var download = Utf8Decoder().convert(a['categoryTitle']
+          .toString()
+          .codeUnits);
+      categories.add(download);
+      print(download);
+    }
+    print(categories);
+    return categories;
   }
 
   static Future<UserModel> getUserInfo(String idToken) async {

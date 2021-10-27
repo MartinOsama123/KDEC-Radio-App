@@ -11,7 +11,9 @@ import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:social_share/social_share.dart';
 
 import '../AudioHandler.dart';
 import '../PageManager.dart';
@@ -78,6 +80,53 @@ class AudioPlayerUI extends StatelessWidget {
                                     icon: Icon(Icons.skip_next)),
                                 IconButton(
                                     onPressed: () {}, icon: Icon(Icons.shuffle)),
+                                IconButton(
+                                    onPressed: () async {
+                                      showModalBottomSheet<void>(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Container(
+                                            height: 100,
+                                            color: Colors.white54,
+                                            alignment: Alignment.center,
+                                            child: Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child:  SingleChildScrollView(
+                                                  scrollDirection: Axis.horizontal,
+                                                  child: Row(
+                                                    children: [
+                                                      IconButton(onPressed: (){}, icon: FaIcon(FontAwesomeIcons.facebook,color: Colors.blue,),),
+                                                      IconButton(icon: FaIcon(FontAwesomeIcons.whatsapp,color: Colors.green,),onPressed: () async { await SocialShare.shareWhatsapp(
+                                                          "Listen to $songName on http://kdec.com/");},),
+                                                      IconButton(icon: FaIcon(FontAwesomeIcons.instagram),onPressed: () async {  await SocialShare.shareInstagramStory(
+                                                          "https://kdechurch.herokuapp.com/api/img/$songName",
+                                                          attributionURL:
+                                                          "Listen to $songName on http://kdec.com/",
+                                                          backgroundImagePath:
+                                                          "https://kdechurch.herokuapp.com/api/img/$songName");},),
+                                                      IconButton(icon: FaIcon(FontAwesomeIcons.twitter,color: Colors.blueAccent,),onPressed: (){    SocialShare.shareTwitter(
+                                                          "Listen to this new album ",
+                                                          hashtags: [
+                                                            "kdec",
+                                                            "album",
+                                                            "fun",
+                                                            "hi"
+                                                          ],
+                                                          url: "https://kdec.com/");},),
+                                                    ],
+                                                  ),
+                                                ),
+
+
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    icon: Icon(Icons.share),
+                                ),
                               ]),
                         ),
                       ],
