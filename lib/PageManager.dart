@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:audio_service/audio_service.dart';
+import 'package:church_app/QueueSystem.dart';
 import 'package:flutter/foundation.dart';
 import 'AudioHandler.dart';
 import 'Services/service_locator.dart';
@@ -201,10 +202,22 @@ class PageManager {
     }
   }
 
-  Future<void> add(List<MediaItem> list,int current) async {
+  Future<void> addAll(List<MediaItem> list,int current) async {
 
     await _audioHandler.addQueueItems(list);
-    await _audioHandler.playMediaItem(list[current]);
+    /*final songRepository = getIt<PlaylistRepository>();
+    final song = await songRepository.fetchAnotherSong();
+    final mediaItem = MediaItem(
+      id: song['id'] ?? '',
+      album: song['album'] ?? '',
+      title: song['title'] ?? '',
+      extras: {'url': song['url']},
+    );
+    _audioHandler.addQueueItem(mediaItem);*/
+  }
+  Future<void> add(MediaItem item) async {
+
+    await _audioHandler.addQueueItem(item);
     /*final songRepository = getIt<PlaylistRepository>();
     final song = await songRepository.fetchAnotherSong();
     final mediaItem = MediaItem(
@@ -224,6 +237,7 @@ class PageManager {
 
   void dispose() {
     _audioHandler.customAction('dispose');
+    _audioHandler.queue..value.clear();
   }
 
   void stop() {

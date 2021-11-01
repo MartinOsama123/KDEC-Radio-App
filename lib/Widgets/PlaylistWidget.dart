@@ -47,12 +47,10 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                   itemCount: snapshot.data?.length,
                   itemBuilder: (context, index) => Column(
                     children: [
-                      Divider(
-                        thickness: 1,
-                      ),
+                      Divider(thickness: 1),
                        InkWell(
                                 onTap: () async {
-                                  _pageManager.add(QueueSystem.getQueue,index);
+                                  _pageManager.addAll(QueueSystem.getQueue,index);
                                    BackendQueries.viewSong(snapshot.data![index].title);
                                    String url = "public/${snapshot.data![index].album}/${snapshot.data![index].title}";
                                   SharedPreferences prefs = await SharedPreferences.getInstance();

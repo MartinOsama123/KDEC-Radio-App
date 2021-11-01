@@ -31,11 +31,10 @@ class _FloatingContainerState extends State<FloatingContainer> {
           children: [
             StreamBuilder<MediaItem?>(
                 stream: getIt<MyAudioHandler>().mediaItem,
-                builder: (context, mediaSnap) => mediaSnap.hasData
-                    ? Positioned(
+                builder: (context, mediaSnap) => mediaSnap.hasData ? Positioned(
                   bottom: 5,
-                      left: 5,
-                      child: GestureDetector(onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => AudioPlayerUI(songName: mediaSnap.data?.title ??"", albumName: mediaSnap.data?.album ??""))),child: Container(
+                  left: 5,
+                  child: GestureDetector(onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => AudioPlayerUI(songName: mediaSnap.data?.title ??"", albumName: mediaSnap.data?.album ??""))),child: Container(
                   height: 50,
                   width: MediaQuery.of(context).size.width * 0.8 ,
                   decoration: BoxDecoration(

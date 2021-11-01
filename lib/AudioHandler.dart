@@ -16,7 +16,7 @@ Future<MyAudioHandler> initAudioService() async {
 
 class MyAudioHandler extends BaseAudioHandler {
   final _player = AudioPlayer();
-  final _playlist = ConcatenatingAudioSource(children: []);
+  var _playlist = ConcatenatingAudioSource(children: []);
 
   MyAudioHandler() {
     _loadEmptyPlaylist();
@@ -110,24 +110,24 @@ class MyAudioHandler extends BaseAudioHandler {
 
   @override
   Future<void> addQueueItems(List<MediaItem> mediaItems) async {
-    // manage Just Audio
     final audioSource = mediaItems.map(_createAudioSource);
-    _playlist.addAll(audioSource.toList());
-
-    // notify system
-    final newQueue = queue.value..addAll(mediaItems);
-    queue.add(newQueue);
+    _playlist.addAll(audioSource.toList()).then((value) {
+      final newQueue = queue.value..addAll(mediaItems);
+      queue.add(newQueue);
+      _player.play();
+    });
   }
 
   @override
   Future<void> addQueueItem(MediaItem mediaItem) async {
-    // manage Just Audio
     final audioSource = _createAudioSource(mediaItem);
-    _playlist.add(audioSource);
+    _playlist.add(audioSource).then((value) {
+      final newQueue = queue.value..add(mediaItem);
+      queue.add(newQueue);
+        _player.play();
+    });
 
-    // notify system
-    final newQueue = queue.value..add(mediaItem);
-    queue.add(newQueue);
+
   }
 
   UriAudioSource _createAudioSource(MediaItem mediaItem) {
@@ -201,6 +201,7 @@ class MyAudioHandler extends BaseAudioHandler {
   Future customAction(String name, [Map<String, dynamic>? extras]) async {
     if (name == 'dispose') {
       await _player.dispose();
+      queue.value..clear();
       super.stop();
     }
   }
@@ -208,7 +209,9 @@ class MyAudioHandler extends BaseAudioHandler {
   @override
   Future<void> stop() async {
     await _player.stop();
-
+    queue.value..clear();
+    mediaItem..value = null;
+    _playlist.clear();
     return super.stop();
   }
 }

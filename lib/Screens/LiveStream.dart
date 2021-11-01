@@ -1,21 +1,14 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:flutter/material.dart';
-
 import '../PageManager.dart';
-import '../QueueSystem.dart';
-final appId = "343e0fece606410eb65bc1b9a877b65e";
+
 
 class LiveStream extends StatefulWidget {
   final SessionInfo sessionInfo;
-
-  final ClientRole role = ClientRole.Audience;
-
   const LiveStream({required this.sessionInfo});
 
   @override
@@ -23,10 +16,7 @@ class LiveStream extends StatefulWidget {
 }
 
 class _LiveStreamState extends State<LiveStream> {
-  static final _users = <int>[];
-  final _infoStrings = <String>[];
-  late RtcEngine _engine;
-  bool muted = true;
+ final _pageManager = getIt<PageManager>();
 
 
   @override
@@ -41,68 +31,9 @@ class _LiveStreamState extends State<LiveStream> {
   }
 
   Future<void> initialize() async {
-    if (appId.isEmpty) {
-      setState(() {
-        _infoStrings.add(
-          'APP_ID missing, please provide your APP_ID in settings.dart',
-        );
-        _infoStrings.add('Agora Engine is not starting');
-      });
-      return;
-    }
-
-    await _initAgoraRtcEngine();
-    _addAgoraEventHandlers();
-
-    /// Join channel
-    await _engine.joinChannel(widget.sessionInfo.token, widget.sessionInfo.channelName, null, 0);
-
+    await _pageManager.add(new MediaItem(id: "https://www.radioking.com/play/my-radio97", title: "Live"));
   }
 
-  Future<void> _initAgoraRtcEngine() async {
-
-    _engine = await RtcEngine.create(appId);
-    await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
-    await _engine.setClientRole(widget.role);
-   await _engine.muteLocalAudioStream(true);
-    QueueSystem.clearQueue();
-    QueueSystem.add(new MediaItem(id: "live", album: "Live", title: widget.sessionInfo.channelName));
-    getIt<PageManager>().add(QueueSystem.getQueue,0);
-
-  }
-
-
-
-  void _addAgoraEventHandlers() {
-    _engine.setEventHandler(RtcEngineEventHandler(error: (code) {
-      setState(() {
-        final info = 'onError: $code';
-        _infoStrings.add(info);
-      });
-    }, joinChannelSuccess: (channel, uid, elapsed) {
-      setState(() {
-        final info = 'onJoinChannel: $channel, uid: $uid';
-        _infoStrings.add(info);
-      });
-    }, leaveChannel: (stats) {
-      setState(() {
-        _infoStrings.add('onLeaveChannel');
-        _users.clear();
-      });
-    }, userJoined: (uid, elapsed) {
-      setState(() {
-        final info = 'userJoined: $uid';
-        _infoStrings.add(info);
-        _users.add(uid);
-      });
-    }, userOffline: (uid, elapsed) {
-      setState(() {
-        final info = 'userOffline: $uid';
-        _infoStrings.add(info);
-        _users.remove(uid);
-      });
-    }));
-  }
 
   Widget _toolbar() {
     return Container(
@@ -112,7 +43,7 @@ class _LiveStreamState extends State<LiveStream> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RawMaterialButton(
-            onPressed: () => _onCallEnd(context),
+            onPressed: () async {_pageManager.stop();},
             child: Icon(
               Icons.close,
               color: Colors.white,
@@ -126,73 +57,6 @@ class _LiveStreamState extends State<LiveStream> {
         ],
       ),
     );
-  }
-
-
-  // Information panel to display logs
-  Widget _panel() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 48),
-      alignment: Alignment.bottomCenter,
-      child: FractionallySizedBox(
-        heightFactor: 0.5,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 48),
-          child: ListView.builder(
-            reverse: true,
-            itemCount: _infoStrings.length,
-            itemBuilder: (BuildContext context, int index) {
-              if (_infoStrings.isEmpty) {
-                return Container();
-              }
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 3,
-                  horizontal: 10,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Flexible(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 2,
-                          horizontal: 5,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.yellowAccent,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Text(
-                          _infoStrings[index],
-                          style: TextStyle(color: Colors.blueGrey),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// Stop live streaming
-   void _onCallEnd(BuildContext context) {
-    _users.clear();
-    _engine.leaveChannel();
-    _engine.destroy();
-    Navigator.pop(context);
-  }
-
-  /// Mute
-  void _onToggleMute() {
-    setState(() {
-      muted = !muted;
-    });
-    _engine.muteLocalAudioStream(muted);
   }
 
   @override
