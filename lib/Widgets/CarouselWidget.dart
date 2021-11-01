@@ -46,7 +46,6 @@ class CarouselWidget extends StatelessWidget {
 }
 
 Widget _buildCarousel(BuildContext context, int carouselIndex,String category) {
-
   return FutureBuilder<List<AlbumInfo>>(
     future: BackendQueries.getAllAlbums(category),
     builder: (context, snapshot) =>
@@ -57,7 +56,6 @@ Widget _buildCarousel(BuildContext context, int carouselIndex,String category) {
         SizedBox(
           height: 200.0,
           child: PageView.builder(
-
             itemCount: snapshot.data?.length ?? 0,
             controller: PageController(viewportFraction: 0.9),
             itemBuilder: (BuildContext context, int itemIndex) {

@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget{
                           }),
                     ),
                   ),
-                  Spacer(),
+                 SizedBox(height: MediaQuery.of(context).size.height / 2.5,),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Center(

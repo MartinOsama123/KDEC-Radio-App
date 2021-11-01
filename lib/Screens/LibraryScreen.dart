@@ -1,3 +1,6 @@
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/BackendQueries.dart';
 import 'package:church_app/Screens/LiveStream.dart';
 import 'package:church_app/models/SessionInfoModel.dart';
@@ -80,8 +83,17 @@ class _LibraryScreenState extends State<LibraryScreen> {
             },
             child: Container(
               child: ClipRRect(
-                  child: Image.network(
-                      "https://kdechurch.herokuapp.com/api/img/${sessionInfo.imgPath}"),
+                  child: FutureBuilder<GetUrlResult>(
+                    future:  Amplify.Storage.getUrl(key: "${sessionInfo.channelName}/${sessionInfo.imgPath}"),
+                    builder: (context, snapshot) =>  CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: snapshot.data?.url ?? "",
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          Icon(Icons.error),
+                    ),
+                  ),
                   borderRadius: BorderRadius.circular(10)),
             ),
           ),

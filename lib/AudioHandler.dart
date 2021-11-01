@@ -114,6 +114,7 @@ class MyAudioHandler extends BaseAudioHandler {
     _playlist.addAll(audioSource.toList()).then((value) {
       final newQueue = queue.value..addAll(mediaItems);
       queue.add(newQueue);
+      mediaItem..value = mediaItems[0];
       _player.play();
     });
   }

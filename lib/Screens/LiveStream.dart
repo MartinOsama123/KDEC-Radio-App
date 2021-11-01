@@ -4,7 +4,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import '../PageManager.dart';
+import '../QueueSystem.dart';
 
 
 class LiveStream extends StatefulWidget {
@@ -18,12 +20,6 @@ class LiveStream extends StatefulWidget {
 class _LiveStreamState extends State<LiveStream> {
  final _pageManager = getIt<PageManager>();
 
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -31,7 +27,8 @@ class _LiveStreamState extends State<LiveStream> {
   }
 
   Future<void> initialize() async {
-    await _pageManager.add(new MediaItem(id: "https://www.radioking.com/play/my-radio97", title: "Live"));
+     _pageManager.addAll([new MediaItem(id: "https://www.radioking.com/play/kdec", title: "Live")],0);
+
   }
 
 
@@ -43,7 +40,9 @@ class _LiveStreamState extends State<LiveStream> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RawMaterialButton(
-            onPressed: () async {_pageManager.stop();},
+            onPressed: () async {
+
+            },
             child: Icon(
               Icons.close,
               color: Colors.white,

@@ -36,11 +36,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
 
                     children: [
+                      SizedBox(height: MediaQuery.of(context).size.height / 3,),
                                 Text(
                                   "signup",
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ).tr(),
-
                                  Padding(
                                    padding: const EdgeInsets.all(8.0),
                                    child: TextField(
@@ -51,7 +51,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                       ),
                                     ),
                                  ),
-
                                  Padding(
                                    padding: const EdgeInsets.all(8.0),
                                    child: TextField(

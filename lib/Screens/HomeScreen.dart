@@ -84,38 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> connectAudio() async {
   }
 
-  Future<void> uploadFile() async {
-   /* FilePickerResult? result = await FilePicker.platform.pickFiles();
-    final key = new DateTime.now().toString();
-    File local =  File( "");
-    if (result != null) {
-      File file = File(result.files.single.path ?? "");
-      local = file;
-    } else {
-      // User canceled the picker
-    }*/
-    try {
-      ListResult res = await Amplify.Storage.list();
-      for(StorageItem s in res.items){
-        print(s.key);
-        print(s.eTag);
-        print(s.size);
 
-      }
-    } on StorageException catch (e) {
-      print(e.message);
-    }
-    print("DONE");
-
-   /* try {
-      UploadFileResult result = await Amplify.Storage.uploadFile(
-          key: key,
-          local: local
-      );
-    } on StorageException catch (e) {
-      print(e.message);
-    }*/
-  }
 
 
   @override
@@ -136,9 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             IconButton(
                 onPressed: () {
-                 // showSearch(context: context, delegate: Search());
-                  uploadFile();
-                },
+                 showSearch(context: context, delegate: Search());},
                 icon: Icon(
                   Icons.search,
                   color: Colors.black,
@@ -152,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => LoginScreen())),
-                      icon: Icon(Icons.person))),
+                      icon: Icon(Icons.person,color: Colors.white,))),
             ),
           ]),
       body: SafeArea(
