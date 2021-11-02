@@ -6,6 +6,7 @@ import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/models/AlbumInfo.dart';
 import 'package:church_app/models/NotificationInfo.dart';
+import 'package:church_app/models/RadioKingTrack.dart';
 
 import 'package:church_app/models/SessionInfoModel.dart';
 import 'package:church_app/models/SongInfo.dart';
@@ -43,6 +44,17 @@ class BackendQueries {
   static Future<AlbumInfo> getAlbumInfo(String album) async {
     var response = await http.get(Uri.parse("$BASE_URL/api/albums/$album"));
     return AlbumInfo.fromJson(jsonDecode(Utf8Decoder().convert(response.bodyBytes)));
+  }
+  static Future<RadioKingTrack> getCurrentTrack() async {
+    var response = await http.get(Uri.parse("https://api.radioking.io/widget/radio/kdec/track/current"));
+    return RadioKingTrack.fromJson(jsonDecode(Utf8Decoder().convert(response.bodyBytes)));
+  }
+  static Stream<RadioKingTrack> getCurrentTrackStream() async* {
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 2000));
+      RadioKingTrack someProduct =  await getCurrentTrack();
+      yield someProduct;
+    }
   }
   static Future<List<MediaItem>> getAllSongs(String album) async {
 

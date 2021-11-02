@@ -71,27 +71,34 @@ class LoginScreen extends StatelessWidget{
                               ),
                                Padding(
                                  padding: const EdgeInsets.all(8.0),
-                                 child: TextField(
-                                    controller: _emailController,
-                                    decoration: InputDecoration(
-                                      fillColor: AppColor.PrimaryColor,
-                                      border: OutlineInputBorder(),
-                                      labelText: "email".tr(),
+                                 child: SizedBox(
+                                   height: 45,
+                                   child: TextField(
+                                      controller: _emailController,
+                                      decoration: InputDecoration(
+
+                                        fillColor: AppColor.PrimaryColor,
+                                        border: OutlineInputBorder(),
+                                        labelText: "email".tr(),
+                                      ),
                                     ),
-                                  ),
+                                 ),
                                ),
 
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                    controller: _passwordController,
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                      fillColor: AppColor.PrimaryColor,
-                                      border: OutlineInputBorder(),
-                                      labelText: 'password'.tr(),
+                                child: SizedBox(
+                                  height: 45,
+                                  child: TextField(
+                                      controller: _passwordController,
+                                      obscureText: true,
+                                      decoration: InputDecoration(
+                                        fillColor: AppColor.PrimaryColor,
+                                        border: OutlineInputBorder(),
+                                        labelText: 'password'.tr(),
+                                      ),
                                     ),
-                                  ),
+                                ),
                               ),
 
                               Padding(

@@ -74,6 +74,7 @@ flutter:
   assets:
     - assets/translation/
     - images/kdec.png
+    - images/img.png
     - images/podcast.jpg
     - images/album.jpg
     - images/background.png

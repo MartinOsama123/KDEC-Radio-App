@@ -43,46 +43,55 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ).tr(),
                                  Padding(
                                    padding: const EdgeInsets.all(8.0),
-                                   child: TextField(
-                                      controller: _nameController,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'name'.tr(),
+                                   child: SizedBox(
+                                     height: 45,
+                                     child: TextField(
+                                        controller: _nameController,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          labelText: 'name'.tr(),
+                                        ),
                                       ),
-                                    ),
+                                   ),
                                  ),
                                  Padding(
                                    padding: const EdgeInsets.all(8.0),
-                                   child: TextField(
-                                      controller: _phoneController,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'phone'.tr(),
+                                   child: SizedBox(    height: 45,
+                                     child: TextField(
+                                        controller: _phoneController,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          labelText: 'phone'.tr(),
+                                        ),
                                       ),
-                                    ),
-                                 ),
-
-                                 Padding(
-                                   padding: const EdgeInsets.all(8.0),
-                                   child: TextField(
-                                      controller: _emailController,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'email'.tr(),
-                                      ),
-                                    ),
+                                   ),
                                  ),
 
                                  Padding(
                                    padding: const EdgeInsets.all(8.0),
-                                   child: TextField(
-                                      controller: _passwordController,
-                                      obscureText: true,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'password'.tr(),
+                                   child: SizedBox(    height: 45,
+                                     child: TextField(
+                                        controller: _emailController,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          labelText: 'email'.tr(),
+                                        ),
                                       ),
-                                    ),
+                                   ),
+                                 ),
+
+                                 Padding(
+                                   padding: const EdgeInsets.all(8.0),
+                                   child: SizedBox(    height: 45,
+                                     child: TextField(
+                                        controller: _passwordController,
+                                        obscureText: true,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          labelText: 'password'.tr(),
+                                        ),
+                                      ),
+                                   ),
                                  ),
 
                                 Container(

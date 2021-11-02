@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/Services/service_locator.dart';
@@ -10,9 +12,10 @@ import '../QueueSystem.dart';
 
 
 class LiveStream extends StatefulWidget {
-  final SessionInfo sessionInfo;
-  const LiveStream({required this.sessionInfo});
+  final String title;
+  final String url;
 
+  const LiveStream({Key? key, required this.title, required this.url}) : super(key: key);
   @override
   _LiveStreamState createState() => _LiveStreamState();
 }
@@ -41,7 +44,8 @@ class _LiveStreamState extends State<LiveStream> {
         children: <Widget>[
           RawMaterialButton(
             onPressed: () async {
-
+              _pageManager.stop();
+              Navigator.pop(context);
             },
             child: Icon(
               Icons.close,
@@ -69,14 +73,17 @@ class _LiveStreamState extends State<LiveStream> {
       body: Center(
         child: Stack(
           children: <Widget>[
-        CachedNetworkImage(
-        imageUrl:
-        "https://kdechurch.herokuapp.com/api/img/${widget.sessionInfo.imgPath}",
-        placeholder: (context, url) =>
-            CircularProgressIndicator(),
-        errorWidget: (context, url, error) =>
-            Icon(Icons.error),
-      width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,fit: BoxFit.contain,),
+            ClipRRect(child: Hero(tag: widget.title,child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: widget.url,
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) =>
+                      Image.asset("images/podcast.jpg"),
+                ),
+            ),),borderRadius: BorderRadius.circular(10)),
         //    _panel(),
             _toolbar(),
           ],
