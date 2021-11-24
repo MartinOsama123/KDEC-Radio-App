@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:audio_service/audio_service.dart';
-import 'package:church_app/QueueSystem.dart';
+import 'package:church_app/queue_system.dart';
 import 'package:flutter/foundation.dart';
-import 'AudioHandler.dart';
+import 'audio_handler.dart';
 import 'Services/service_locator.dart';
 
 class PlayButtonNotifier extends ValueNotifier<ButtonState> {

@@ -1,14 +1,15 @@
 import 'dart:convert';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:audio_service/audio_service.dart';
-import 'package:church_app/BackendQueries.dart';
-import 'package:church_app/QueueSystem.dart';
+import 'package:church_app/backend_queries.dart';
+import 'package:church_app/models/playlist.dart';
+import 'package:church_app/queue_system.dart';
 import 'package:church_app/Services/service_locator.dart';
-import 'package:church_app/models/MediaDetails.dart';
+import 'package:church_app/models/media_details.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../PageManager.dart';
+import '../page_manager.dart';
 
 
 class PlaylistWidget extends StatefulWidget {
@@ -32,10 +33,10 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
           padding: const EdgeInsets.all(8.0),
           child: Align(
               alignment: Alignment.centerLeft,
-              child: const Text(
-                "Playlist",
+              child:  Text(
+                "playlist",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              )),
+              ).tr()),
         ),
         FutureBuilder<List<MediaItem>>(
           future: BackendQueries.getAllSongs(widget.albumName),
@@ -54,12 +55,18 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                    BackendQueries.viewSong(snapshot.data![index].title);
                                    String url = "public/${snapshot.data![index].album}/${snapshot.data![index].title}";
                                   SharedPreferences prefs = await SharedPreferences.getInstance();
-                                   prefs.setString(url, jsonEncode(new MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album)));
+                                   prefs.setString(url, jsonEncode(MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album)));
                                 },
-                                child: ListTile(
-                                  leading: Icon(Icons.arrow_right_outlined),
-                                  title: Text(snapshot.data?[index].title ?? ""),
-                                  trailing: Text(snapshot.data?[index].duration.toString().substring(2, 7) ?? ""),
+                                child: FutureBuilder<List<MediaDetails>>(
+                                  future: context.watch<Playlist>().getPrefs(),
+                                  builder: (context, mediaDetails) => mediaDetails.connectionState == ConnectionState.done ? ListTile(
+                                    leading: IconButton(icon: Icon( mediaDetails.data!.indexWhere((element) => element.title == snapshot.data![index].title) != -1 ? Icons.favorite : Icons.favorite_border,
+                                      color: mediaDetails.data!.indexWhere((element) => element.title == snapshot.data![index].title) != -1 ? Colors.pink : Colors.grey),onPressed: ()   {
+                                      context.read<Playlist>().notify( MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album));
+                                      }),
+                                    title: Text(snapshot.data?[index].title ?? ""),
+                                    trailing: Text(snapshot.data?[index].duration.toString().substring(2, 7) ?? ""),
+                                  ) : Container(),
                                 ),
                               )
                     ],

@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:church_app/BackendQueries.dart';
-import 'package:church_app/Screens/AlbumScreen.dart';
-import 'package:church_app/models/AlbumInfo.dart';
-import 'package:church_app/models/SongInfo.dart';
+import 'package:church_app/backend_queries.dart';
+import 'package:church_app/Screens/album_screen.dart';
+import 'package:church_app/models/album_info.dart';
+import 'package:church_app/models/song_info.dart';
 import 'package:flutter/material.dart';
 
 class SearchView extends StatelessWidget {

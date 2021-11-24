@@ -1,6 +1,6 @@
 /*
 import 'package:audio_service/audio_service.dart';
-import 'package:church_app/QueueSystem.dart';
+import 'package:church_app/queue_system.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 

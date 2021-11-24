@@ -22,5 +22,15 @@
   "profile" : "Profile",
   "changeEmail": "Change Email",
   "changePass": "Change Password",
-  "logout": "Logout"
+  "logout": "Logout",
+  "subscribe": "Subscribe",
+  "unsubscribe": "Unsubscribe",
+  "loginSub": "Please Login to so you can subscribe",
+  "share": "Share",
+  "playlist": "Playlist",
+  "favorite": "Your favorite playlist",
+  "recently": "Recently played",
+  "age": "Age",
+  "passReset": "Forgot password?",
+  "confirm": "Confirm"
 }

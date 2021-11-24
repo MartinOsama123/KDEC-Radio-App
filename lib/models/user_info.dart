@@ -1,5 +1,5 @@
-import 'package:church_app/BackendQueries.dart';
-import 'package:church_app/models/NotificationInfo.dart';
+import 'package:church_app/backend_queries.dart';
+import 'package:church_app/models/notification_info.dart';
 import 'package:flutter/material.dart';
 
 class UserModel extends ChangeNotifier {
@@ -8,9 +8,10 @@ class UserModel extends ChangeNotifier {
   late String phone;
   late List<String> subs;
   late List<NotificationInfo> notifications;
+  late int age;
 
 
-  UserModel({required this.email, required this.name, required this.phone, required this.subs,required this.notifications});
+  UserModel({required this.email, required this.name, required this.phone, required this.subs,required this.notifications,required this.age});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];
@@ -20,6 +21,7 @@ class UserModel extends ChangeNotifier {
     json['subs'].forEach((element) {subs.add(element);});
     notifications = <NotificationInfo>[];
     json['notifications'].forEach((element) {notifications.add(element);});
+    phone = json['age'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,6 +33,7 @@ class UserModel extends ChangeNotifier {
     this.notifications.forEach((element) {data['notifications'].add(element);});
     data['subs'] = <String>[];
     this.subs.forEach((element) {data['subs'].add(element);});
+    data['age'] = this.age;
     return data;
   }
  void setUser(UserModel model){
@@ -39,6 +42,7 @@ class UserModel extends ChangeNotifier {
    phone = model.phone;
    subs = model.subs;
    notifications = model.notifications;
+   age = model.age;
    notifyListeners();
  }
  Future<void> removeSub(String token, String albumName) async {

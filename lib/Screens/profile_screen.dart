@@ -1,5 +1,5 @@
-import 'package:church_app/FirebaseAuthService.dart';
-import 'package:church_app/Screens/LoginScreen.dart';
+import 'package:church_app/firebase_auth.dart';
+import 'package:church_app/Screens/login_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +10,11 @@ class ProfileScreen extends StatelessWidget {
     return  context.watch<User?>() != null ? Scaffold(
       body: Scaffold(
         appBar: AppBar(
-          title: const Text("Profile",
+          title:  Text("profile",
               style: TextStyle(
                 fontSize: 40,
                 color: Colors.black,
-              )),
+              )).tr(),
           elevation: 0,
           backgroundColor: Colors.transparent,
         leading: IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.black,),onPressed: ()=> Navigator.pop(context))),
@@ -23,9 +23,34 @@ class ProfileScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(children: [
-                InkWell(onTap:(){},child:  TextIcon(text: "changeEmail".tr(),icons: Icons.email)),
-                InkWell(onTap:(){},child:  TextIcon(text: "changePass".tr(),icons: Icons.password,)),
-                InkWell(onTap:(){},child:  TextIcon(text: "language".tr(),icons: Icons.language,)),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: DropdownButton(
+                        hint: Text("language").tr(),
+
+                        items: [
+                          DropdownMenuItem(
+                            child: const Text("English"),
+                            value: 1,
+                          ),
+                          DropdownMenuItem(
+                            child: const Text("French"),
+                            value: 2,
+                          ),
+                          DropdownMenuItem(
+                            child: const Text("Arabic"),
+                            value: 3,
+                          ),
+                        ],
+                        onChanged: (value) {
+                          if(value == 1) context.setLocale( Locale('en', 'US'));
+                          else if(value == 2) context.setLocale( Locale('fr', 'FR'));
+                          else  if(value == 3) context.setLocale( Locale('ar', 'AR'));
+                        }),
+                  ),
+                ),
                 InkWell(onTap: (){ context.read<FirebaseAuthService>().signOut();},child:  TextIcon(text: "logout".tr(),icons: Icons.person_off,)),
               ],),
             ),

@@ -1,26 +1,26 @@
 import 'dart:convert';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
-import 'package:church_app/AudioHandler.dart';
+import 'package:church_app/audio_handler.dart';
 import 'package:church_app/Services/service_locator.dart';
-import 'package:church_app/Widgets/FloatingContainer.dart';
+import 'package:church_app/Widgets/floating_container.dart';
 import 'package:church_app/main.dart';
-import 'package:church_app/models/NotificationInfo.dart';
+import 'package:church_app/models/notification_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:easy_localization/easy_localization.dart';
-import '../AppColor.dart';
-import '../BackendQueries.dart';
-import '../PageManager.dart';
-import '../Search.dart';
-import 'DiscoverScreen.dart';
-import 'LibraryScreen.dart';
-import 'LoginScreen.dart';
-import 'NotificationScreen.dart';
-import 'OfflineScreen.dart';
+import '../app_color.dart';
+import '../backend_queries.dart';
+import '../page_manager.dart';
+import '../search.dart';
+import 'discover_screen.dart';
+import 'library_screen.dart';
+import 'login_screen.dart';
+import 'notification_screen.dart';
+import 'offline_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   @override

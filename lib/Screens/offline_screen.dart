@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:audio_service/audio_service.dart';
+import 'package:church_app/Screens/playlist_screen.dart';
 import 'package:church_app/Services/service_locator.dart';
-import 'package:church_app/models/MediaDetails.dart';
+import 'package:church_app/models/media_details.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../PageManager.dart';
-import '../QueueSystem.dart';
+import '../page_manager.dart';
+import '../queue_system.dart';
 
 
 
@@ -24,20 +26,20 @@ class _OfflineScreenState extends State<OfflineScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /*InkWell(child: Padding(
+          InkWell(child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: 50,
               child: Row(children: [
-                Text("Your Favorite Playlist",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                Text("favorite",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500)).tr(),
                 Icon(Icons.arrow_forward_ios)
               ],mainAxisAlignment: MainAxisAlignment.spaceBetween,),
             ),
-          ),onTap: (){},),
-          Divider(),*/
+          ),onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => PlaylistScreen()))),
+          Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("Recently Played",style:TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+            child: Text("recently",style:TextStyle(fontSize: 18,fontWeight: FontWeight.w500)).tr(),
           ),
           FutureBuilder<SharedPreferences>(
             future: _prefs,
@@ -46,7 +48,10 @@ class _OfflineScreenState extends State<OfflineScreen> {
               List<MediaItem> media = <MediaItem>[];
               List<MediaDetails> mediaDetails = <MediaDetails>[];
               for(int i = 0;i<list.length;i++){
-             if(list[i] == "locale"){ list.removeAt(i); if(list.length == 0) break;}
+                print("before ${list[i]}");
+             if(list[i] == "locale" || list[i] == 'likes'){ list.removeAt(i); continue;}
+             if(list.length <= 0) break;
+                print(list[i]);
              print(snapshot.data?.getString(list[i]) ?? "");
              mediaDetails.add(MediaDetails.fromJson(jsonDecode(snapshot.data?.getString(list[i]) ?? "")));
              media.add(new MediaItem(id: mediaDetails[i].id, title: mediaDetails[i].title,album: mediaDetails[i].album));
@@ -56,7 +61,7 @@ class _OfflineScreenState extends State<OfflineScreen> {
                 separatorBuilder: (context, index) => Divider(
                   thickness: 1,
                 ),
-                itemCount: list.length,
+                itemCount: media.length,
                 itemBuilder: (context, index) => ListTile(
                   title: Text(media[index].title),
                   subtitle: Text(media[index].album!),

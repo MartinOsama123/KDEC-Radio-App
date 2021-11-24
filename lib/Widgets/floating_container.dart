@@ -1,14 +1,15 @@
 import 'package:audio_service/audio_service.dart';
-import 'package:church_app/Screens/AudioPlayerUI.dart';
-import 'package:church_app/Screens/MessegeScreen.dart';
+import 'package:church_app/Screens/audioplayer_ui.dart';
+import 'package:church_app/Screens/messege_screen.dart';
 import 'package:church_app/Services/service_locator.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
-import 'package:easy_localization/easy_localization.dart';
-import '../AppColor.dart';
-import '../AudioHandler.dart';
-import '../PageManager.dart';
+
+import '../app_color.dart';
+import '../audio_handler.dart';
+import '../page_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FloatingContainer extends StatefulWidget {
@@ -31,9 +32,10 @@ class _FloatingContainerState extends State<FloatingContainer> {
           children: [
             StreamBuilder<MediaItem?>(
                 stream: getIt<MyAudioHandler>().mediaItem,
-                builder: (context, mediaSnap) => mediaSnap.hasData ? Positioned(
+                builder: (context, mediaSnap) => mediaSnap.hasData ?  Positioned.directional(
+                  textDirection: context.locale == Locale("ar","AR") ? TextDirection.rtl : TextDirection.ltr,
+                  start: 5,
                   bottom: 5,
-                  left: 5,
                   child: GestureDetector(onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => AudioPlayerUI(songName: mediaSnap.data?.title ??"", albumName: mediaSnap.data?.album ??""))),child: Container(
                   height: 50,
                   width: MediaQuery.of(context).size.width * 0.8 ,
@@ -71,9 +73,11 @@ class _FloatingContainerState extends State<FloatingContainer> {
                 )),
                     )
                     :  SizedBox(width: MediaQuery.of(context).size.width * 0.8)),
-            Positioned(
-              right: 5,
+            Positioned.directional(
+              textDirection: context.locale == Locale("ar","AR") ? TextDirection.rtl : TextDirection.ltr,
+              end: 5,
               bottom:0,
+
              child: SpeedDial(
                     child: Icon(Icons.add,color: Colors.white,),
                     closedForegroundColor: Colors.black,

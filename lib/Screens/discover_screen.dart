@@ -1,5 +1,5 @@
-import 'package:church_app/BackendQueries.dart';
-import 'package:church_app/Widgets/CarouselWidget.dart';
+import 'package:church_app/backend_queries.dart';
+import 'package:church_app/Widgets/carousel_widget.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverScreen extends StatelessWidget {

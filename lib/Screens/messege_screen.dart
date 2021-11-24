@@ -1,10 +1,10 @@
-import 'package:church_app/models/MessageInfo.dart';
+import 'package:church_app/models/message_info.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:church_app/BackendQueries.dart';
+import 'package:church_app/backend_queries.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../AppColor.dart';
+import '../app_color.dart';
 
 class MessegeScreen extends StatefulWidget {
   @override

@@ -2,13 +2,15 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
-import 'package:church_app/AppColor.dart';
-import 'package:church_app/Screens/AlbumScreen.dart';
-import 'package:church_app/FirebaseAuthService.dart';
+import 'package:church_app/app_color.dart';
+import 'package:church_app/Screens/album_screen.dart';
+import 'package:church_app/firebase_auth.dart';
+import 'package:church_app/models/playlist.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Services/service_locator.dart';
 import 'amplifyconfiguration.dart';
-import 'package:church_app/models/AlbumInfo.dart';
-import 'package:church_app/models/UserInfo.dart';
+import 'package:church_app/models/album_info.dart';
+import 'package:church_app/models/user_info.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,8 +19,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
-import 'Screens/HomeScreen.dart';
-import 'Screens/SplashScreen.dart';
+import 'Screens/home_screen.dart';
+import 'Screens/splash_screen.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     "channel", "title", "Description",
@@ -75,13 +77,16 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<UserModel>(
           create: (_) => UserModel(
-              email: "", name: "", phone: "", subs: [], notifications: []),
+              email: "", name: "", phone: "", subs: [], notifications: [],age: 0),
         ),
         StreamProvider(
           create: (context) =>
               context.read<FirebaseAuthService>().authStateChanges,
           initialData: null,
-        )
+        ),
+        ChangeNotifierProvider<Playlist>(
+         create: (_) => Playlist(),
+       ),
       ],
       child: MaterialApp(
         locale: context.locale,

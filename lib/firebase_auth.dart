@@ -16,8 +16,18 @@ class FirebaseAuthService{
 
   Future<String?> signIn({required String email, required String password}) async {
     try {
+
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       return "Signed in";
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+  }
+  Future<String?> resetPassword({required String email}) async {
+    try {
+
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      return "Password reset";
     } on FirebaseAuthException catch (e) {
       return e.message;
     }

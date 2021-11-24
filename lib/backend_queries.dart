@@ -4,20 +4,20 @@ import 'dart:convert';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:audio_service/audio_service.dart';
-import 'package:church_app/models/AlbumInfo.dart';
-import 'package:church_app/models/NotificationInfo.dart';
-import 'package:church_app/models/RadioKingTrack.dart';
+import 'package:church_app/models/album_info.dart';
+import 'package:church_app/models/notification_info.dart';
+import 'package:church_app/models/radioking_track.dart';
 
-import 'package:church_app/models/SessionInfoModel.dart';
-import 'package:church_app/models/SongInfo.dart';
-import 'package:church_app/models/UserInfo.dart';
+import 'package:church_app/models/session_info.dart';
+import 'package:church_app/models/song_info.dart';
+import 'package:church_app/models/user_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 
 import 'package:http/http.dart' as http;
 import 'package:just_audio/just_audio.dart';
 
-import 'QueueSystem.dart';
+import 'queue_system.dart';
 
 class BackendQueries {
   static const BASE_URL = "https://kdechurch.herokuapp.com";

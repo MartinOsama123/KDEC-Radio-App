@@ -1,22 +1,23 @@
-import 'dart:ui';
 
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:church_app/AppColor.dart';
-import 'package:church_app/BackendQueries.dart';
+import 'package:church_app/app_color.dart';
+import 'dart:math' as math;
 import 'package:church_app/Services/service_locator.dart';
-import 'package:church_app/models/AlbumInfo.dart';
+import 'package:church_app/models/media_details.dart';
+import 'package:church_app/models/playlist.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:social_share/social_share.dart';
 
-import '../AudioHandler.dart';
-import '../PageManager.dart';
+import '../audio_handler.dart';
+import '../page_manager.dart';
 
 class AudioPlayerUI extends StatelessWidget {
   final String songName;
@@ -41,9 +42,8 @@ class AudioPlayerUI extends StatelessWidget {
               )),
           body: SafeArea(
             child: mediaItem.hasData
-                  ? Column(
-                      children: [
-                        Expanded(
+                  ? Column(children: [
+                    Expanded(
                             child: Hero(
                           tag: mediaItem.data?.album ?? "",
                           child:  FutureBuilder<GetUrlResult>(
@@ -57,7 +57,6 @@ class AudioPlayerUI extends StatelessWidget {
                                       Icon(Icons.error),
                                 ),
                             ),
-
                         )),
                          AudioProgressBar(),
                         Padding(
@@ -67,19 +66,35 @@ class AudioPlayerUI extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 IconButton(
-                                    onPressed: () {}, icon: Icon(Icons.repeat)),
-                               /* IconButton(
-                                    onPressed: () {}, icon: Icon(Icons.favorite_border)),*/
-                                IconButton(
-                                    onPressed: () =>
-                                        getIt<MyAudioHandler>().skipToPrevious(),
-                                    icon: Icon(Icons.skip_previous)),
+                                    onPressed: () {getIt<MyAudioHandler>().setRepeatMode(AudioServiceRepeatMode.all);}, icon: Transform(
+                                    alignment: Alignment.center,
+                                    transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: Icon(Icons.repeat))),
+                                FutureBuilder<List<MediaDetails>>(
+                                  future: context.watch<Playlist>().getPrefs(),
+                                  builder: (context, mediaDetails) => mediaDetails.connectionState == ConnectionState.done ? IconButton(icon: Icon( mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Icons.favorite : Icons.favorite_border,
+                                      color: mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Colors.pink : Colors.grey),onPressed: ()   {
+                                    context.read<Playlist>().notify( MediaDetails(id: mediaItem.data!.id, title: mediaItem.data!.title,album: mediaItem.data!.album));
+                                  }) : Icon(Icons.favorite_border),
+                                ),
+                                Transform(
+                                  alignment: Alignment.center,
+                                  transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: IconButton(
+                                      onPressed: () =>
+                                          getIt<MyAudioHandler>().skipToPrevious(),
+                                      icon: Icon(Icons.skip_previous)),
+                                ),
                                 PlayButton(),
-                                IconButton(
-                                    onPressed: () => getIt<MyAudioHandler>().skipToNext(),
-                                    icon: Icon(Icons.skip_next)),
-                                IconButton(
-                                    onPressed: () {}, icon: Icon(Icons.shuffle)),
+                                Transform(
+                                  alignment: Alignment.center,
+                                  transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: IconButton(
+                                      onPressed: () => getIt<MyAudioHandler>().skipToNext(),
+                                      icon: Icon(Icons.skip_next)),
+                                ),
+                                Transform(
+                                  alignment: Alignment.center,
+                                  transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: IconButton(
+                                      onPressed: () {getIt<MyAudioHandler>().setShuffleMode(AudioServiceShuffleMode.all);}, icon: Icon(Icons.shuffle)),
+                                ),
                                 IconButton(
                                     onPressed: () async {
                                       showModalBottomSheet<void>(
@@ -117,8 +132,6 @@ class AudioPlayerUI extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-
-
                                               ),
                                             ),
                                           );
@@ -150,7 +163,7 @@ class PlayButton extends StatefulWidget {
 
 class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
   late AnimationController
-      iconController; // make sure u have flutter sdk > 2.12.0 (null safety)
+      iconController;
 
   @override
   void initState() {

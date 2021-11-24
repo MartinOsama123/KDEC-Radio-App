@@ -1,6 +1,6 @@
-import 'package:church_app/BackendQueries.dart';
-import 'package:church_app/Widgets/SearchView.dart';
-import 'package:church_app/models/SongInfo.dart';
+import 'package:church_app/backend_queries.dart';
+import 'package:church_app/Widgets/search_view.dart';
+import 'package:church_app/models/song_info.dart';
 import 'package:flutter/material.dart';
 
 class Search extends SearchDelegate {

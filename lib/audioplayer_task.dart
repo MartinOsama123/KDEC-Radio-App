@@ -6,7 +6,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:just_audio/just_audio.dart';
 import 'dart:core';
 
-import 'QueueSystem.dart';
+import 'queue_system.dart';
 
 class AudioPlayerTask extends  BaseAudioHandler
 with QueueHandler, // mix in default queue callback implementations

@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 
-import '../AudioHandler.dart';
-import '../PageManager.dart';
+import '../audio_handler.dart';
+import '../page_manager.dart';
 
 GetIt getIt = GetIt.instance;
 

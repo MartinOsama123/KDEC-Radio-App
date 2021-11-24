@@ -1,15 +1,12 @@
-import 'dart:developer';
-
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:church_app/AppColor.dart';
-import 'package:church_app/BackendQueries.dart';
-import 'package:church_app/Widgets/FloatingContainer.dart';
-import 'package:church_app/Widgets/PlaylistWidget.dart';
-import 'package:church_app/main.dart';
-import 'package:church_app/models/AlbumInfo.dart';
-import 'package:church_app/models/UserInfo.dart';
+import 'package:church_app/app_color.dart';
+import 'package:church_app/Widgets/floating_container.dart';
+import 'package:church_app/Widgets/playlist_widget.dart';
+import 'package:church_app/models/album_info.dart';
+import 'package:church_app/models/user_info.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -115,7 +112,7 @@ class AlbumScreen extends StatelessWidget {
                         primary: AppColor.SecondaryColor,
                       ),
                       icon: Icon(Icons.share),
-                      label: const Text("Share")),
+                      label:  Text("share").tr()),
                 ),
                 FutureBuilder<String>(
                   future: FirebaseAuth.instance.currentUser?.getIdToken(true),
@@ -130,7 +127,7 @@ class AlbumScreen extends StatelessWidget {
                         primary: AppColor.SecondaryColor,
                       ),
                       icon: Icon(Icons.bookmark_border),
-                      label: context.watch<UserModel>().subs.contains(albumInfo.albumName)? const Text("Unsubscribe") : const Text("Subscribe")) : const Text("Please Login to so you can subscribe"),
+                      label: context.watch<UserModel>().subs.contains(albumInfo.albumName)?  Text("unsubscribe").tr() :  Text("subscribe").tr()) :  Text("loginSub").tr(),
                 ),
                  PlaylistWidget(albumName: albumInfo.albumName),
               ],
