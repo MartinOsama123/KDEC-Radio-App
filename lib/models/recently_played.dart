@@ -11,7 +11,6 @@ class RecentlyPlayed extends ChangeNotifier{
   Future<List<MediaDetails>> getPrefs() async {
     prefs = await SharedPreferences.getInstance();
     prefs.containsKey("recently") ? list = MediaDetails.decode(prefs.getString("recently")!) : list = <MediaDetails>[];
-    print(list);
     return list;
   }
 

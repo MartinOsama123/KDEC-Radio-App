@@ -117,6 +117,7 @@ class MyAudioHandler extends BaseAudioHandler {
     _playlist.addAll(audioSource.toList()).then((value) {
       final newQueue = queue.value..addAll(mediaItems);
       queue.add(newQueue);
+
       mediaItem..value = mediaItems[0];
       _player.play();
     });
@@ -174,7 +175,7 @@ class MyAudioHandler extends BaseAudioHandler {
   Future<void> skipToNext() => _player.seekToNext();
 
   @override
-  Future<void> skipToPrevious() => _player.seekToPrevious();
+  Future<void> skipToPrevious() async {if(_player.hasPrevious)_player.seekToPrevious(); else   _player.seek(Duration.zero);}
 
   @override
   Future<void> setRepeatMode(AudioServiceRepeatMode repeatMode) async {

@@ -32,12 +32,10 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Align(
-              alignment: Alignment.centerLeft,
-              child:  Text(
+          child:   Text(
                 "playlist",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ).tr()),
+              ).tr()
         ),
         FutureBuilder<List<MediaItem>>(
           future: BackendQueries.getAllSongs(widget.albumName),
@@ -54,6 +52,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                 onTap: () async {
                                   _pageManager.addAll(QueueSystem.getQueue,index);
                                    BackendQueries.viewSong(snapshot.data![index].title);
+                                   List<MediaDetails> temp = await context.read<RecentlyPlayed>().getPrefs();
                                   context.read<RecentlyPlayed>().notify( MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album));
                                 },
                                 child: FutureBuilder<List<MediaDetails>>(

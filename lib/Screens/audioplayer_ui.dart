@@ -13,6 +13,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'package:social_share/social_share.dart';
 
@@ -65,10 +66,15 @@ class AudioPlayerUI extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                IconButton(
-                                    onPressed: () {getIt<MyAudioHandler>().setRepeatMode(AudioServiceRepeatMode.all);}, icon: Transform(
-                                    alignment: Alignment.center,
-                                    transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: Icon(Icons.repeat))),
+                                ValueListenableBuilder<RepeatState>(
+                                  valueListenable: getIt<PageManager>().repeatButtonNotifier,
+                                  builder: (context, value, child) => IconButton(
+                                      onPressed: () {getIt<PageManager>().repeat();
+                                      if(value.index == 1) getIt<PageManager>().repeat();
+                                      }, icon: Transform(
+                                      alignment: Alignment.center,
+                                      transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: CircleAvatar( radius:25,backgroundColor: value.index == 0 ?  Colors.white70 : AppColor.SecondaryColor,child: Icon(Icons.repeat,color:  value.index != 0 ? Colors.white : Colors.black)))),
+                                ),
                                 FutureBuilder<List<MediaDetails>>(
                                   future: context.watch<Playlist>().getPrefs(),
                                   builder: (context, mediaDetails) => mediaDetails.connectionState == ConnectionState.done ? IconButton(icon: Icon( mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Icons.favorite : Icons.favorite_border,
@@ -80,20 +86,27 @@ class AudioPlayerUI extends StatelessWidget {
                                   alignment: Alignment.center,
                                   transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: IconButton(
                                       onPressed: () =>
-                                          getIt<MyAudioHandler>().skipToPrevious(),
+                                      context.locale == Locale("ar","AR") ?getIt<MyAudioHandler>().skipToNext() : getIt<MyAudioHandler>().skipToPrevious(),
                                       icon: Icon(Icons.skip_previous)),
                                 ),
                                 PlayButton(),
                                 Transform(
                                   alignment: Alignment.center,
                                   transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: IconButton(
-                                      onPressed: () => getIt<MyAudioHandler>().skipToNext(),
+                                      onPressed: () =>context.locale == Locale("ar","AR") ?getIt<MyAudioHandler>().skipToPrevious(): getIt<MyAudioHandler>().skipToNext(),
                                       icon: Icon(Icons.skip_next)),
                                 ),
                                 Transform(
                                   alignment: Alignment.center,
-                                  transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: IconButton(
-                                      onPressed: () {getIt<MyAudioHandler>().setShuffleMode(AudioServiceShuffleMode.all);}, icon: Icon(Icons.shuffle)),
+                                  transform: Matrix4.rotationY(context.locale == Locale("ar","AR")? math.pi : 0),child: ValueListenableBuilder<bool>(
+                                  valueListenable: getIt<PageManager>().isShuffleModeEnabledNotifier,
+                                  builder: (context, value, child) =>  CircleAvatar(
+                                    radius:25,
+                                    backgroundColor: value ? AppColor.SecondaryColor : Colors.white70 ,
+                                    child: IconButton(
+                                          onPressed: () {getIt<PageManager>().shuffle();}, icon: Icon(Icons.shuffle,color:value ? Colors.white : Colors.black,)),
+                                  ),
+                                  ),
                                 ),
                                 IconButton(
                                     onPressed: () async {

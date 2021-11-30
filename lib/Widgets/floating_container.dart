@@ -1,5 +1,6 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/Screens/audioplayer_ui.dart';
+import 'package:church_app/Screens/live_stream.dart';
 import 'package:church_app/Screens/messege_screen.dart';
 import 'package:church_app/Services/service_locator.dart';
 import 'package:easy_localization/src/public_ext.dart';
@@ -36,7 +37,8 @@ class _FloatingContainerState extends State<FloatingContainer> {
                   textDirection: context.locale == Locale("ar","AR") ? TextDirection.rtl : TextDirection.ltr,
                   start: 5,
                   bottom: 5,
-                  child: GestureDetector(onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => AudioPlayerUI(songName: mediaSnap.data?.title ??"", albumName: mediaSnap.data?.album ??""))),child: Container(
+                  child: GestureDetector(onTap: ()=> mediaSnap.data!.title != "Live" ? Navigator.push(context, MaterialPageRoute(builder: (context) => AudioPlayerUI(songName: mediaSnap.data?.title ??"", albumName: mediaSnap.data?.album ??"")))
+                      : Navigator.push(context, MaterialPageRoute(builder: (context) => LiveStream(title: "Live", url: mediaSnap.data!.displayDescription ?? ""))),child: Container(
                   height: 50,
                   width: MediaQuery.of(context).size.width * 0.8 ,
                   decoration: BoxDecoration(

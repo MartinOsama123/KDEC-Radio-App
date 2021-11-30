@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
             notification.title ?? "", notification.body ?? ""));
       }
     });
+    print("CALL");
 
     super.initState();
     getIt<PageManager>().init();
@@ -77,7 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    getIt<PageManager>().dispose();
+    print("dispose");
+    getIt<PageManager>().stop();
+  //  getIt<PageManager>().dispose();
     super.dispose();
   }
 
@@ -113,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: CircleAvatar(
                   backgroundColor: AppColor.SecondaryColor,
                   child: IconButton(
-                      onPressed: () => Navigator.push(
+                      onPressed: () => Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => LoginScreen())),

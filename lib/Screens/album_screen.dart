@@ -40,32 +40,34 @@ class AlbumScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 300,
-                  width: 300,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical:5),
-                    child: Hero(
-                        tag: albumInfo.albumName,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: FutureBuilder<GetUrlResult>(
-                            future:  Amplify.Storage.getUrl(key: "${albumInfo.albumName}/${albumInfo.imgPath}"),
-                            builder:(context, snapshot) => CachedNetworkImage(
-                      fit: BoxFit.cover,
-                              imageUrl:  snapshot.data?.url ?? "",
-                              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) => Icon(Icons.image_not_supported),
+                Center(
+                  child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical:5),
+                      child: Hero(
+                          tag: albumInfo.albumName,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: FutureBuilder<GetUrlResult>(
+                              future:  Amplify.Storage.getUrl(key: "${albumInfo.albumName}/${albumInfo.imgPath}"),
+                              builder:(context, snapshot) => CachedNetworkImage(
+                        fit: BoxFit.cover,
+                                imageUrl:  snapshot.data?.url ?? "",
+                                placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) => Image.asset("images/placeholder.png"),
+                              ),
                             ),
                           ),
-                        ),
-                  )),
+                    )),
+                  ),
                 ),
               //   Text(albumInfo.albumName),
 
               //  Text("Author Name"),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 0),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   child: ElevatedButton.icon(
                       onPressed: () async {
                         showModalBottomSheet<void>(

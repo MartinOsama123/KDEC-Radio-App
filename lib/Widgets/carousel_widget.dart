@@ -87,8 +87,8 @@ Widget _buildCarouselItem(
                 builder:(context, snapshot) =>  CachedNetworkImage(
              fit: BoxFit.cover,
                   imageUrl: snapshot.data?.url ?? "",
-                  errorWidget: (context, url, error) =>
-                      Icon(Icons.error),
+                  placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => Image.asset("images/placeholder.png"),
                 ),
               ),),borderRadius: BorderRadius.circular(10)),
 
