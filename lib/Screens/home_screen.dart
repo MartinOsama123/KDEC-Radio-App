@@ -81,8 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  Future<void> connectAudio() async {
-  }
 
 
 

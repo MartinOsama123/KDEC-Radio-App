@@ -111,12 +111,16 @@ class MyAudioHandler extends BaseAudioHandler {
   @override
   Future<void> addQueueItems(List<MediaItem> mediaItems) async {
     final audioSource = mediaItems.map(_createAudioSource);
+    _player.stop();
+
+    _playlist.clear();
     _playlist.addAll(audioSource.toList()).then((value) {
       final newQueue = queue.value..addAll(mediaItems);
       queue.add(newQueue);
       mediaItem..value = mediaItems[0];
       _player.play();
     });
+    _player.seek(Duration.zero);
   }
 
   @override

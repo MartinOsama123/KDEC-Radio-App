@@ -6,6 +6,7 @@ import 'package:church_app/app_color.dart';
 import 'package:church_app/Screens/album_screen.dart';
 import 'package:church_app/firebase_auth.dart';
 import 'package:church_app/models/playlist.dart';
+import 'package:church_app/models/recently_played.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Services/service_locator.dart';
 import 'amplifyconfiguration.dart';
@@ -87,6 +88,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<Playlist>(
          create: (_) => Playlist(),
        ),
+        ChangeNotifierProvider<RecentlyPlayed>(
+          create: (_) => RecentlyPlayed(),
+        ),
       ],
       child: MaterialApp(
         locale: context.locale,

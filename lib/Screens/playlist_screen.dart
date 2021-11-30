@@ -38,11 +38,12 @@ class _PlaylistScreen extends State<PlaylistScreen> {
             future: _prefs,
             builder: (context, snapshot) {
               List<MediaItem> media = <MediaItem>[];
-              List<MediaDetails> mediaDetails = MediaDetails.decode(snapshot.data?.getString("likes") ?? "");
+              String prefData = snapshot.data?.getString("likes") ?? "";
+              List<MediaDetails> mediaDetails = prefData.isEmpty ? <MediaDetails>[] : MediaDetails.decode(prefData);
               for(int i = 0;i<mediaDetails.length;i++){
                 media.add(new MediaItem(id: mediaDetails[i].id, title: mediaDetails[i].title,album: mediaDetails[i].album));
               }
-              return ListView.separated(
+              return prefData.isNotEmpty ? ListView.separated(
                 shrinkWrap: true,
                 separatorBuilder: (context, index) => Divider(
                   thickness: 1,
@@ -56,7 +57,10 @@ class _PlaylistScreen extends State<PlaylistScreen> {
                     getIt<PageManager>().addAll(media,index);
                   },
                 ),
-              );
+              ): Center(child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("You haven't liked anything :("),
+              ),);
             },
           ),
     );

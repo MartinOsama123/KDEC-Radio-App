@@ -203,8 +203,18 @@ class PageManager {
   }
 
   Future<void> addAll(List<MediaItem> list,int current) async {
+    var list1 = <MediaItem>[];
+    list1.add(list[current]);
+    for(int i = 0;i<list.length;i++){
+      if(i != current)
+      list1.add(list[i]);
+    }
+    _audioHandler.queue..value.clear();
 
-    await _audioHandler.addQueueItems(list);
+    await _audioHandler.addQueueItems(list1);
+
+
+
     /*final songRepository = getIt<PlaylistRepository>();
     final song = await songRepository.fetchAnotherSong();
     final mediaItem = MediaItem(

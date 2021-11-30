@@ -44,24 +44,19 @@ class _OfflineScreenState extends State<OfflineScreen> {
           FutureBuilder<SharedPreferences>(
             future: _prefs,
             builder: (context, snapshot) {
-              List<String> list = snapshot.data?.getKeys().toList() ?? [];
               List<MediaItem> media = <MediaItem>[];
-              List<MediaDetails> mediaDetails = <MediaDetails>[];
-              for(int i = 0;i<list.length;i++){
-                print("before ${list[i]}");
-             if(list[i] == "locale" || list[i] == 'likes'){ list.removeAt(i); continue;}
-             if(list.length <= 0) break;
-                print(list[i]);
-             print(snapshot.data?.getString(list[i]) ?? "");
-             mediaDetails.add(MediaDetails.fromJson(jsonDecode(snapshot.data?.getString(list[i]) ?? "")));
-             media.add(new MediaItem(id: mediaDetails[i].id, title: mediaDetails[i].title,album: mediaDetails[i].album));
+              String prefData = snapshot.data?.getString("recently") ?? "";
+              List<MediaDetails> mediaDetails = prefData.isEmpty ? <MediaDetails>[] : MediaDetails.decode(prefData);
+
+              for(int i = 0;i<mediaDetails.length;i++){
+                media.add(new MediaItem(id: mediaDetails[i].id, title: mediaDetails[i].title,album: mediaDetails[i].album));
               }
-              return ListView.separated(
+              return prefData.isNotEmpty ? ListView.separated(
                 shrinkWrap: true,
                 separatorBuilder: (context, index) => Divider(
                   thickness: 1,
                 ),
-                itemCount: media.length,
+                itemCount: mediaDetails.length,
                 itemBuilder: (context, index) => ListTile(
                   title: Text(media[index].title),
                   subtitle: Text(media[index].album!),
@@ -70,7 +65,10 @@ class _OfflineScreenState extends State<OfflineScreen> {
                     getIt<PageManager>().addAll(media,index);
                   },
                 ),
-              );
+              ): Center(child:Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("You haven't played anything recently"),
+              ));
             },
           ),
         ],

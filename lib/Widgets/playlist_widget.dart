@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:church_app/models/recently_played.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/backend_queries.dart';
@@ -53,9 +54,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                 onTap: () async {
                                   _pageManager.addAll(QueueSystem.getQueue,index);
                                    BackendQueries.viewSong(snapshot.data![index].title);
-                                   String url = "public/${snapshot.data![index].album}/${snapshot.data![index].title}";
-                                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                                   prefs.setString(url, jsonEncode(MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album)));
+                                  context.read<RecentlyPlayed>().notify( MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album));
                                 },
                                 child: FutureBuilder<List<MediaDetails>>(
                                   future: context.watch<Playlist>().getPrefs(),
