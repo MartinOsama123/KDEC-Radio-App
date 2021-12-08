@@ -10,7 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:social_share/social_share.dart';
+import 'package:share/share.dart';
 import 'package:provider/provider.dart';
 
 class AlbumScreen extends StatelessWidget {
@@ -69,49 +69,8 @@ class AlbumScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: ElevatedButton.icon(
-                      onPressed: () async {
-                        showModalBottomSheet<void>(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Container(
-                              height: 100,
-                              color: Colors.white54,
-                              alignment: Alignment.center,
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child:  SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          child: Row(
-                                            children: [
-                                              IconButton(onPressed: (){}, icon: FaIcon(FontAwesomeIcons.facebook,color: Colors.blue,),),
-                                              IconButton(icon: FaIcon(FontAwesomeIcons.whatsapp,color: Colors.green,),onPressed: () async { await SocialShare.shareWhatsapp(
-                                                  "Listen to ${albumInfo.albumName} on http://kdec.com/");},),
-                                              IconButton(icon: FaIcon(FontAwesomeIcons.instagram),onPressed: () async {  await SocialShare.shareInstagramStory(
-                                                  "https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}",
-                                                  attributionURL:
-                                                  "Listen to ${albumInfo.albumName} on http://kdec.com/",
-                                                  backgroundImagePath:
-                                                  "https://kdechurch.herokuapp.com/api/img/${albumInfo.imgPath}");},),
-                                              IconButton(icon: FaIcon(FontAwesomeIcons.twitter,color: Colors.blueAccent,),onPressed: (){    SocialShare.shareTwitter(
-                                                  "Listen to this new album ",
-                                                  hashtags: [
-                                                    "kdec",
-                                                    "album",
-                                                    "fun",
-                                                    "hi"
-                                                  ],
-                                                  url: "https://kdec.com/");},),
-                                            ],
-                                          ),
-                                        ),
-
-
-                                ),
-                              ),
-                            );
-                          },
-                        );
+                      onPressed: ()  {
+                        Share.share('check out this album ${albumInfo.albumName} https://example.com');
                       },
                       style: ElevatedButton.styleFrom(
                         onPrimary: Colors.white,
