@@ -45,18 +45,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+    var android = AndroidInitializationSettings("@mipmap/ic_launcher");
+    final IOSInitializationSettings iOS =
+    IOSInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
 
+    var initSettings = InitializationSettings(android: android, iOS: iOS);
+
+    flutterLocalNotificationsPlugin.initialize(initSettings);
     FirebaseMessaging.onMessage.listen((event) {
       RemoteNotification? notification = event.notification;
       AndroidNotification? androidNotification = event.notification?.android;
       if (notification != null) {
+
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
             notification.body,
             NotificationDetails(
                 android: AndroidNotificationDetails(
-                    channel.channelId, channel.channelName, channel.channelDescription,
+                    notification.hashCode.toString(), notification.title!,channelDescription: notification.body!,
                     color: Colors.black,
                     playSound: true,
                     icon: "@mipmap/ic_launcher"),iOS: IOSNotificationDetails()));
@@ -75,14 +85,35 @@ class _MyHomePageState extends State<MyHomePage> {
         await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "",
         jsonEncode(n.toJson()));
   }
+  Future<dynamic> onDidReceiveLocalNotification(
+      int id, String? title, String? body, String? payload) async {
+    // display a dialog with the notification details, tap ok to go to another page
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: Text(title ?? ""),
+        content: Text(body ?? ""),
+        actions: [
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: Text('Ok'),
+            onPressed: () async {
+              Navigator.of(context, rootNavigator: true).pop();
+            },
+          )
+        ],
+      ),
+    );
+  }
 
-  @override
+
+ /* @override
   void dispose() {
     print("dispose");
     getIt<PageManager>().stop();
   //  getIt<PageManager>().dispose();
     super.dispose();
-  }
+  }*/
 
 
 
@@ -116,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: CircleAvatar(
                   backgroundColor: AppColor.SecondaryColor,
                   child: IconButton(
-                      onPressed: () => Navigator.pushReplacement(
+                      onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => LoginScreen())),

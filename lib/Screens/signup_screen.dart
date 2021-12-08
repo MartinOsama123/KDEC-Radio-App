@@ -87,6 +87,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           height: 45,
                           child: TextField(
                             controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'email'.tr(),
@@ -113,9 +114,11 @@ class _SignupScreenState extends State<SignupScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: SizedBox(
-                          height: 45,
+                          height: 60,
                           child: TextField(
                             controller: _ageController,
+                            keyboardType: TextInputType.number,
+                            maxLength: 2,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'age'.tr(),

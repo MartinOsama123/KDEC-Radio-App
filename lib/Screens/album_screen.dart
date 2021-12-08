@@ -136,6 +136,7 @@ class AlbumScreen extends StatelessWidget {
                       label: context.watch<UserModel>().subs.contains(albumInfo.albumName)?  Text("unsubscribe").tr() :  Text("subscribe").tr()) :  Text("loginSub").tr(),
                 ),
                  PlaylistWidget(albumName: albumInfo.albumName),
+                SizedBox(height: 50)
               ],
             ),
           ),

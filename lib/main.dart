@@ -22,12 +22,7 @@ import 'package:provider/provider.dart';
 import 'Screens/home_screen.dart';
 import 'Screens/splash_screen.dart';
 
-const AndroidNotificationDetails channel = AndroidNotificationDetails(
-    "channel", "title", "Description",
-    importance: Importance.high, playSound: true);
-const IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print("a bg message just showed up ${message.messageId}");
@@ -47,11 +42,7 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  var android = AndroidInitializationSettings("@mipmap/ic_launcher");
-  var iOS = IOSInitializationSettings();
-  var initSettings = InitializationSettings(android: android, iOS: iOS);
 
-  flutterLocalNotificationsPlugin.initialize(initSettings);
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, badge: true, sound: true);
   await FirebaseMessaging.instance.subscribeToTopic("Global");
