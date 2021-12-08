@@ -49,17 +49,17 @@ class _MyHomePageState extends State<MyHomePage> {
     FirebaseMessaging.onMessage.listen((event) {
       RemoteNotification? notification = event.notification;
       AndroidNotification? androidNotification = event.notification?.android;
-      if (notification != null && androidNotification != null) {
+      if (notification != null) {
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
             notification.body,
             NotificationDetails(
                 android: AndroidNotificationDetails(
-                    channel.id, channel.name, channel.description,
+                    channel.channelId, channel.channelName, channel.channelDescription,
                     color: Colors.black,
                     playSound: true,
-                    icon: "@mipmap/ic_launcher")));
+                    icon: "@mipmap/ic_launcher"),iOS: IOSNotificationDetails()));
         addNotification(new NotificationInfo(
             notification.title ?? "", notification.body ?? ""));
       }

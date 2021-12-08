@@ -7,7 +7,6 @@ import 'package:church_app/Screens/album_screen.dart';
 import 'package:church_app/firebase_auth.dart';
 import 'package:church_app/models/playlist.dart';
 import 'package:church_app/models/recently_played.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'Services/service_locator.dart';
 import 'amplifyconfiguration.dart';
 import 'package:church_app/models/album_info.dart';
@@ -23,9 +22,10 @@ import 'package:provider/provider.dart';
 import 'Screens/home_screen.dart';
 import 'Screens/splash_screen.dart';
 
-const AndroidNotificationChannel channel = AndroidNotificationChannel(
+const AndroidNotificationDetails channel = AndroidNotificationDetails(
     "channel", "title", "Description",
     importance: Importance.high, playSound: true);
+const IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -46,10 +46,12 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
+
+  var android = AndroidInitializationSettings("@mipmap/ic_launcher");
+  var iOS = IOSInitializationSettings();
+  var initSettings = InitializationSettings(android: android, iOS: iOS);
+
+  flutterLocalNotificationsPlugin.initialize(initSettings);
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, badge: true, sound: true);
   await FirebaseMessaging.instance.subscribeToTopic("Global");
