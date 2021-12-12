@@ -20,12 +20,12 @@ import '../audio_handler.dart';
 import '../page_manager.dart';
 
 class AudioPlayerUI extends StatelessWidget {
-  final String songName;
-  final String albumName;
 
-  const AudioPlayerUI({Key? key, required this.songName,required this.albumName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    //var args = ModalRoute.of(context)?.settings.arguments as Map;
+  /*  final String songName = args['songName'];
+    final String albumName = args['albumName'];*/
     return  StreamBuilder<MediaItem?>(
       stream: getIt<MyAudioHandler>().mediaItem,  builder: (context, mediaItem) => Scaffold(
           backgroundColor: Colors.white,

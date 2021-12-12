@@ -11,12 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../page_manager.dart';
-class LibraryScreen extends StatefulWidget {
+class LiveScreen extends StatefulWidget {
   @override
-  _LibraryScreenState createState() => _LibraryScreenState();
+  _LiveScreenState createState() => _LiveScreenState();
 }
 
-class _LibraryScreenState extends State<LibraryScreen> {
+class _LiveScreenState extends State<LiveScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

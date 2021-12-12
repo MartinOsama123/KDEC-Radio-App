@@ -5,8 +5,10 @@ import 'package:church_app/backend_queries.dart';
 import 'package:church_app/firebase_auth.dart';
 import 'package:church_app/Screens/profile_screen.dart';
 import 'package:church_app/Screens/signup_screen.dart';
+import 'package:church_app/models/album_info.dart';
 import 'package:church_app/models/user_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -29,6 +31,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool emailValid = true, passValid = true;
 
+
+  @override
+  void initState() {
+   //initDynamicLinks();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -124,10 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
-                              onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignupScreen())),
+                              onTap: () => Navigator.pushNamed(context, "/signup"),
                               child: const Text("noEmail",
                                       style: TextStyle(
                                           color: AppColor.SecondaryColor,
@@ -137,10 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
-                              onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PasswordResetScreen())),
+                              onTap: () => Navigator.pushNamed(context, "/reset"),
                               child: const Text("passReset",
                                       style: TextStyle(
                                           color: AppColor.SecondaryColor,
@@ -180,15 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.all(20),
                           child: GestureDetector(
                               onTap: () =>
-                                  Navigator.pushAndRemoveUntil<dynamic>(
-                                    context,
-                                    MaterialPageRoute<dynamic>(
-                                      builder: (BuildContext context) =>
-                                          MyHomePage(),
-                                    ),
-                                    (route) =>
-                                        false, //if you want to disable back feature set to false
-                                  ),
+                                  Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false),
                               child: const Text("guest",
                                       style: TextStyle(
                                           decoration: TextDecoration.underline,

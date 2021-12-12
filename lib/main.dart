@@ -2,6 +2,14 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
+import 'package:church_app/Screens/audioplayer_ui.dart';
+import 'package:church_app/Screens/discover_screen.dart';
+import 'package:church_app/Screens/live_screen.dart';
+import 'package:church_app/Screens/login_screen.dart';
+import 'package:church_app/Screens/notification_screen.dart';
+import 'package:church_app/Screens/password_reset_screen.dart';
+import 'package:church_app/Screens/profile_screen.dart';
+import 'package:church_app/Screens/signup_screen.dart';
 import 'package:church_app/app_color.dart';
 import 'package:church_app/Screens/album_screen.dart';
 import 'package:church_app/firebase_auth.dart';
@@ -89,22 +97,19 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         supportedLocales: context.supportedLocales,
         localizationsDelegates: context.localizationDelegates,
-        onGenerateRoute: (settings) {
-          // Handle '/'
-          if (settings.name == '/') {
-            return MaterialPageRoute(builder: (context) => MyHomePage());
-          }
-
-          // Handle '/details/:id'
-          var uri = Uri.parse(settings.name ?? "");
-          if (uri.pathSegments.first == 'album') {
-            var id = uri.pathSegments[1];
-            var path = uri.pathSegments[2];
-            return MaterialPageRoute(
-                builder: (context) => AlbumScreen(
-                    albumInfo: new AlbumInfo(albumName: id, imgPath: path)));
-          }
-        },
+       initialRoute: '/home',
+       routes: {'/splash' : (_) => SplashScreen(),
+         '/home' : (_) => MyHomePage(),
+         '/live' : (_) => LiveScreen(),
+       '/album' : (_) => AlbumScreen(),
+         '/browse' : (_) => DiscoverScreen(),
+         '/library' : (_) => LiveScreen(),
+         '/profile' : (_) => ProfileScreen(),
+         '/signup' : (_) => SignupScreen(),
+         '/login' : (_) =>LoginScreen(),
+         '/song' : (_) => AudioPlayerUI(),
+         '/reset' : (_) => PasswordResetScreen(),
+         '/notification' : (_) => NotificationScreen()},
         theme: ThemeData(
             primaryColor: AppColor.PrimaryColor,
             accentColor: AppColor.SecondaryColor,
@@ -112,7 +117,7 @@ class MyApp extends StatelessWidget {
                     Locale("ar", "AR")
                 ? 'GESSTwo'
                 : 'ABEAKRG'),
-        home: SplashScreen(),
+
       ),
     );
   }

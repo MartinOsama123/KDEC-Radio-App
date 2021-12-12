@@ -14,11 +14,12 @@ import 'package:share/share.dart';
 import 'package:provider/provider.dart';
 
 class AlbumScreen extends StatelessWidget {
-  final AlbumInfo albumInfo;
 
-  const AlbumScreen({Key? key, required this.albumInfo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final albumInfo = ModalRoute.of(context)?.settings.arguments as AlbumInfo;
+    print(albumInfo.albumName);
+    print(albumInfo.imgPath);
     return  Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingContainer(),

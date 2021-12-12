@@ -14,8 +14,7 @@ class SearchView extends StatelessWidget {
   Widget build(BuildContext context) {
    return ListTile(title: Text(songInfo.songName),subtitle: Text(songInfo.albumName),trailing: Icon(Icons.arrow_forward_ios),onTap: () async {
      AlbumInfo albumInfo = await BackendQueries.getAlbumInfo(songInfo.albumName);
-     Navigator.push(
-         context, MaterialPageRoute(builder: (context) => AlbumScreen(albumInfo: albumInfo)));
+     Navigator.pushNamed(context, "/album",arguments:  albumInfo);
    },);
   }
 

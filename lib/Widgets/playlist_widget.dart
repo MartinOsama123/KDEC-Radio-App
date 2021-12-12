@@ -52,7 +52,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                 onTap: () async {
                                   _pageManager.addAll(QueueSystem.getQueue,index);
                                    BackendQueries.viewSong(snapshot.data![index].title);
-                                   List<MediaDetails> temp = await context.read<RecentlyPlayed>().getPrefs();
+                                //   List<MediaDetails> temp = await context.read<RecentlyPlayed>().getPrefs();
                                   context.read<RecentlyPlayed>().notify( MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album));
                                 },
                                 child: FutureBuilder<List<MediaDetails>>(

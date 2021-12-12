@@ -1,10 +1,7 @@
 import 'dart:convert';
-import 'package:amplify_flutter/amplify.dart';
-import 'package:amplify_storage_s3/amplify_storage_s3.dart';
-import 'package:church_app/audio_handler.dart';
 import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/Widgets/floating_container.dart';
-import 'package:church_app/main.dart';
+import 'package:church_app/models/album_info.dart';
 import 'package:church_app/models/notification_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -17,11 +14,10 @@ import '../backend_queries.dart';
 import '../page_manager.dart';
 import '../search.dart';
 import 'discover_screen.dart';
-import 'library_screen.dart';
-import 'login_screen.dart';
+import 'live_screen.dart';
 import 'notification_screen.dart';
 import 'offline_screen.dart';
-
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -76,8 +72,36 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     print("CALL");
 
+    initDynamicLinks();
     super.initState();
     getIt<PageManager>().init();
+  }
+  void handleLinkData(PendingDynamicLinkData data) {
+    print(data);
+    final Uri? uri = data.link;
+    if(uri != null) {
+      final queryParams = uri.queryParameters;
+      print(uri.queryParameters.entries);/*
+      if(queryParams.length > 0) {
+        String? userName = queryParams["username"];
+        // verify the username is parsed correctly
+        print("My users username is: $userName");
+      }*/
+    }
+  }
+  initDynamicLinks() async {
+    final PendingDynamicLinkData? data = await FirebaseDynamicLinks.instance.getInitialLink();
+    final Uri? deepLink = data?.link;
+
+    if (deepLink != null) {
+      Navigator.pushNamed(context, deepLink.path,arguments: AlbumInfo.fromJson(deepLink.queryParameters));
+    }
+    FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
+      handleLinkData(dynamicLinkData);
+      Navigator.pushNamed(context, dynamicLinkData.link.path,arguments: AlbumInfo.fromJson(dynamicLinkData.link.queryParameters));
+    }).onError((error) {
+      // Handle errors
+    });
   }
 
   Future<void> addNotification(NotificationInfo n) async {
@@ -147,10 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: CircleAvatar(
                   backgroundColor: AppColor.SecondaryColor,
                   child: IconButton(
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen())),
+                      onPressed: () => Navigator.pushNamed(context, "/login"),
                       icon: Icon(Icons.person,color: Colors.white,))),
             ),
           ]),
@@ -194,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _buildScreens() {
     print(FirebaseAuth.instance.currentUser?.getIdToken(true));
     return [
-      LibraryScreen(),
+      LiveScreen(),
       DiscoverScreen(),
       NotificationScreen(),
       OfflineScreen(),

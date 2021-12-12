@@ -79,8 +79,8 @@ Widget _buildCarouselItem(
       children: [
         Expanded(
           child: InkWell(
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Provider<AlbumInfo>.value(value:albumInfo,child: AlbumScreen(albumInfo: albumInfo)))),
+            onTap: () => Navigator.pushNamed(context, "/album",arguments:  albumInfo),
+               // Navigator.push(context, MaterialPageRoute(builder: (context) => Provider<AlbumInfo>.value(value:albumInfo,child: AlbumScreen(albumInfo: albumInfo)))),
 
               child: ClipRRect(child: Hero(tag: albumInfo.albumName,child: FutureBuilder<GetUrlResult>(
                 future:  Amplify.Storage.getUrl(key: "${albumInfo.albumName}/${albumInfo.imgPath}"),

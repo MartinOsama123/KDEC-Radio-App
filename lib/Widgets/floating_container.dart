@@ -37,7 +37,7 @@ class _FloatingContainerState extends State<FloatingContainer> {
                   textDirection: context.locale == Locale("ar","AR") ? TextDirection.rtl : TextDirection.ltr,
                   start: 5,
                   bottom: 5,
-                  child: GestureDetector(onTap: ()=> mediaSnap.data!.title != "Live" ? Navigator.push(context, MaterialPageRoute(builder: (context) => AudioPlayerUI(songName: mediaSnap.data?.title ??"", albumName: mediaSnap.data?.album ??"")))
+                  child: GestureDetector(onTap: ()=> mediaSnap.data!.title != "Live" ? Navigator.pushNamed(context, "/song")
                       : Navigator.push(context, MaterialPageRoute(builder: (context) => LiveStream(title: "Live", url: mediaSnap.data!.displayDescription ?? ""))),child: Container(
                   height: 50,
                   width: MediaQuery.of(context).size.width * 0.8 ,
