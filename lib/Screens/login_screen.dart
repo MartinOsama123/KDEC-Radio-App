@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final TextEditingController _passwordController = TextEditingController();
 
-  bool emailValid = true, passValid = true;
+
 
 
   @override
@@ -84,63 +84,64 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
-                            child: Text(
-                              "login",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ).tr(),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "login",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ).tr(),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                      onTap: () => Navigator.pushNamed(context, "/signup"),
+                                      child: const Text("noEmail",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: AppColor.SecondaryColor,
+                                              decoration: TextDecoration.underline))
+                                          .tr()),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            height: 45,
-                            child: TextField(
+                          child:  TextField(
                               controller: _emailController,
                               decoration: InputDecoration(
+                                  isDense: true,
+                                  contentPadding: const EdgeInsets.all(10.0),
                                   fillColor: AppColor.PrimaryColor,
                                   border: OutlineInputBorder(),
-                                  labelText: "email".tr(),
-                                  errorText: !emailValid
-                                      ? "Please enter a valid email"
-                                      : null),
+                                  labelText: "email".tr()),
                             ),
-                          ),
+
                         ),
 
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            height: 45,
-                            child: TextField(
+                          child:  TextField(
                               controller: _passwordController,
                               obscureText: true,
                               decoration: InputDecoration(
+                                  isDense: true,
+                                  contentPadding: const EdgeInsets.all(10.0),
                                   fillColor: AppColor.PrimaryColor,
                                   border: OutlineInputBorder(),
-                                  labelText: 'password'.tr(),
-                                  errorText: !passValid
-                                      ? "Password should be 5 characters at least"
-                                      : null),
+                                  labelText: 'password'.tr()),
                             ),
-                          ),
+
                         ),
 
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                              onTap: () => Navigator.pushNamed(context, "/signup"),
-                              child: const Text("noEmail",
-                                      style: TextStyle(
-                                          color: AppColor.SecondaryColor,
-                                          decoration: TextDecoration.underline))
-                                  .tr()),
-                        ),
+
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                               onTap: () => Navigator.pushNamed(context, "/reset"),
                               child: const Text("passReset",
                                       style: TextStyle(
+                                        fontSize: 20,
                                           color: AppColor.SecondaryColor,
                                           decoration: TextDecoration.underline))
                                   .tr()),
@@ -152,23 +153,34 @@ class _LoginScreenState extends State<LoginScreen> {
                                 primary: AppColor.PrimaryColor),
                             child: Text("login").tr(),
                             onPressed: () async {
-                              if (_emailController.text.contains("@") &&
-                                  _passwordController.text.length >= 5) {
-                                await context
-                                    .read<FirebaseAuthService>()
-                                    .signIn(
-                                        email: _emailController.text.trim(),
-                                        password:
-                                            _passwordController.text.trim());
-                                context.watch<UserModel>().setUser(
+                              try {
+                                await context.read<FirebaseAuthService>()
+                                    .signIn(email: _emailController.text.trim(),
+                                    password: _passwordController.text.trim());
+
+                                context.read<UserModel>().setUser(
                                     await BackendQueries.getUserInfo(
                                         await FirebaseAuth.instance.currentUser
-                                                ?.getIdToken(true) ??
-                                            ""));
-                              } else {
-                                setState(() {
-                                  emailValid = passValid = false;
-                                });
+                                            ?.getIdToken(true) ?? ""));
+                              }on FirebaseAuthException catch (e) {
+                                switch (e.code) {
+                                  case "invalid-email":
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            content: Text('Your username or password is incorrect. Please try again.'),
+                                            actions: <Widget>[
+                                              Center(
+                                                child: TextButton(
+                                                    onPressed: () => Navigator.pop(context),
+                                                    child: Text('OK')),
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                  break;
+                                }
                               }
                             },
                           ),
@@ -180,6 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false),
                               child: const Text("guest",
                                       style: TextStyle(
+                                        fontSize: 20,
                                           decoration: TextDecoration.underline,
                                           color: Colors.blue))
                                   .tr()),

@@ -14,32 +14,17 @@ class FirebaseAuthService{
     await _firebaseAuth.signOut();
   }
 
-  Future<String?> signIn({required String email, required String password}) async {
-    try {
-
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-      return "Signed in";
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    }
+  Future<void> signIn({required String email, required String password})  async {
+    await _firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password);
   }
+  
   Future<String?> resetPassword({required String email}) async {
-    try {
-
       await _firebaseAuth.sendPasswordResetEmail(email: email);
-      return "Password reset";
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    }
   }
 
-  /// error messages. That way you can throw, return or whatever you prefer with that instead.
-  Future<String?> signUp({required String email,required String password}) async {
-    try {
+
+  Future<void> signUp({required String email,required String password}) async {
       await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-      return "Signed up";
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    }
   }
 }

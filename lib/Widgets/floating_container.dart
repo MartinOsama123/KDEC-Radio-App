@@ -93,7 +93,7 @@ class _FloatingContainerState extends State<FloatingContainer> {
                         backgroundColor: Colors.red,
                         label: 'donate'.tr(),
                         onPressed: () async {
-                          const _url = 'https://giving.kdec.net/users/signup/';
+                          const _url = 'https://giving.kdec.net/register/';
                           await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
                         },
                         closeSpeedDialOnPressed: false,

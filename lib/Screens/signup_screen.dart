@@ -22,6 +22,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   bool emailValid = true, passValid = true, phoneValid = true, nameValid = true, ageValid = true;
+  String emailError = "Please Enter a valid email.";
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -54,78 +55,77 @@ class _SignupScreenState extends State<SignupScreen> {
                       ).tr(),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          height: 45,
-                          child: TextField(
+                        child:  TextField(
                             controller: _nameController,
                             decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: const EdgeInsets.all(10.0),
                               border: OutlineInputBorder(),
                               labelText: 'name'.tr(),
                               errorText: !nameValid ? "Name must not be empty" : null
                             ),
                           ),
-                        ),
+
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          height: 45,
-                          child: TextField(
+                        child:  TextField(
                             controller: _phoneController,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: const EdgeInsets.all(10.0),
                               border: OutlineInputBorder(),
                               labelText: 'phone'.tr(),
-                                errorText: !phoneValid ? "Email must be 11 number" : null
+                                errorText: !phoneValid ? "Phone must be 11 number" : null
                             ),
                           ),
-                        ),
+
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          height: 45,
-                          child: TextField(
+                        child:  TextField(
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: const EdgeInsets.all(10.0),
                               border: OutlineInputBorder(),
                               labelText: 'email'.tr(),
-                                errorText: !emailValid ? "Email must be valid" : null
+                                errorText: !emailValid ? emailError : null
                             ),
                           ),
-                        ),
+
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          height: 45,
-                          child: TextField(
+                        child:  TextField(
                             controller: _passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: const EdgeInsets.all(10.0),
                               border: OutlineInputBorder(),
                               labelText: 'password'.tr(),
-                              errorText: !passValid ? "Password must be at least 5 characters" : null
+                              errorText: !passValid ? "Password is too weak." : null
                             ),
                           ),
-                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          height: 60,
-                          child: TextField(
+                        child:  TextField(
                             controller: _ageController,
                             keyboardType: TextInputType.number,
                             maxLength: 2,
                             decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: const EdgeInsets.all(10.0),
                               border: OutlineInputBorder(),
                               labelText: 'age'.tr(),
                                 errorText: !ageValid ? "Age must not be empty" : null
                             ),
                           ),
-                        ),
+
                       ),
                       Container(
                         width: size.width / 2,
@@ -134,29 +134,55 @@ class _SignupScreenState extends State<SignupScreen> {
                           style: ElevatedButton.styleFrom(
                               primary: AppColor.PrimaryColor),
                           onPressed: () async {
-                            if(!_emailController.text.trim().contains("@")) emailValid = false; else emailValid = true;
-                            if(_nameController.text.trim().isEmpty) nameValid = false; else nameValid = true;
-                            if(_phoneController.text.trim().length != 11) phoneValid = false; else phoneValid = true;
-                            if(_passwordController.text.length < 5) passValid = false; else passValid = true;
-                            if(_ageController.text.trim().isEmpty) ageValid = false; else ageValid = true;
-
-                            if(emailValid && nameValid && phoneValid && passValid && ageValid) {
-                              UserModel user = new UserModel(
-                                  email: _emailController.text.trim(),
-                                  name: _nameController.text.trim(),
-                                  phone: _phoneController.text.trim(),
-                                  subs: [],
-                                  notifications: [],
-                                  age: int.parse(_ageController.text.trim()));
+                            try {
                               await context.read<FirebaseAuthService>().signUp(
                                   email: _emailController.text.trim(),
                                   password: _passwordController.text.trim());
-                              String token =
-                                  await context.read<User?>()?.getIdToken() ?? "";
-                              var en = jsonEncode(user.toJson());
-                              await BackendQueries.createUser(token, en);
+
+                              if (_nameController.text.trim().isEmpty) nameValid = false;else nameValid = true;
+                              if (_phoneController.text.trim().length != 11) phoneValid = false;else phoneValid = true;
+
+                              if (_ageController.text.trim().isEmpty) ageValid = false;else ageValid = true;
+                              emailValid = true; passValid = true;
+                              if (emailValid && nameValid && phoneValid &&
+                                  passValid && ageValid) {
+                                UserModel user = new UserModel(
+                                    email: _emailController.text.trim(),
+                                    name: _nameController.text.trim(),
+                                    phone: _phoneController.text.trim(),
+                                    subs: [],
+                                    notifications: [],
+                                    age: int.parse(_ageController.text.trim()));
+
+                                String token =
+                                    await context.read<User?>()?.getIdToken() ??
+                                        "";
+                                var en = jsonEncode(user.toJson());
+                                await BackendQueries.createUser(token, en);
+                              }
+                            }on FirebaseAuthException catch (e) {
+                              print(e.code);
+                              switch (e.code) {
+
+                                case "invalid-email":
+                                  emailValid = false;
+                                  emailError = "Please enter a valid email.";
+                                  break;
+                                case "email-already-in-use":
+                                  emailValid = false;
+                                  emailError = "Email already taken.";
+                                  break;
+                                case "weak-password":
+
+                                  passValid = false;
+                                  break;
+                              }
+                            }finally{
+                              setState(() {
+
+                              });
                             }
-                            setState(() {});
+
                           },
                         ),
                       ),

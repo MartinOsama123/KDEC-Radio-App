@@ -69,6 +69,7 @@ class _MessegeScreenState extends State<MessegeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(icon: Icon(Icons.arrow_back,color: AppColor.PrimaryColor),onPressed: () => Navigator.pop(context)),
           title: const Text("prayer",
               style: TextStyle(
                 fontSize: 40,
