@@ -1,15 +1,11 @@
-import 'package:audio_service/audio_service.dart';
-import 'package:church_app/Screens/password_reset_screen.dart';
+import 'package:church_app/Screens/profile_screen.dart';
 import 'package:church_app/app_color.dart';
 import 'package:church_app/backend_queries.dart';
 import 'package:church_app/firebase_auth.dart';
-import 'package:church_app/Screens/profile_screen.dart';
-import 'package:church_app/Screens/signup_screen.dart';
-import 'package:church_app/models/album_info.dart';
 import 'package:church_app/models/user_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -177,7 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
                         ),
-                        //      Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(20),
                           child: GestureDetector(

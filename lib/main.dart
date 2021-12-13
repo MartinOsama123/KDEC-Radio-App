@@ -97,7 +97,7 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         supportedLocales: context.supportedLocales,
         localizationsDelegates: context.localizationDelegates,
-       initialRoute: '/home',
+       initialRoute: '/splash',
        routes: {'/splash' : (_) => SplashScreen(),
          '/home' : (_) => MyHomePage(),
          '/live' : (_) => LiveScreen(),

@@ -54,7 +54,7 @@ class _PlaylistScreen extends State<PlaylistScreen> {
                   subtitle: Text(media[index].album!),
                   trailing: Icon(Icons.play_arrow),
                   onTap: () async {
-                    getIt<PageManager>().addAll(media,index);
+                    getIt<PageManager>().addAll(media,media[index].title);
                   },
                 ),
               ): Center(child: Padding(

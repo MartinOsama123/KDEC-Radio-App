@@ -56,7 +56,7 @@ class _LiveScreenState extends State<LiveScreen> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: InkWell(
-                  onTap: () =>     _pageManager.addAll([new MediaItem(id: "https://www.radioking.com/play/kdec",displayDescription: snapshot.data!.cover, title: "Live")],0),
+                  onTap: () =>     _pageManager.addAll([new MediaItem(id: "https://www.radioking.com/play/kdec",displayDescription: snapshot.data!.cover, title: "Live")],"Live"),
                   child: CachedNetworkImage(imageUrl: snapshot.data!.cover ?? "",
                     placeholder: (context, url) =>
                         Center(child: CircularProgressIndicator()),

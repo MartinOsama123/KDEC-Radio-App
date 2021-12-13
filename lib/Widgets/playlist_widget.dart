@@ -9,7 +9,6 @@ import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/models/media_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../page_manager.dart';
 
 
@@ -50,7 +49,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                       Divider(thickness: 1),
                        InkWell(
                                 onTap: () async {
-                                  _pageManager.addAll(QueueSystem.getQueue,index);
+                                  _pageManager.addAll(QueueSystem.getQueue,snapshot.data![index].title);
                                    BackendQueries.viewSong(snapshot.data![index].title);
                                 //   List<MediaDetails> temp = await context.read<RecentlyPlayed>().getPrefs();
                                   context.read<RecentlyPlayed>().notify( MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album));
@@ -58,10 +57,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                 child: FutureBuilder<List<MediaDetails>>(
                                   future: context.watch<Playlist>().getPrefs(),
                                   builder: (context, mediaDetails) => mediaDetails.connectionState == ConnectionState.done ? ListTile(
-                                    leading: IconButton(icon: Icon( mediaDetails.data!.indexWhere((element) => element.title == snapshot.data![index].title) != -1 ? Icons.favorite : Icons.favorite_border,
-                                      color: mediaDetails.data!.indexWhere((element) => element.title == snapshot.data![index].title) != -1 ? Colors.pink : Colors.grey),onPressed: ()   {
-                                      context.read<Playlist>().notify( MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album));
-                                      }),
+                                    leading: LoveButton(mediaDetails: mediaDetails.data!, mediaItems: snapshot.data!,index: index),
                                     title: Text(snapshot.data?[index].title ?? ""),
                                     trailing: Text(snapshot.data?[index].duration.toString().substring(2, 7) ?? ""),
                                   ) : Container(),
@@ -74,5 +70,22 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
         ),
       ],
     );
+  }
+}
+
+class LoveButton extends StatelessWidget {
+  final List<MediaDetails> mediaDetails;
+  final List<MediaItem> mediaItems;
+  final int index;
+  const LoveButton({
+    Key? key, required this.mediaDetails, required this.mediaItems, required this.index,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(icon: Icon( mediaDetails.indexWhere((element) => element.title == mediaItems[index].title) != -1 ? Icons.favorite : Icons.favorite_border,
+      color: mediaDetails.indexWhere((element) => element.title == mediaItems[index].title) != -1 ? Colors.pink : Colors.grey),onPressed: ()   {
+      context.read<Playlist>().notify( MediaDetails(id: mediaItems[index].id, title: mediaItems[index].title,album: mediaItems[index].album));
+      });
   }
 }

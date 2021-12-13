@@ -111,9 +111,7 @@ class MyAudioHandler extends BaseAudioHandler {
   @override
   Future<void> addQueueItems(List<MediaItem> mediaItems) async {
     final audioSource = mediaItems.map(_createAudioSource);
-    _player.stop();
-
-    _playlist.clear();
+    print(mediaItems[0].title);
     _playlist.addAll(audioSource.toList()).then((value) {
       final newQueue = queue.value..addAll(mediaItems);
       queue.add(newQueue);
@@ -152,7 +150,10 @@ class MyAudioHandler extends BaseAudioHandler {
     final newQueue = queue.value..removeAt(index);
     queue.add(newQueue);
   }
-
+  Future<void> removeAll() async {
+    _player.stop();
+    _playlist.clear();
+  }
   @override
   Future<void> play() => _player.play();
 

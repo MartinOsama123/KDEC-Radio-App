@@ -10,6 +10,7 @@ import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/models/media_details.dart';
 import 'package:church_app/models/playlist.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -108,8 +109,22 @@ class AudioPlayerUI extends StatelessWidget {
                                   ),
                                 ),
                                 IconButton(
-                                    onPressed: ()  {
-                                      Share.share('check out this song ${mediaItem.data?.title ?? ""} https://example.com');
+                                    onPressed: ()  async {
+                                      final DynamicLinkParameters parameters = DynamicLinkParameters(
+                                        uriPrefix: 'https://kdecradio.page.link',
+                                        link: Uri.parse('https://kdecradio.page.link/song?albumName=${mediaItem.data?.album}&songName=${mediaItem.data!.title}'),
+                                        androidParameters: const AndroidParameters(
+                                          packageName: "com.genesiscreations.church_app",
+                                          minimumVersion: 0,
+                                        ),
+                                        iosParameters: const IOSParameters(
+                                          bundleId: "com.genesiscreations.kdecradio",
+                                          minimumVersion: '0',
+                                        ),
+                                      );
+                                      final ShortDynamicLink shortDynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
+                                      final Uri shortUrl = shortDynamicLink.shortUrl;
+                                      Share.share("Check out ${mediaItem.data?.album} \n $shortUrl");
                                     },
                                     icon: Icon(Icons.share),
                                 ),

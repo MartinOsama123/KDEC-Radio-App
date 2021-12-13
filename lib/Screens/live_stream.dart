@@ -30,7 +30,7 @@ class _LiveStreamState extends State<LiveStream> {
   }
 
   Future<void> initialize() async {
-     _pageManager.addAll([new MediaItem(id: "https://www.radioking.com/play/kdec", title: "Live")],0);
+     _pageManager.addAll([new MediaItem(id: "https://www.radioking.com/play/kdec", title: "Live")],"Live");
 
   }
 

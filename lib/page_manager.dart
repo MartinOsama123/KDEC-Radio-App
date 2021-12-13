@@ -202,16 +202,13 @@ class PageManager {
     }
   }
 
-  Future<void> addAll(List<MediaItem> list,int current) async {
-    var list1 = <MediaItem>[];
-    list1.add(list[current]);
-    for(int i = 0;i<list.length;i++){
-      if(i != current)
-      list1.add(list[i]);
-    }
-    _audioHandler.queue..value.clear();
+  Future<void> addAll(List<MediaItem> list,String songName) async {
 
-    await _audioHandler.addQueueItems(list1);
+    final current = list.indexWhere((element) => element.title == songName);
+
+    _audioHandler.removeAll();
+    await _audioHandler.addQueueItems(list);
+    await _audioHandler.skipToQueueItem(current);
 
 
 

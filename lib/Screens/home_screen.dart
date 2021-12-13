@@ -1,14 +1,19 @@
 import 'dart:convert';
+import 'package:audio_service/audio_service.dart';
 import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/Widgets/floating_container.dart';
 import 'package:church_app/models/album_info.dart';
+import 'package:church_app/models/media_details.dart';
 import 'package:church_app/models/notification_info.dart';
+import 'package:church_app/models/recently_played.dart';
+import 'package:church_app/queue_system.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/src/provider.dart';
 import '../app_color.dart';
 import '../backend_queries.dart';
 import '../page_manager.dart';
@@ -94,11 +99,31 @@ class _MyHomePageState extends State<MyHomePage> {
     final Uri? deepLink = data?.link;
 
     if (deepLink != null) {
+      if(deepLink.path == "/album")
       Navigator.pushNamed(context, deepLink.path,arguments: AlbumInfo.fromJson(deepLink.queryParameters));
+      else if(deepLink.path == "/song"){
+        final _pageManager = getIt<PageManager>();
+
+        List<MediaItem> songList = await BackendQueries.getAllSongs(deepLink.queryParameters['albumName']!);
+        int index = songList.indexWhere((element) => element.title == deepLink.queryParameters['songName']!) ;
+        _pageManager.addAll(QueueSystem.getQueue,deepLink.queryParameters['songName']!);
+        BackendQueries.viewSong(songList[index].title);
+        context.read<RecentlyPlayed>().notify( MediaDetails(id: songList[index].id, title: songList[index].title,album: songList[index].album));
+        Navigator.pushNamed(context, deepLink.path);
+      }
     }
-    FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
-      handleLinkData(dynamicLinkData);
+    FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) async {
+      if(dynamicLinkData.link.path == "/album")
       Navigator.pushNamed(context, dynamicLinkData.link.path,arguments: AlbumInfo.fromJson(dynamicLinkData.link.queryParameters));
+      else if(dynamicLinkData.link.path == "/song"){
+        final _pageManager = getIt<PageManager>();
+        List<MediaItem> songList = await BackendQueries.getAllSongs(dynamicLinkData.link.queryParameters['albumName']!);
+        int index = songList.indexWhere((element) => element.title == dynamicLinkData.link.queryParameters['songName']!) ;
+        _pageManager.addAll(QueueSystem.getQueue,dynamicLinkData.link.queryParameters['songName']!);
+        BackendQueries.viewSong(songList[index].title);
+        context.read<RecentlyPlayed>().notify( MediaDetails(id: songList[index].id, title: songList[index].title,album: songList[index].album));
+        Navigator.pushNamed(context, dynamicLinkData.link.path);
+      }
     }).onError((error) {
       // Handle errors
     });

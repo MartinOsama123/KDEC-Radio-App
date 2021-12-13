@@ -8,6 +8,7 @@ import 'package:church_app/models/album_info.dart';
 import 'package:church_app/models/user_info.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share/share.dart';
@@ -70,8 +71,26 @@ class AlbumScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: ElevatedButton.icon(
-                      onPressed: ()  {
-                        Share.share('check out this album ${albumInfo.albumName} https://example.com');
+                      onPressed: ()  async {
+                        final DynamicLinkParameters parameters = DynamicLinkParameters(
+                          // The Dynamic Link URI domain. You can view created URIs on your Firebase console
+                          uriPrefix: 'https://kdecradio.page.link',
+                          // The deep Link passed to your application which you can use to affect change
+                          link: Uri.parse('https://kdecradio.page.link/album?albumName=${albumInfo.albumName}&imgPath=${albumInfo.imgPath}'),
+                          // Android application details needed for opening correct app on device/Play Store
+                          androidParameters: const AndroidParameters(
+                            packageName: "com.genesiscreations.church_app",
+                            minimumVersion: 0,
+                          ),
+                          // iOS application details needed for opening correct app on device/App Store
+                          iosParameters: const IOSParameters(
+                            bundleId: "com.genesiscreations.kdecradio",
+                            minimumVersion: '0',
+                          ),
+                        );
+                        final ShortDynamicLink shortDynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
+                        final Uri shortUrl = shortDynamicLink.shortUrl;
+                        Share.share("Check out ${albumInfo.albumName} on $shortUrl");
                       },
                       style: ElevatedButton.styleFrom(
                         onPrimary: Colors.white,
