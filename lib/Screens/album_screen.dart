@@ -99,7 +99,7 @@ class AlbumScreen extends StatelessWidget {
                       icon: Icon(Icons.share),
                       label:  Text("share").tr()),
                 ),
-                FutureBuilder<String>(
+             /*   FutureBuilder<String>(
                   future: FirebaseAuth.instance.currentUser?.getIdToken(true),
                   builder: (context, token) => token.data != null ? ElevatedButton.icon(
                       onPressed: () async {
@@ -113,7 +113,7 @@ class AlbumScreen extends StatelessWidget {
                       ),
                       icon: Icon(Icons.bookmark_border),
                       label: context.watch<UserModel>().subs.contains(albumInfo.albumName)?  Text("unsubscribe").tr() :  Text("subscribe").tr()) :  Text("loginSub").tr(),
-                ),
+                ),*/
                  PlaylistWidget(albumName: albumInfo.albumName),
                 SizedBox(height: 50)
               ],

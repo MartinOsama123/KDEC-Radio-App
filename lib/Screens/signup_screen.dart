@@ -107,7 +107,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 contentPadding: const EdgeInsets.all(10.0),
                               border: OutlineInputBorder(),
                               labelText: 'password'.tr(),
-                              errorText: !passValid ? "Password is too weak." : null
+                              errorText: !passValid ? "Password is too weak" : null
                             ),
                           ),
                       ),
@@ -166,11 +166,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
                                 case "invalid-email":
                                   emailValid = false;
-                                  emailError = "Please enter a valid email.";
+                                  emailError = "Please enter a valid email";
                                   break;
                                 case "email-already-in-use":
                                   emailValid = false;
-                                  emailError = "Email already taken.";
+                                  emailError = "Email already taken";
                                   break;
                                 case "weak-password":
 

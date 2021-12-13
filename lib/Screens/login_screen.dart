@@ -169,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         context: context,
                                         builder: (context) {
                                           return AlertDialog(
-                                            content: Text('Your username or password is incorrect. Please try again.'),
+                                            content: Text('Your username or password is incorrect. Please try again'),
                                             actions: <Widget>[
                                               Center(
                                                 child: TextButton(
