@@ -205,7 +205,7 @@ class PageManager {
   Future<void> addAll(List<MediaItem> list,String songName) async {
 
     final current = list.indexWhere((element) => element.title == songName);
-
+    print(current);
     _audioHandler.removeAll();
     await _audioHandler.addQueueItems(list);
     await _audioHandler.skipToQueueItem(current);

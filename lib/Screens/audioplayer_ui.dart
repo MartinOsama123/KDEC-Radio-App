@@ -45,15 +45,13 @@ class AudioPlayerUI extends StatelessWidget {
                           tag: mediaItem.data?.album ?? "",
                           child:  FutureBuilder<GetUrlResult>(
                               future: Amplify.Storage.getUrl(key: mediaItem.data?.displayTitle ?? ""),
-                              builder:(context, snapshot) =>  CachedNetworkImage(
-                                  height: 400,
-                                  width: 400,
-                                  imageUrl: snapshot.data?.url ?? "",
-                                  placeholder: (context, url) =>
-                                      Center(child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
-                                ),
+                              builder:(context, snapshot) => snapshot.connectionState == ConnectionState.done ? CachedNetworkImage(
+                                fit: BoxFit.cover,
+                                cacheKey: mediaItem.data?.album,
+                                imageUrl: snapshot.data?.url ?? "",
+                                //    placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) => Image.asset("images/placeholder.png"),
+                              ) : Center(child: CircularProgressIndicator()),
                             ),
                         )),
               Padding(
@@ -73,10 +71,10 @@ class AudioPlayerUI extends StatelessWidget {
 
                     Spacer(),
                     FutureBuilder<List<MediaDetails>>(
-                      future: context.watch<Playlist>().getPrefs(),
+                      future: getIt<Playlist>().getPrefs(),
                       builder: (context, mediaDetails) => mediaDetails.connectionState == ConnectionState.done ? IconButton(icon: Icon( mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Icons.favorite : Icons.favorite_border,
                           color: mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Colors.pink : Colors.grey),onPressed: ()   {
-                        context.read<Playlist>().notify( MediaDetails(id: mediaItem.data!.id, title: mediaItem.data!.title,album: mediaItem.data!.album));
+                        getIt<Playlist>().notify( MediaDetails(id: mediaItem.data!.id, title: mediaItem.data!.title,album: mediaItem.data!.album));
                       }) : Icon(Icons.favorite_border),
                     ),
 

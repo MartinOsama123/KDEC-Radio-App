@@ -86,9 +86,6 @@ class MyApp extends StatelessWidget {
               context.read<FirebaseAuthService>().authStateChanges,
           initialData: null,
         ),
-        ChangeNotifierProvider<Playlist>(
-         create: (_) => Playlist(),
-       ),
         ChangeNotifierProvider<RecentlyPlayed>(
           create: (_) => RecentlyPlayed(),
         ),

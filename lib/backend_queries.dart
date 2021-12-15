@@ -23,7 +23,7 @@ class BackendQueries {
   static const BASE_URL = "https://kdechurch.herokuapp.com";
   static const IMG_URL = "$BASE_URL/api/img/";
   static Future<List<AlbumInfo>> getAllAlbums(String name) async {
-   
+   print("wwwwww");
     var response = await http.get(Uri.parse("$BASE_URL/api/albums/category/$name"));
 
 
@@ -59,22 +59,21 @@ class BackendQueries {
   static Future<List<MediaItem>> getAllSongs(String album) async {
 
     var response = await http.get(Uri.parse("$BASE_URL/api/songs/$album"));
-    print("$BASE_URL/api/songs/$album");
     AudioPlayer audioPlayer = new AudioPlayer();
     QueueSystem.clearQueue();
-    String decoded = Utf8Decoder().convert(response.bodyBytes);
+    //String decoded = Utf8Decoder().convert(response.bodyBytes);
 
     for(var a in jsonDecode(response.body)) {
      GetUrlResult download = await Amplify.Storage.getUrl(key: "$album/${Utf8Decoder().convert(a['songName'].toString().codeUnits)}");
      final albumInfo = await getAlbumInfo(album);
       try {
        String temp =  Utf8Decoder().convert(a['songName'].toString().codeUnits);
-       await audioPlayer.setUrl((Uri.parse(download.url).toString()));
+     //  await audioPlayer.setUrl((Uri.parse(download.url).toString()));
         QueueSystem.add(new MediaItem(id: download.url,
             album: album,
-            displayTitle: "${albumInfo.albumName}/${albumInfo.imgPath}",
+            displayTitle: temp.substring(0,temp.toString().lastIndexOf(".")),
             title: temp.substring(0,temp.toString().lastIndexOf(".")),
-            duration: audioPlayer.duration ?? Duration()));
+            duration:  Duration()));
       }catch(e){print(e.toString());}
     }
     return QueueSystem.getQueue;

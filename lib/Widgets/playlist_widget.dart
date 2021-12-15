@@ -14,17 +14,16 @@ import '../page_manager.dart';
 
 class PlaylistWidget extends StatefulWidget {
   final String albumName;
-  const PlaylistWidget({
-    Key? key,
-    required this.albumName,
-  }) : super(key: key);
+
+   PlaylistWidget({Key? key, required this.albumName}) : super(key: key);
 
   @override
-  _PlaylistWidgetState createState() => _PlaylistWidgetState();
+  State<PlaylistWidget> createState() => _PlaylistWidgetState();
 }
 
 class _PlaylistWidgetState extends State<PlaylistWidget> {
   final _pageManager = getIt<PageManager>();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,6 +40,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
           builder: (context, snapshot) => snapshot.connectionState ==
                   ConnectionState.done
               ? ListView.builder(
+
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: snapshot.data?.length,
@@ -55,11 +55,11 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                                   context.read<RecentlyPlayed>().notify( MediaDetails(id: snapshot.data![index].id, title: snapshot.data![index].title,album: snapshot.data![index].album));
                                 },
                                 child: FutureBuilder<List<MediaDetails>>(
-                                  future: context.watch<Playlist>().getPrefs(),
+                                  future: getIt<Playlist>().getPrefs(),
                                   builder: (context, mediaDetails) => mediaDetails.connectionState == ConnectionState.done ? ListTile(
                                     leading: LoveButton(mediaDetails: mediaDetails.data!, mediaItems: snapshot.data!,index: index),
                                     title: Text(snapshot.data?[index].title ?? ""),
-                                    trailing: Text(snapshot.data?[index].duration.toString().substring(2, 7) ?? ""),
+                                 //   trailing: Text(snapshot.data?[index].duration.toString().substring(2, 7) ?? ""),
                                   ) : Container(),
                                 ),
                               )
@@ -73,7 +73,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
   }
 }
 
-class LoveButton extends StatelessWidget {
+class LoveButton extends StatefulWidget {
   final List<MediaDetails> mediaDetails;
   final List<MediaItem> mediaItems;
   final int index;
@@ -82,10 +82,21 @@ class LoveButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<LoveButton> createState() => _LoveButtonState();
+}
+
+class _LoveButtonState extends State<LoveButton> {
+
+  final _playlist = getIt<Playlist>();
+  late  bool yep = widget.mediaDetails.indexWhere((element) => element.title == widget.mediaItems[widget.index].title) != -1;
+  @override
   Widget build(BuildContext context) {
-    return IconButton(icon: Icon( mediaDetails.indexWhere((element) => element.title == mediaItems[index].title) != -1 ? Icons.favorite : Icons.favorite_border,
-      color: mediaDetails.indexWhere((element) => element.title == mediaItems[index].title) != -1 ? Colors.pink : Colors.grey),onPressed: ()   {
-      context.read<Playlist>().notify( MediaDetails(id: mediaItems[index].id, title: mediaItems[index].title,album: mediaItems[index].album));
+    return IconButton(icon: Icon( yep ? Icons.favorite : Icons.favorite_border,
+      color: yep ? Colors.pink : Colors.grey),onPressed: ()   {
+      setState(() {
+        yep = !yep;
+      });
+      _playlist.notify( MediaDetails(id: widget.mediaItems[widget.index].id, title: widget.mediaItems[widget.index].title,album: widget.mediaItems[widget.index].album));
       });
   }
 }
