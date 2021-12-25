@@ -9,10 +9,10 @@ class UserModel extends ChangeNotifier {
 
   late List<NotificationInfo> notifications;
   late List<String> messages;
-  //late int age;
+  late int age;
 
 
-  UserModel({required this.email, required this.name, required this.phone, required this.notifications,required this.messages/*required this.age*/});
+  UserModel({required this.email, required this.name, required this.phone, required this.notifications,required this.messages,required this.age});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];
@@ -23,7 +23,7 @@ class UserModel extends ChangeNotifier {
     json['notifications'].forEach((element) {notifications.add(element);});
     messages = <String>[];
     json['messages'].forEach((element) {messages.add(element);});
-  //  phone = json['age'];
+    age = json['age'];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,7 +35,7 @@ class UserModel extends ChangeNotifier {
     this.notifications.forEach((element) {data['notifications'].add(element);});
     data['messages'] = <String>[];
     this.messages.forEach((element) {data['messages'].add(element);});
-  //  data['age'] = this.age;
+    data['age'] = this.age;
     return data;
   }
  void setUser(UserModel model){
@@ -45,7 +45,7 @@ class UserModel extends ChangeNotifier {
 
    notifications = model.notifications;
    messages = model.messages;
- //  age = model.age;
+   age = model.age;
    notifyListeners();
  }
  /*Future<void> removeSub(String token, String albumName) async {

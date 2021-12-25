@@ -28,7 +28,7 @@ class _FloatingContainerState extends State<FloatingContainer> {
 
     return  Container(
       width: MediaQuery.of(context).size.width,
-      height: 200,
+      height: 300,
       child: Stack(
           children: [
             StreamBuilder<MediaItem?>(
@@ -39,7 +39,7 @@ class _FloatingContainerState extends State<FloatingContainer> {
                   bottom: 5,
                   child: GestureDetector(onTap: ()=> mediaSnap.data!.title != "Live" ? Navigator.pushNamed(context, "/song")
                       : Navigator.push(context, MaterialPageRoute(builder: (context) => LiveStream(title: "Live", url: mediaSnap.data!.displayDescription ?? ""))),child: Container(
-                  height: 50,
+                  height: 60,
                   width: MediaQuery.of(context).size.width * 0.8 ,
                   decoration: BoxDecoration(
                         color: AppColor.SecondaryColor,

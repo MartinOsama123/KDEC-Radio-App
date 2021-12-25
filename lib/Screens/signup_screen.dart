@@ -152,7 +152,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     phone: _phoneController.text.trim(),
                                     messages: [],
                                     notifications: [],
-                                    /*age: int.parse(_ageController.text.trim())*/);
+                                    age: int.parse(_ageController.text.trim()));
 
                                 String token =
                                     await context.read<User?>()?.getIdToken() ??
