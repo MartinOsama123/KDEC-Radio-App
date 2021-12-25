@@ -56,50 +56,57 @@ class AudioPlayerUI extends StatelessWidget {
                         )),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                            mediaItem.data?.title ?? "",
-                            style: TextStyle(color: Colors.black,fontSize: 40,fontWeight: FontWeight.w600)),
-                        Text(
-                            mediaItem.data?.album ?? "",
-                            style: TextStyle(color: Colors.grey,fontSize: 20)),
-                      ],
-                    ),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.90,
+                  child: Row(
 
-                    Spacer(),
-                    FutureBuilder<List<MediaDetails>>(
-                      future: getIt<Playlist>().getPrefs(),
-                      builder: (context, mediaDetails) => mediaDetails.connectionState == ConnectionState.done ? IconButton(icon: Icon( mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Icons.favorite : Icons.favorite_border,
-                          color: mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Colors.pink : Colors.grey),onPressed: ()   {
-                        getIt<Playlist>().notify( MediaDetails(id: mediaItem.data!.id, title: mediaItem.data!.title,album: mediaItem.data!.album));
-                      }) : Icon(Icons.favorite_border),
-                    ),
+                    children: [
+                      Column(
+                        children: [
+                          Text(
 
-
-                      IconButton(
-                        onPressed: ()  async {
-                          final DynamicLinkParameters parameters = DynamicLinkParameters(
-                            uriPrefix: 'https://kdecradio.page.link',
-                            link: Uri.parse('https://kdecradio.page.link/song?albumName=${mediaItem.data?.album}&songName=${mediaItem.data!.title}'),
-                            androidParameters: const AndroidParameters(
-                              packageName: "com.genesiscreations.church_app",
-                              minimumVersion: 0,
-                            ),
-                            iosParameters: const IOSParameters(
-                              bundleId: "com.genesiscreations.kdecradio",
-                              minimumVersion: '0',
-                            ),
-                          );
-                          final ShortDynamicLink shortDynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
-                          final Uri shortUrl = shortDynamicLink.shortUrl;
-                          Share.share("Check out ${mediaItem.data?.album} \n $shortUrl");
-                        },
-                        icon: Icon(Icons.share),
+                              mediaItem.data?.title ?? "",
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.w600)),
+                          Text(
+                              mediaItem.data?.album ?? "",
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(color: Colors.grey,fontSize: 12)),
+                        ],
                       ),
-                  ],
+
+                      Spacer(),
+                      FutureBuilder<List<MediaDetails>>(
+                        future: getIt<Playlist>().getPrefs(),
+                        builder: (context, mediaDetails) => mediaDetails.connectionState == ConnectionState.done ? IconButton(icon: Icon( mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Icons.favorite : Icons.favorite_border,
+                            color: mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Colors.pink : Colors.grey),onPressed: ()   {
+                          getIt<Playlist>().notify( MediaDetails(id: mediaItem.data!.id, title: mediaItem.data!.title,album: mediaItem.data!.album));
+                        }) : Icon(Icons.favorite_border),
+                      ),
+
+
+                        IconButton(
+                          onPressed: ()  async {
+                            final DynamicLinkParameters parameters = DynamicLinkParameters(
+                              uriPrefix: 'https://kdecradio.page.link',
+                              link: Uri.parse('https://kdecradio.page.link/song?albumName=${mediaItem.data?.album}&songName=${mediaItem.data!.title}'),
+                              androidParameters: const AndroidParameters(
+                                packageName: "com.genesiscreations.church_app",
+                                minimumVersion: 0,
+                              ),
+                              iosParameters: const IOSParameters(
+                                bundleId: "com.genesiscreations.kdecradio",
+                                minimumVersion: '0',
+                              ),
+                            );
+                            final ShortDynamicLink shortDynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
+                            final Uri shortUrl = shortDynamicLink.shortUrl;
+                            Share.share("Check out ${mediaItem.data?.album} \n $shortUrl");
+                          },
+                          icon: Icon(Icons.share),
+                        ),
+                    ],
+                  ),
                 ),
               ),
               AudioProgressBar(),

@@ -23,7 +23,7 @@ class BackendQueries {
   static const BASE_URL = "https://kdechurch.herokuapp.com";
   static const IMG_URL = "$BASE_URL/api/img/";
   static Future<List<AlbumInfo>> getAllAlbums(String name) async {
-   print("wwwwww");
+
     var response = await http.get(Uri.parse("$BASE_URL/api/albums/category/$name"));
 
 
@@ -65,7 +65,7 @@ class BackendQueries {
 
     for(var a in jsonDecode(response.body)) {
      GetUrlResult download = await Amplify.Storage.getUrl(key: "$album/${Utf8Decoder().convert(a['songName'].toString().codeUnits)}");
-     final albumInfo = await getAlbumInfo(album);
+   //  final albumInfo = await getAlbumInfo(album);
       try {
        String temp =  Utf8Decoder().convert(a['songName'].toString().codeUnits);
      //  await audioPlayer.setUrl((Uri.parse(download.url).toString()));
@@ -119,8 +119,11 @@ class BackendQueries {
   }
 
   static Future<UserModel> getUserInfo(String idToken) async {
+    print("MEEEEEEEEEEE: ");
     var response = await http.get(Uri.parse("$BASE_URL/api/users/$idToken"));
+    print(response.body);
     var result = UserModel.fromJson(jsonDecode(Utf8Decoder().convert(response.bodyBytes)));
+    print(result);
     return result;
   }
 
@@ -141,6 +144,7 @@ class BackendQueries {
     },body: message);
     return response.body;
   }
+
   static Future<String> addNotification(String token,String notification) async {
     print(notification);
     var response = await http.post(Uri.parse("$BASE_URL/api/notification/add/$token"),  headers: <String, String>{

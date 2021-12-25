@@ -1,8 +1,10 @@
 import 'package:church_app/models/message_info.dart';
+import 'package:church_app/models/user_info.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:church_app/backend_queries.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../app_color.dart';
 
@@ -13,8 +15,9 @@ class MessegeScreen extends StatefulWidget {
 
 class _MessegeScreenState extends State<MessegeScreen> {
   final TextEditingController _messageController = TextEditingController();
-  List<MessageInfo> messages = <MessageInfo>[];
-  _buildMessage(MessageInfo message, bool isMe) {
+
+  List<String> messages = ["prayerMsg".tr()];
+  _buildMessage(String message, bool isMe) {
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -39,17 +42,10 @@ class _MessegeScreenState extends State<MessegeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              message.time,
-              style: TextStyle(
-                color: Colors.blueGrey,
-                fontSize: 16.0,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+
            SizedBox(height: 8.0),
             Text(
-              message.text,
+              message,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 13.0,
@@ -62,7 +58,8 @@ class _MessegeScreenState extends State<MessegeScreen> {
   }
   @override
   void initState() {
-    messages.add(new MessageInfo("prayerMsg".tr(), DateTime.now().toIso8601String(), false));
+
+
     super.initState();
   }
   @override
@@ -78,30 +75,36 @@ class _MessegeScreenState extends State<MessegeScreen> {
           elevation: 0,
           backgroundColor: Colors.transparent,),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(child: ListView.builder(itemBuilder: (context, index) => _buildMessage(messages[index],messages[index].isMe),itemCount: messages.length,)),
-           Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  child: TextField(
-                    controller: _messageController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Subject',
-                    ),
-                  )),
-            ),
-            ElevatedButton(
-                onPressed: () async {
-                  await BackendQueries.createMessage(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "",_messageController.text);
-                  setState(() {
-                    messages.add(new MessageInfo(_messageController.text, DateTime.now().toIso8601String(), true));
-                  });
-                },
-                child: Text("send").tr(),
-                style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor))
-          ],
+        child: FutureBuilder<String>(
+          future: context.read<User>().getIdToken(),
+          builder: (context, token) => token.hasData ? Column(
+            children: [
+              Expanded(child:  FutureBuilder<UserModel>(
+                  future: BackendQueries.getUserInfo(token.data ?? ""),
+                  builder: (context, snapshot) => snapshot.hasData ? ListView.builder(itemBuilder: (context, index) => _buildMessage(snapshot.data?.messages[index] ?? "",(snapshot.data!.messages[index].contains("Me:") ? true : false)),itemCount: snapshot.data?.messages.length ?? 0,): Center(child: CircularProgressIndicator())) ,
+              ),
+             Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    child: TextField(
+                      controller: _messageController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Subject',
+                      ),
+                    )),
+              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    await BackendQueries.createMessage(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "","Me: ${_messageController.text}");
+                    setState(() {
+                      messages.add(_messageController.text);
+                    });
+                  },
+                  child: Text("send").tr(),
+                  style: ElevatedButton.styleFrom(primary: AppColor.PrimaryColor))
+            ],
+          ) : Center(child: Text("Please Login to chat with KDEC Radio"),),
         ),
       ),
     );

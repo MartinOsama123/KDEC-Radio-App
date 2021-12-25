@@ -45,6 +45,7 @@ class _LiveScreenState extends State<LiveScreen> {
     return  StreamBuilder<RadioKingTrack>(
       stream: BackendQueries.getCurrentTrackStream(),
       builder: (context, snapshot) => snapshot.hasData ?
+          snapshot.data!.message != "Not Found" ?
       Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +77,7 @@ class _LiveScreenState extends State<LiveScreen> {
             )
           ],
         ),
-      ) : Center(child: CircularProgressIndicator()),
+      ) : Center(child: Text("No available live podcasts right now, check again later")) : Center(child:CircularProgressIndicator() ),
     );
   }
 

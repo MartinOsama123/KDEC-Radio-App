@@ -6,22 +6,24 @@ class UserModel extends ChangeNotifier {
   late String email;
   late String name;
   late String phone;
-  late List<String> subs;
+
   late List<NotificationInfo> notifications;
-  late int age;
+  late List<String> messages;
+  //late int age;
 
 
-  UserModel({required this.email, required this.name, required this.phone, required this.subs,required this.notifications,required this.age});
+  UserModel({required this.email, required this.name, required this.phone, required this.notifications,required this.messages/*required this.age*/});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];
     name = json['name'];
     phone = json['phone'];
-    subs = <String>[];
-    json['subs'].forEach((element) {subs.add(element);});
+
     notifications = <NotificationInfo>[];
     json['notifications'].forEach((element) {notifications.add(element);});
-    phone = json['age'];
+    messages = <String>[];
+    json['messages'].forEach((element) {messages.add(element);});
+  //  phone = json['age'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,32 +33,33 @@ class UserModel extends ChangeNotifier {
     data['phone'] = this.phone;
     data['notifications'] = <NotificationInfo>[];
     this.notifications.forEach((element) {data['notifications'].add(element);});
-    data['subs'] = <String>[];
-    this.subs.forEach((element) {data['subs'].add(element);});
-    data['age'] = this.age;
+    data['messages'] = <String>[];
+    this.messages.forEach((element) {data['messages'].add(element);});
+  //  data['age'] = this.age;
     return data;
   }
  void setUser(UserModel model){
    email = model.email;
    name = model.name;
    phone = model.phone;
-   subs = model.subs;
+
    notifications = model.notifications;
-   age = model.age;
+   messages = model.messages;
+ //  age = model.age;
    notifyListeners();
  }
- Future<void> removeSub(String token, String albumName) async {
+ /*Future<void> removeSub(String token, String albumName) async {
 
       await BackendQueries.deleteSub(token, albumName);
-      subs.remove(albumName);
+      messages.remove(albumName);
       notifyListeners();
 
  }
   Future<void> addSub(String token, String albumName) async {
 
       await BackendQueries.addSub(token, albumName);
-      subs.add(albumName);
+      messages.add(albumName);
       notifyListeners();
 
-  }
+  }*/
 }

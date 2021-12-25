@@ -58,7 +58,7 @@ class _FloatingContainerState extends State<FloatingContainer> {
                                   child: Text(mediaSnap.data?.title ?? "",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 16)),
+                                          fontSize: 13)),
                                 ),
                                 Text(mediaSnap.data?.album ?? "",
                                     style: TextStyle(

@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<UserModel>(
           create: (_) => UserModel(
-              email: "", name: "", phone: "", subs: [], notifications: [],age: 0),
+              email: "", name: "", phone: "", messages: [], notifications: [],/*age: 0*/),
         ),
         StreamProvider(
           create: (context) =>
