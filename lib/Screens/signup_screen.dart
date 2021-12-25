@@ -158,6 +158,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     await context.read<User?>()?.getIdToken() ??
                                         "";
                                 var en = jsonEncode(user.toJson());
+                                print(en);
                                 await BackendQueries.createUser(token, en);
                               }
                             }on FirebaseAuthException catch (e) {

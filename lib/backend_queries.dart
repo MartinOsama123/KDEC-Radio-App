@@ -128,9 +128,12 @@ class BackendQueries {
   }
 
   static Future<String> createUser(String token,String user) async {
+    print(token);
+    print(user);
     var response = await http.post(Uri.parse("$BASE_URL/api/users/create/$token"),  headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },body: user);
+    print(response.body);
     return response.body;
   }
   static Future<void> viewSong(String name) async {

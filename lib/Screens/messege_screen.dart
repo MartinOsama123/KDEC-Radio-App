@@ -81,7 +81,7 @@ class _MessegeScreenState extends State<MessegeScreen> {
             children: [
               Expanded(child:  FutureBuilder<UserModel>(
                   future: BackendQueries.getUserInfo(token.data ?? ""),
-                  builder: (context, snapshot) => snapshot.hasData ? ListView.builder(itemBuilder: (context, index) => _buildMessage(snapshot.data?.messages[index] ?? "",(snapshot.data!.messages[index].contains("Me:") ? true : false)),itemCount: snapshot.data?.messages.length ?? 0,): Center(child: CircularProgressIndicator())) ,
+                  builder: (context, snapshot) => snapshot.hasData ? ListView.builder(itemBuilder: (context, index) => _buildMessage(snapshot.data?.messages[index].replaceFirst("Me:", "") ?? "",(snapshot.data!.messages[index].contains("Me:") ? true : false)),itemCount: snapshot.data?.messages.length ?? 0,): Center(child: CircularProgressIndicator())) ,
               ),
              Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -99,6 +99,7 @@ class _MessegeScreenState extends State<MessegeScreen> {
                     await BackendQueries.createMessage(await FirebaseAuth.instance.currentUser?.getIdToken(true) ?? "","Me: ${_messageController.text}");
                     setState(() {
                       messages.add(_messageController.text);
+                      _messageController.text = "";
                     });
                   },
                   child: Text("send").tr(),
