@@ -1,4 +1,4 @@
-import 'package:church_app/backend_queries.dart';
+import 'package:church_app/backend/backend_queries.dart';
 import 'package:church_app/Widgets/carousel_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +35,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child:  BuildCarousel( carouselIndex:1,category: snapshot.data![index]),
                     ),
-                    (index == snapshot.data!.length-1) ? SizedBox(height: 50) : Container()
+                    (index == snapshot.data!.length-1) ? SizedBox(height: 100) : SizedBox()
                   ],
                 ),
               ),

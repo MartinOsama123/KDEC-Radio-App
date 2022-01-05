@@ -1,5 +1,5 @@
 import 'package:church_app/app_color.dart';
-import 'package:church_app/firebase_auth.dart';
+import 'package:church_app/backend/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';

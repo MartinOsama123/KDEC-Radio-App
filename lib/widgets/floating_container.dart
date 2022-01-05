@@ -3,14 +3,13 @@ import 'package:church_app/Screens/audioplayer_ui.dart';
 import 'package:church_app/Screens/live_stream.dart';
 import 'package:church_app/Screens/messege_screen.dart';
 import 'package:church_app/Services/service_locator.dart';
+import 'package:church_app/audio_service/audio_handler.dart';
+import 'package:church_app/audio_service/page_manager.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
-
 import '../app_color.dart';
-import '../audio_handler.dart';
-import '../page_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FloatingContainer extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:church_app/backend_queries.dart';
+import 'package:church_app/backend/backend_queries.dart';
 import 'package:church_app/models/album_info.dart';
 import 'package:flutter/material.dart';
 

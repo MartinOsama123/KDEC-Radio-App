@@ -7,26 +7,22 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:church_app/app_color.dart';
 import 'dart:math' as math;
 import 'package:church_app/Services/service_locator.dart';
+import 'package:church_app/audio_service/audio_handler.dart';
+import 'package:church_app/audio_service/page_manager.dart';
 import 'package:church_app/models/media_details.dart';
 import 'package:church_app/models/playlist.dart';
+import 'package:church_app/widgets/love_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
-import '../audio_handler.dart';
-import '../page_manager.dart';
 
 class AudioPlayerUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //var args = ModalRoute.of(context)?.settings.arguments as Map;
-  /*  final String songName = args['songName'];
-    final String albumName = args['albumName'];*/
     return  StreamBuilder<MediaItem?>(
       stream: getIt<MyAudioHandler>().mediaItem,  builder: (context, mediaItem) => Scaffold(
           backgroundColor: Colors.white,
@@ -77,11 +73,8 @@ class AudioPlayerUI extends StatelessWidget {
 
                       Spacer(),
                       FutureBuilder<List<MediaDetails>>(
-                        future: getIt<Playlist>().getPrefs(),
-                        builder: (context, mediaDetails) => mediaDetails.connectionState == ConnectionState.done ? IconButton(icon: Icon( mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Icons.favorite : Icons.favorite_border,
-                            color: mediaDetails.data!.indexWhere((element) => element.title == mediaItem.data!.title) != -1 ? Colors.pink : Colors.grey),onPressed: ()   {
-                          getIt<Playlist>().notify( MediaDetails(id: mediaItem.data!.id, title: mediaItem.data!.title,album: mediaItem.data!.album));
-                        }) : Icon(Icons.favorite_border),
+                        future: context.read<Playlist>().getPrefs(),
+                        builder: (context, mediaDetails) => LoveButton(mediaItems: mediaItem.data!),
                       ),
 
 

@@ -1,4 +1,4 @@
-import 'package:church_app/backend_queries.dart';
+import 'package:church_app/backend/backend_queries.dart';
 import 'package:church_app/models/notification_info.dart';
 import 'package:flutter/material.dart';
 

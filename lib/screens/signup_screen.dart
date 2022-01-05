@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:church_app/app_color.dart';
-import 'package:church_app/backend_queries.dart';
-import 'package:church_app/firebase_auth.dart';
+import 'package:church_app/backend/backend_queries.dart';
+import 'package:church_app/backend/firebase_auth.dart';
 import 'package:church_app/models/user_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -158,7 +158,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                     await context.read<User?>()?.getIdToken() ??
                                         "";
                                 var en = jsonEncode(user.toJson());
-                                print(en);
                                 await BackendQueries.createUser(token, en);
                               }
                             }on FirebaseAuthException catch (e) {

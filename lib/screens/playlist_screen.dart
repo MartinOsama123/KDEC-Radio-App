@@ -1,15 +1,14 @@
-import 'dart:convert';
-
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/Widgets/floating_container.dart';
 import 'package:church_app/app_color.dart';
+import 'package:church_app/audio_service/page_manager.dart';
 import 'package:church_app/models/media_details.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../page_manager.dart';
 
 class PlaylistScreen extends StatefulWidget {
   @override
@@ -17,7 +16,27 @@ class PlaylistScreen extends StatefulWidget {
 }
 
 class _PlaylistScreen extends State<PlaylistScreen> {
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  late SharedPreferences _prefs = getIt<SharedPreferences>();
+  List<MediaItem> media = <MediaItem>[];
+  late String prefData;
+  late List<MediaDetails> mediaDetails;
+
+  @override
+  void initState() {
+    prefData = _prefs.getString("likes") ?? "";
+    mediaDetails = prefData.isEmpty ? <MediaDetails>[] : MediaDetails.decode(prefData);
+   fill();
+    super.initState();
+  }
+  Future<void> fill() async {
+    for(int i = 0;i<mediaDetails.length;i++){
+      GetUrlResult download = await Amplify.Storage.getUrl(key: "${mediaDetails[i].album}/${mediaDetails[i].title}.mp3");
+      media.add(new MediaItem(id: download.url, title: mediaDetails[i].title,album: mediaDetails[i].album));
+    }
+    setState(() {
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,35 +53,24 @@ class _PlaylistScreen extends State<PlaylistScreen> {
       floatingActionButtonLocation:
       FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingContainer(),
-      body: FutureBuilder<SharedPreferences>(
-            future: _prefs,
-            builder: (context, snapshot) {
-              List<MediaItem> media = <MediaItem>[];
-              String prefData = snapshot.data?.getString("likes") ?? "";
-              List<MediaDetails> mediaDetails = prefData.isEmpty ? <MediaDetails>[] : MediaDetails.decode(prefData);
-              for(int i = 0;i<mediaDetails.length;i++){
-                media.add(new MediaItem(id: mediaDetails[i].id, title: mediaDetails[i].title,album: mediaDetails[i].album));
-              }
-              return prefData.isNotEmpty ? ListView.separated(
+      body:  prefData.isNotEmpty ? ListView.separated(
                 shrinkWrap: true,
                 separatorBuilder: (context, index) => Divider(
                   thickness: 1,
                 ),
-                itemCount: mediaDetails.length,
-                itemBuilder: (context, index) => ListTile(
+                itemCount: media.length,
+                itemBuilder: (context, index) => index != mediaDetails.length -1 ?  ListTile(
                   title: Text(media[index].title),
                   subtitle: Text(media[index].album!),
                   trailing: Icon(Icons.play_arrow),
                   onTap: () async {
                     getIt<PageManager>().addAll(media,media[index].title);
                   },
-                ),
+                ) : SizedBox(height: 100),
               ): Center(child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text("You haven't liked anything :("),
-              ),);
-            },
-          ),
+              ),)
     );
   }
 }

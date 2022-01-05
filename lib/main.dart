@@ -12,23 +12,20 @@ import 'package:church_app/Screens/profile_screen.dart';
 import 'package:church_app/Screens/signup_screen.dart';
 import 'package:church_app/app_color.dart';
 import 'package:church_app/Screens/album_screen.dart';
-import 'package:church_app/firebase_auth.dart';
 import 'package:church_app/models/playlist.dart';
 import 'package:church_app/models/recently_played.dart';
 import 'Services/service_locator.dart';
 import 'amplifyconfiguration.dart';
-import 'package:church_app/models/album_info.dart';
 import 'package:church_app/models/user_info.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'Screens/home_screen.dart';
 import 'Screens/splash_screen.dart';
+import 'backend/firebase_auth.dart';
 
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -81,13 +78,13 @@ class MyApp extends StatelessWidget {
           create: (_) => UserModel(
               email: "", name: "", phone: "", messages: [], notifications: [],age: 0),
         ),
+        ChangeNotifierProvider<Playlist>(
+          create: (_) => Playlist()
+        ),
         StreamProvider(
           create: (context) =>
               context.read<FirebaseAuthService>().authStateChanges,
           initialData: null,
-        ),
-        ChangeNotifierProvider<RecentlyPlayed>(
-          create: (_) => RecentlyPlayed(),
         ),
       ],
       child: MaterialApp(

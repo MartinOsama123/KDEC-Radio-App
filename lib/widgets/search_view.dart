@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:church_app/backend_queries.dart';
+import 'package:church_app/backend/backend_queries.dart';
 import 'package:church_app/Screens/album_screen.dart';
 import 'package:church_app/models/album_info.dart';
 import 'package:church_app/models/song_info.dart';

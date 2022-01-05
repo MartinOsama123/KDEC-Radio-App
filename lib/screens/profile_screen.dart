@@ -1,5 +1,5 @@
-import 'package:church_app/backend_queries.dart';
-import 'package:church_app/firebase_auth.dart';
+import 'package:church_app/backend/backend_queries.dart';
+import 'package:church_app/backend/firebase_auth.dart';
 import 'package:church_app/Screens/login_screen.dart';
 import 'package:church_app/models/user_info.dart';
 import 'package:easy_localization/easy_localization.dart';

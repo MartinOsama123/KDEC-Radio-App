@@ -1,7 +1,7 @@
 import 'package:church_app/models/message_info.dart';
 import 'package:church_app/models/user_info.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:church_app/backend_queries.dart';
+import 'package:church_app/backend/backend_queries.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

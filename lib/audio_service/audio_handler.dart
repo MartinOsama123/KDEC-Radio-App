@@ -76,7 +76,7 @@ class MyAudioHandler extends BaseAudioHandler {
     _player.durationStream.listen((duration) {
       var index = _player.currentIndex;
       final newQueue = queue.value;
-      if (index == null || newQueue.isEmpty) return;
+      if (index == null || newQueue.isEmpty || index >= newQueue.length) return;
       if (_player.shuffleModeEnabled) {
         index = _player.shuffleIndices![index];
       }
@@ -111,7 +111,7 @@ class MyAudioHandler extends BaseAudioHandler {
   @override
   Future<void> addQueueItems(List<MediaItem> mediaItems) async {
     final audioSource = mediaItems.map(_createAudioSource);
-    print(mediaItems[0].title);
+
     _playlist.addAll(audioSource.toList()).then((value) {
       final newQueue = queue.value..addAll(mediaItems);
       queue.add(newQueue);

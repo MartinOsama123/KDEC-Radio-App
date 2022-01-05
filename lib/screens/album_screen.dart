@@ -139,7 +139,7 @@ class _ScrollBodyState extends State<ScrollBody> {
                   label: context.watch<UserModel>().subs.contains(albumInfo.albumName)?  Text("unsubscribe").tr() :  Text("subscribe").tr()) :  Text("loginSub").tr(),
             ),*/
              PlaylistWidget(albumName: widget.albumInfo.albumName),
-            SizedBox(height: 50)
+            SizedBox(height: 100)
           ],
         ),
       ),

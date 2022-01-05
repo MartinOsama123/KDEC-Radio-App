@@ -2,15 +2,12 @@ import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:church_app/backend_queries.dart';
-import 'package:church_app/Screens/live_stream.dart';
+import 'package:church_app/audio_service/page_manager.dart';
+import 'package:church_app/backend/backend_queries.dart';
 import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/models/radioking_track.dart';
 import 'package:church_app/models/session_info.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-
-import '../page_manager.dart';
 class LiveScreen extends StatefulWidget {
   @override
   _LiveScreenState createState() => _LiveScreenState();
