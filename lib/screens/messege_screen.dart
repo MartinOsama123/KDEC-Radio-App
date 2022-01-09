@@ -76,7 +76,7 @@ class _MessegeScreenState extends State<MessegeScreen> {
           backgroundColor: Colors.transparent,),
       body: SafeArea(
         child: FutureBuilder<String>(
-          future: context.read<User>().getIdToken(),
+          future: context.read<User?>()?.getIdToken(),
           builder: (context, token) => token.hasData ? Column(
             children: [
               Expanded(child:  FutureBuilder<UserModel>(

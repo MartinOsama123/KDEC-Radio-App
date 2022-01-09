@@ -100,7 +100,7 @@ class BuildCarouselItem extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(albumInfo.albumName),
+            child: Text(albumInfo.albumName,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
           ),
         ],
       );
