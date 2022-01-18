@@ -30,7 +30,7 @@
   "playlist": "Playlist",
   "favorite": "Your favorite playlist",
   "recently": "Recently played",
-  "age": "Age",
+  "age": "Age (Optional)",
   "passReset": "Forgot password?",
   "confirm": "Confirm"
 }

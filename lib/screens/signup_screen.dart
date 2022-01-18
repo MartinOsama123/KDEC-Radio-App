@@ -121,8 +121,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 isDense: true,
                                 contentPadding: const EdgeInsets.all(10.0),
                               border: OutlineInputBorder(),
-                              labelText: 'age'.tr(),
-                                errorText: !ageValid ? "Age must not be empty" : null
+                              labelText: "${'age'.tr()}(Optional)",
                             ),
                           ),
 
@@ -142,17 +141,17 @@ class _SignupScreenState extends State<SignupScreen> {
                               if (_nameController.text.trim().isEmpty) nameValid = false;else nameValid = true;
                               if (_phoneController.text.trim().length != 11) phoneValid = false;else phoneValid = true;
 
-                              if (_ageController.text.trim().isEmpty) ageValid = false;else ageValid = true;
+                              if (_ageController.text.trim().isEmpty)
                               emailValid = true; passValid = true;
                               if (emailValid && nameValid && phoneValid &&
-                                  passValid && ageValid) {
+                                  passValid) {
                                 UserModel user = new UserModel(
                                     email: _emailController.text.trim(),
                                     name: _nameController.text.trim(),
                                     phone: _phoneController.text.trim(),
                                     messages: [],
                                     notifications: [],
-                                    age: int.parse(_ageController.text.trim()));
+                                    age: _ageController.text.isNotEmpty ? int.parse(_ageController.text.trim()) : 0);
 
                                 String token =
                                     await context.read<User?>()?.getIdToken() ??
