@@ -23,10 +23,9 @@ class BuildCarousel extends StatelessWidget {
         builder: (context, snapshot) =>
 
                 SizedBox(
-                  width: 300,
+                  width:500,
                   height: 300,
                   child: PageView.builder(
-
                     itemCount: snapshot.data?.length ?? 0,
                     controller: PageController(viewportFraction: 0.9),
                     itemBuilder: (BuildContext context, int itemIndex) {

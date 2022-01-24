@@ -121,7 +121,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 isDense: true,
                                 contentPadding: const EdgeInsets.all(10.0),
                               border: OutlineInputBorder(),
-                              labelText: "${'age'.tr()}(Optional)",
+                              labelText: "${'age'.tr()}",
                             ),
                           ),
 

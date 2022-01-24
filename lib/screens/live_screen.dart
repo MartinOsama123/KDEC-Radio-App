@@ -7,6 +7,7 @@ import 'package:church_app/backend/backend_queries.dart';
 import 'package:church_app/Services/service_locator.dart';
 import 'package:church_app/models/radioking_track.dart';
 import 'package:church_app/models/session_info.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 class LiveScreen extends StatefulWidget {
   @override
@@ -49,7 +50,7 @@ class _LiveScreenState extends State<LiveScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 300,
+              height: 500,
               width: 300,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
@@ -74,7 +75,7 @@ class _LiveScreenState extends State<LiveScreen> {
             )
           ],
         ),
-      ) : Center(child: Text("No available live podcasts right now, check again later")) : Center(child:CircularProgressIndicator() ),
+      ) : Center(child: Text("noPodcast").tr()) : Center(child:CircularProgressIndicator() ),
     );
   }
 
